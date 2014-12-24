@@ -1,0 +1,84 @@
+\documentclass{article}
+\usepackage{float} 
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{xcolor,colortbl}
+
+\colorlet{tableheadcolor}{gray!50}
+\newcommand{\headcol}{\rowcolor{tableheadcolor}}
+\colorlet{tablerowcolor}{gray!25}
+\newcommand{\rowcol}{\rowcolor{tablerowcolor}}
+
+\usepackage{geometry}
+\geometry{verbose, tmargin=2cm, bmargin=2cm, lmargin=2cm, rmargin=2cm}
+\begin{document}
+
+<<knitr_setup, include=FALSE, cache=FALSE>>=
+library(knitr)
+opts_chunk$set(results='asis', cache=FALSE, echo=FALSE, eval=TRUE, tidy=TRUE, message=FALSE, warning=FALSE)
+read_chunk("../../code/baseline_fire.R")
+@
+
+\title{Baseline Fire 1950 - 2009 \\ \large Unvetted preliminary rush draft from developmental code}
+\author{Matthew Leonawicz}
+\maketitle
+
+\setlength{\aboverulesep}{0.2pt}
+\setlength{\belowrulesep}{0.2pt}
+
+<<setup, cache=TRUE>>=
+@
+
+\section{Baseline Fire Tables}
+The third table down combining the first two relates to table 3.1 in the original document.
+This uses strictly ALFRESCO output.
+<<baseline_fire_setup, cache=TRUE>>=
+@
+
+\subsection{Fire frequency}
+<<baseline_fire_fc_table>>=
+@
+\Sexpr{tmp}
+
+\subsection{Burn area}
+<<baseline_fire_ba_table>>=
+@
+\Sexpr{tmp}
+
+\newpage
+\pagebreak
+\subsection{Burn area and fire frequency}
+<<baseline_fire_bf_table, results="hide">>=
+@
+\Sexpr{tmp}
+
+\newpage
+\pagebreak
+\section{Baseline Fire Graphs}
+The below graph relates to figure 3.2 in the original document.
+This uses strictly ALFRESCO output.
+\subsection{Alaska}
+<<baseline_fire_barplot_AK, fig.width=7, fig.height=4, fig.cap="Alaska", fig.pos="H">>=
+@
+
+\newpage
+\subsection{LCC Regions}
+All five following separate LCC graphs relate to figure 3.3 in the original document.
+This uses strictly ALFRESCO output.
+<<baseline_fire_barplot_LCC1, fig.width=7, fig.height=4, fig.cap="Arctic", fig.pos="H">>=
+@
+
+<<baseline_fire_barplot_LCC2, fig.width=7, fig.height=4, fig.cap="North Pacific", fig.pos="H">>=
+@
+
+<<baseline_fire_barplot_LCC3, fig.width=7, fig.height=4, fig.cap="Northwest Interior Forest North", fig.pos="H">>=
+@
+
+<<baseline_fire_barplot_LCC4, fig.width=7, fig.height=4, fig.cap="Northwest Interior Forest South", fig.pos="H">>=
+@
+
+<<baseline_fire_barplot_LCC5, fig.width=7, fig.height=4, fig.cap="Western Alaska", fig.pos="H">>=
+@
+
+\end{document}

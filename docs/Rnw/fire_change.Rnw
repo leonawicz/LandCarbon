@@ -1,0 +1,85 @@
+\documentclass{article}
+\usepackage{float} 
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{xcolor,colortbl}
+
+\colorlet{tableheadcolor}{gray!50}
+\newcommand{\headcol}{\rowcolor{tableheadcolor}}
+\colorlet{tablerowcolor}{gray!25}
+\newcommand{\rowcol}{\rowcolor{tablerowcolor}}
+
+\usepackage{geometry}
+\geometry{verbose, tmargin=2cm, bmargin=2cm, lmargin=2cm, rmargin=2cm}
+\begin{document}
+
+<<knitr_setup, include=FALSE, cache=FALSE>>=
+library(knitr)
+opts_chunk$set(results='asis', cache=FALSE, echo=FALSE, eval=TRUE, tidy=TRUE, message=FALSE, warning=FALSE)
+read_chunk("../../code/fire_change.R")
+@
+
+\title{Projected fire change 2000 - 2099 \\ \large Unvetted preliminary rush draft from developmental code}
+\author{Matthew Leonawicz}
+\maketitle
+
+\setlength{\aboverulesep}{0.2pt}
+\setlength{\belowrulesep}{0.2pt}
+
+<<setup, cache=TRUE>>=
+@
+
+\section{Projected fire change tables}
+<<fire_change_setup, cache=TRUE>>=
+@
+
+\subsection{Alaska}
+The third table down with percentages relates to table 8.1 in the original document.
+This uses strictly ALFRESCO output.
+The tables use years 2000 - 2009 and 2090 - 2099.
+\subsubsection{Historical fire}
+<<fire_change_table1>>=
+@
+\Sexpr{tmp}
+
+\subsubsection{Projected fire}
+<<fire_change_table2>>=
+@
+\Sexpr{tmp}
+
+\subsubsection{Percent change}
+<<fire_change_table_dif>>=
+@
+\Sexpr{tmp}
+
+\section{Percentile fire trends by scenario}
+The below graph relates to figure 8.2 in the original document.
+This uses strictly ALFRESCO output.
+\subsection{Alaska}
+<<fire_change_ts_AK, fig.width=7, fig.height=3, fig.cap="Alaska", fig.pos="H">>=
+@
+
+All five following separate LCC graphs relate to figure 8.3 in the original document.
+This uses strictly ALFRESCO output.
+\subsection{Arctic}
+<<fire_change_ts_LCC1, fig.width=7, fig.height=3, fig.cap="Arctic", fig.pos="H">>=
+@
+
+\subsection{North Pacific}
+<<fire_change_ts_LCC2, fig.width=7, fig.height=3, fig.cap="North Pacific", fig.pos="H">>=
+@
+
+\subsection{Northwest Interior Forest North}
+<<fire_change_ts_LCC3, fig.width=7, fig.height=3, fig.cap="Northwest Interior Forest North", fig.pos="H">>=
+@
+
+\subsection{Northwest Interior Forest South}
+<<fire_change_ts_LCC4, fig.width=7, fig.height=3, fig.cap="Northwest Interior Forest South", fig.pos="H">>=
+@
+
+\subsection{Western Alaska}
+<<fire_change_ts_LCC5, fig.width=7, fig.height=3, fig.cap="Western Alaska", fig.pos="H">>=
+@
+
+\end{document}

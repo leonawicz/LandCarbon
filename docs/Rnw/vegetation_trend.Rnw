@@ -1,0 +1,64 @@
+\documentclass{article}
+\usepackage{float} 
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{xcolor,colortbl}
+
+\colorlet{tableheadcolor}{gray!50}
+\newcommand{\headcol}{\rowcolor{tableheadcolor}}
+\colorlet{tablerowcolor}{gray!25}
+\newcommand{\rowcol}{\rowcolor{tablerowcolor}}
+
+\usepackage{geometry}
+\geometry{verbose, tmargin=2cm, bmargin=2cm, lmargin=2cm, rmargin=2cm}
+\begin{document}
+
+<<knitr_setup, include=FALSE, cache=FALSE>>=
+library(knitr)
+opts_chunk$set(results='asis', cache=FALSE, echo=FALSE, eval=TRUE, tidy=TRUE, message=FALSE, warning=FALSE)
+read_chunk("../../code/vegetation_change.R")
+@
+
+\title{Projected Vegetation Change 2009 vs. 2100 \\ \large Unvetted preliminary rush draft from developmental code}
+\author{Matthew Leonawicz}
+\maketitle
+
+\setlength{\aboverulesep}{0.2pt}
+\setlength{\belowrulesep}{0.2pt}
+
+<<setup, cache=T>>=
+@
+
+<<veg_change_setup, cache=TRUE>>=
+@
+
+\section{Area Trends by Vegetation Class and Scenario}
+The below graph relates to figure 6.3 in the original document.
+This uses strictly ALFRESCO output.
+\subsection{Alaska}
+<<veg_change_ts_AK, fig.width=7, fig.height=5, fig.cap="Alaska", fig.pos="H">>=
+@
+
+All five following separate LCC graphs relate to figure 6.3 in the original document.
+This uses strictly ALFRESCO output.
+\subsection{Arctic}
+<<veg_change_ts_LCC1, fig.width=7, fig.height=5, fig.cap="Arctic", fig.pos="H">>=
+@
+
+\subsection{North Pacific}
+<<veg_change_ts_LCC2, fig.width=7, fig.height=5, fig.cap="North Pacific", fig.pos="H">>=
+@
+
+\subsection{Northwest Interior Forest North}
+<<veg_change_ts_LCC3, fig.width=7, fig.height=5, fig.cap="Northwest Interior Forest North", fig.pos="H">>=
+@
+
+\subsection{Northwest Interior Forest South}
+<<veg_change_ts_LCC4, fig.width=7, fig.height=5, fig.cap="Northwest Interior Forest South", fig.pos="H">>=
+@
+
+\subsection{Western Alaska}
+<<veg_change_ts_LCC5, fig.width=7, fig.height=5, fig.cap="Western Alaska", fig.pos="H">>=
+@
+
+\end{document}
