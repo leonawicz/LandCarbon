@@ -1,4 +1,5 @@
 # @knitr setup
+wd <- basename(getwd())
 region.grp <- "LCC Regions"
 #mainDir <- "/workspace/UA/mfleonawicz/Leonawicz/Projects/2014/AR4_AR5_comparisons/data/final"
 mainDir <- "X:/Leonawicz/Projects/2014/AR4_AR5_comparisons/data/final"
@@ -109,10 +110,13 @@ d1.tab <- xtable(d1.agg1.sub, digits=0, align=c("l", "l", rep("c", ncol(d1.agg1.
 d2.tab <- xtable(d2.agg1.sub, digits=0, align=c("l", "l", rep("c", ncol(d2.agg1.sub)-1)))
 d.diff.tab <- xtable(d.prop, digits=1, align=c("l", "l", rep("c", ncol(d2.agg1.sub)-1)))
 #names(d.diff.tab)[3:4] <- paste("% change in", tolower(names(d.diff.tab)[3:4]))
+if(wd=="Rmd") print(d1.tab, type="html")
 tmp <- print_tab(d1.tab)
 # @knitr fire_change_table2_AK
+if(wd=="Rmd") print(d2.tab, type="html")
 tmp <- print_tab(d2.tab)
 # @knitr fire_change_table_dif_AK
+if(wd=="Rmd") print(d.diff.tab, type="html")
 tmp <- print_tab(d.diff.tab)
 
 # @knitr fire_change_table1_LCC1
@@ -122,10 +126,13 @@ d.prop <- org_prop_df(d1.agg1.sub, d2.agg1.sub)
 d1.tab <- xtable(d1.agg1.sub, digits=0, align=c("l", "l", rep("c", ncol(d1.agg1.sub)-1)))
 d2.tab <- xtable(d2.agg1.sub, digits=0, align=c("l", "l", rep("c", ncol(d2.agg1.sub)-1)))
 d.diff.tab <- xtable(d.prop, digits=1, align=c("l", "l", rep("c", ncol(d2.agg1.sub)-1)))
+if(wd=="Rmd") print(d1.tab, type="html")
 tmp <- print_tab(d1.tab)
 # @knitr fire_change_table2_LCC1
+if(wd=="Rmd") print(d2.tab, type="html")
 tmp <- print_tab(d2.tab)
 # @knitr fire_change_table_dif_LCC1
+if(wd=="Rmd") print(d.diff.tab, type="html")
 tmp <- print_tab(d.diff.tab)
 
 # @knitr fire_change_table1_LCC2
@@ -135,10 +142,13 @@ d.prop <- org_prop_df(d1.agg1.sub, d2.agg1.sub)
 d1.tab <- xtable(d1.agg1.sub, digits=0, align=c("l", "l", rep("c", ncol(d1.agg1.sub)-1)))
 d2.tab <- xtable(d2.agg1.sub, digits=0, align=c("l", "l", rep("c", ncol(d2.agg1.sub)-1)))
 d.diff.tab <- xtable(d.prop, digits=1, align=c("l", "l", rep("c", ncol(d2.agg1.sub)-1)))
+if(wd=="Rmd") print(d1.tab, type="html")
 tmp <- print_tab(d1.tab)
 # @knitr fire_change_table2_LCC2
+if(wd=="Rmd") print(d2.tab, type="html")
 tmp <- print_tab(d2.tab)
 # @knitr fire_change_table_dif_LCC2
+if(wd=="Rmd") print(d.diff.tab, type="html")
 tmp <- print_tab(d.diff.tab)
 
 # @knitr fire_change_table1_LCC3
@@ -148,10 +158,13 @@ d.prop <- org_prop_df(d1.agg1.sub, d2.agg1.sub)
 d1.tab <- xtable(d1.agg1.sub, digits=0, align=c("l", "l", rep("c", ncol(d1.agg1.sub)-1)))
 d2.tab <- xtable(d2.agg1.sub, digits=0, align=c("l", "l", rep("c", ncol(d2.agg1.sub)-1)))
 d.diff.tab <- xtable(d.prop, digits=1, align=c("l", "l", rep("c", ncol(d2.agg1.sub)-1)))
+if(wd=="Rmd") print(d1.tab, type="html")
 tmp <- print_tab(d1.tab)
 # @knitr fire_change_table2_LCC3
+if(wd=="Rmd") print(d2.tab, type="html")
 tmp <- print_tab(d2.tab)
 # @knitr fire_change_table_dif_LCC3
+if(wd=="Rmd") print(d.diff.tab, type="html")
 tmp <- print_tab(d.diff.tab)
 
 # @knitr fire_change_table1_LCC4
@@ -161,10 +174,13 @@ d.prop <- org_prop_df(d1.agg1.sub, d2.agg1.sub)
 d1.tab <- xtable(d1.agg1.sub, digits=0, align=c("l", "l", rep("c", ncol(d1.agg1.sub)-1)))
 d2.tab <- xtable(d2.agg1.sub, digits=0, align=c("l", "l", rep("c", ncol(d2.agg1.sub)-1)))
 d.diff.tab <- xtable(d.prop, digits=1, align=c("l", "l", rep("c", ncol(d2.agg1.sub)-1)))
+if(wd=="Rmd") print(d1.tab, type="html")
 tmp <- print_tab(d1.tab)
 # @knitr fire_change_table2_LCC4
+if(wd=="Rmd") print(d2.tab, type="html")
 tmp <- print_tab(d2.tab)
 # @knitr fire_change_table_dif_LCC4
+if(wd=="Rmd") print(d.diff.tab, type="html")
 tmp <- print_tab(d.diff.tab)
 
 # @knitr fire_change_table1_LCC5
@@ -174,10 +190,13 @@ d.prop <- org_prop_df(d1.agg1.sub, d2.agg1.sub)
 d1.tab <- xtable(d1.agg1.sub, digits=0, align=c("l", "l", rep("c", ncol(d1.agg1.sub)-1)))
 d2.tab <- xtable(d2.agg1.sub, digits=0, align=c("l", "l", rep("c", ncol(d2.agg1.sub)-1)))
 d.diff.tab <- xtable(d.prop, digits=1, align=c("l", "l", rep("c", ncol(d2.agg1.sub)-1)))
+if(wd=="Rmd") print(d1.tab, type="html")
 tmp <- print_tab(d1.tab)
 # @knitr fire_change_table2_LCC5
+if(wd=="Rmd") print(d2.tab, type="html")
 tmp <- print_tab(d2.tab)
 # @knitr fire_change_table_dif_LCC5
+if(wd=="Rmd") print(d.diff.tab, type="html")
 tmp <- print_tab(d.diff.tab)
 
 #########################################################################################################
