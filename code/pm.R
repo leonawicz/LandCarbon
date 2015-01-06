@@ -73,12 +73,14 @@ moveDocs(path.docs=docs.path, type="pdf", remove.latex=FALSE)
 
 # Rmd files
 setwd(rmd.path)
+code.Rmd <- list.files(pattern="code.Rmd$", full=T)
 cccma.Rmd <- list.files(pattern="cccma.Rmd$", full=T)
 echam.Rmd <- list.files(pattern="echam.Rmd$", full=T)
 
 # @knitr save
 # write all yaml front-matter-specified outputs to Rmd directory for all Rmd files
 # Make sure to switch models and resave R scripts between following two lines
+lapply(code.Rmd, render, output_format="all")
 lapply(cccma.Rmd, render, output_format="all")
 lapply(echam.Rmd, render, output_format="all")
 moveDocs(path.docs=docs.path)
