@@ -1,6 +1,6 @@
 # @knitr create_project
-source("C:/github/ProjectManagement/code/projman.R") # eventually load a package instead of source script
-proj.name <- "DataExtraction" # Project name
+source("C:/github/ProjectManagement/code/rpm.R") # eventually load a package instead of source script
+proj.name <- "LandCarbon" # Project name
 proj.location <- matt.proj.path # Use default file location
 
 docDir <- c("Rmd/include", "md", "html", "Rnw", "pdf", "timeline")
@@ -29,21 +29,21 @@ proj.github <- file.path("https://github.com/leonawicz", proj.name)
 index.url <- "index.html"
 #file.copy(index.url, "index.html")
 
-proj.title <- "Data Extraction"
-proj.menu <- c("Extraction evaluation", "Density estimation", "Pre-indexing", "All Projects")
+proj.title <- "Land Carbon"
+proj.menu <- c("Fire", "Vegetation", "R Code", "All Projects")
 
 proj.submenu <- list(
-	c("Project", "Introduction", "Case study: sample mean", "Results", "Next steps", "divider", "R Code", "Complete code"),
-	c("Project", "Introduction", "Simulations", "divider", "Use cases", "Case 1: Climate", "Case 2: Vegetation", "divider", "R code", "Basic simulation"),
-	c("Project", "Introduction", "Related items", "divider", "R Code", "Complete code"),
-	c("Projects diagram", "divider", "About", "Other")
+	c("Model: CCCMA", "Baseline fire", "Projected change", "divider", "Model: ECHAM5", "Baseline fire", "Projected change"),
+	c("Model: CCCMA", "Vegetation change", "Vegetation trends", "divider", "Model: ECHAM5", "Vegetation change", "Vegetation trends"),
+	c("Main code", "Baseline fire", "Projected fire", "Vegetation change", "Vegetation trends"),
+	c("About", "Other")
 )
 
 proj.files <- list(
-	c("header", "eval_intro.html", "eval_case.html", "eval_res.html", "eval_next.html", "divider", "header", "extract_eval_code.html"),
-	c("header", "dens_intro.html", "dens_sims.html", "divider", "header", "dens_use1.html", "dens_use2.html", "divider", "header", "dens_sims_code.html"),
-	c("header", "ind_intro.html", "ind_related.html", "divider", "header", "ind_code.html"),
-	c("proj_sankey.html", "divider", "proj_intro.html", "proj_intro.html")
+	c("header", "baseline_fire_cccma.html", "fire_change_cccma.html", "divider", "header", "baseline_fire_echam.html", "fire_change_echam.html"),
+	c("header", "vegetation_change_cccma.html", "vegetation_trend_cccma.html", "divider", "header", "vegetation_change_echam.html", "vegetation_trend_echam.html"),
+	c("header", "baseline_fire_code.html", "fire_change_code.html", "vegetation_change_code.html", "vegetation_trend_code.html"),
+	c("index.html", "index.html")
 )
 
 # generate navigation bar html file common to all pages
@@ -59,28 +59,27 @@ genOutyaml(file=yaml.out, lib=libs, header=common.header, before_body="include/n
 # @knitr knit_setup
 library(rmarkdown)
 library(knitr)
-setwd(rmd.path)
-
-# R scripts
-#files.r <- list.files("../../code", pattern=".R$", full=T)
-
-# Rmd files
-files.Rmd <- list.files(pattern=".Rmd$", full=T)
-
-# potential non-Rmd directories for writing various output files
-#outtype <- file.path(dirname(getwd()), list.dirs("../", full=F, recursive=F))
-#outtype <- outtype[basename(outtype)!="Rmd"]
-
-# @knitr save
-# write all yaml front-matter-specified outputs to Rmd directory for all Rmd files
-lapply(files.Rmd, render, output_format="all")
-moveDocs(path.docs=docs.path)
 
 # if also making PDFs for a project, speed up the Rmd to Rnw file conversion/duplication
 rnw.path <- file.path(docs.path, "Rnw")
 setwd(rnw.path)
 #themes <- knit_theme$get()
+highlight <- "tango"
+convertDocs(path=rnw.path, emphasis="replace", overwrite=TRUE)#, highlight=highlight) # Be careful
 highlight <- "solarized-dark"
-convertDocs(path=rmd.path, emphasis="replace", overwrite=TRUE, highlight=highlight) # Be careful
+#convertDocs(path=rmd.path, emphasis="replace", overwrite=TRUE, highlight=highlight) # Be careful
 lapply(list.files(pattern=".Rnw$"), knit2pdf)
 moveDocs(path.docs=docs.path, type="pdf", remove.latex=FALSE)
+
+# Rmd files
+setwd(rmd.path)
+cccma.Rmd <- list.files(pattern="cccma.Rmd$", full=T)
+echam.Rmd <- list.files(pattern="echam.Rmd$", full=T)
+
+# @knitr save
+# write all yaml front-matter-specified outputs to Rmd directory for all Rmd files
+# Make sure to switch models and resave R scripts between following two lines
+lapply(cccma.Rmd, render, output_format="all")
+lapply(echam.Rmd, render, output_format="all")
+moveDocs(path.docs=docs.path)
+
