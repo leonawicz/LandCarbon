@@ -1,4 +1,5 @@
 # @knitr setup
+wd <- basename(getwd())
 region.grp <- "LCC Regions"
 #mainDir <- "/workspace/UA/mfleonawicz/Leonawicz/Projects/2014/AR4_AR5_comparisons/data/final"
 mainDir <- "X:/Leonawicz/Projects/2014/AR4_AR5_comparisons/data/final"
@@ -14,7 +15,7 @@ library(xtable)
 # @knitr baseline_fire_setup
 # Baseline wildland fire, Table 3.1
 years <- 1950:2009
-modnames <- "MPIecham5" # "CCCMAcgcm31" # 
+modnames <- "CCCMAcgcm31" # "MPIecham5" # 
 keep.cols <- c(2:stats.columns[1], (tail(stats.columns, 1) + 1):ncol(alf.fireStats.df))
 files <- list.files(statDir, pattern="^stats_fire.RData$", full=TRUE, recursive=TRUE)
 files <- c(files, ak.statsFire.file)
@@ -60,6 +61,7 @@ rownames(bf)[1:nrow(fc)] <- paste0("ZZZ", rownames(fc))
 bf.tab <- xtable(bf, digits=1, align=c("l", rep("c", ncol(bf))))#, caption="[km^2, square kilometers]")
 
 # @knitr baseline_fire_fc_table
+if(wd=="Rmd") print(fc.tab, type="html")
 tmp <- print(fc.tab, booktabs=TRUE, print.results=FALSE,
 	add.to.row=list(pos=list(-1, 0),
 		command=c("\\headcol \n", "\\midrule \n\\rowcol \\multicolumn{7}{c}{Number of wildfires per year} \\\\ \n")
@@ -74,6 +76,7 @@ tmp <- gsub("\\\\begin\\{tabular\\}", "\\\\hspace*\\{-100pt\\}\\\\begin\\{tabula
 tmp <- gsub("end\\{tabular\\}", "end\\{tabular\\}\\\\hspace\\{-100pt\\}", tmp)
 
 # @knitr baseline_fire_ba_table
+if(wd=="Rmd") print(ba.tab, type="html")
 tmp <- print(ba.tab, booktabs=TRUE, print.results=FALSE,
 	add.to.row=list(pos=list(-1, 0),
 		command=c("\\headcol \n", "\\midrule \n\\rowcol \\multicolumn{7}{c}{Area burned per year \\{km^2\\}} \\\\ \n")
@@ -88,6 +91,7 @@ tmp <- gsub("\\\\begin\\{tabular\\}", "\\\\hspace*\\{-100pt\\}\\\\begin\\{tabula
 tmp <- gsub("end\\{tabular\\}", "end\\{tabular\\}\\\\hspace\\{-100pt\\}", tmp)
 
 # @knitr baseline_fire_bf_table
+if(wd=="Rmd") print(bf.tab, type="html")
 tmp <- print(bf.tab, booktabs=TRUE, print.results=FALSE,
 	add.to.row=list(pos=list(-1, 0, nrow(bf)/2),
 		command=c("\\headcol \n", "\\midrule \n\\rowcol \\multicolumn{7}{c}{Number of wildfires per year} \\\\ \n", "\\midrule \n\\rowcol \\multicolumn{7}{c}{Area burned per year \\{km^2\\}} \\\\ \n \\midrule \n")

@@ -18,7 +18,7 @@ years.all <- 2000:2099
 years <- range(years.all)
 years1 <- 2000:2009
 years2 <- 2090:2099
-modnames <- "MPIecham5" # "CCCMAcgcm31" # 
+modnames <- "CCCMAcgcm31" # "MPIecham5" # 
 keep.cols <- c(2:stats.columns[1], stats.columns[1] + c(2,5,8), (tail(stats.columns, 1) + 1):ncol(alf.fireStats.df))
 files <- list.files(statDir, pattern="^stats_fire.RData$", full=TRUE, recursive=TRUE)
 files <- c(files, ak.statsFire.file)
