@@ -1,0 +1,107 @@
+---
+title: "R code: Projected Vegetation Change 2009 vs. 2100"
+author: Matthew Leonawicz
+output:
+  html_document:
+    toc: false
+    theme: united
+    highlight: zenburn
+    keep_md: true
+---
+
+```{r knitr_setup, include=FALSE, cache=FALSE}
+library(knitr)
+opts_chunk$set(results='asis', cache=FALSE, echo=TRUE, eval=FALSE, tidy=TRUE, message=FALSE, warning=FALSE)
+read_chunk("../../code/vegetation_change.R")
+```
+
+Note that the code may contain seemingly unnecessary repetition across multiple code chunks.
+Sometimes I do this when using `knitr` to knit documents.
+If I was strictly outputing graphics files I would remove apparent duplicate code.
+
+Also note in the `modnames <-` assignment that the same script is simply run twice, once for each climate model.
+The amount of hardcoding present in general is indicative of the limited time available for the task.
+
+Depending on whether the output documents are md/html or LaTeX/pdf, tables are compiled differently as well using `xtable`.
+
+```{r setup, cache=TRUE}
+```
+
+```{r veg_change_setup, cache=TRUE}
+```
+
+## Percent Change by Vegetation Class
+### 2009 Baseline by Scenario
+#### Alaska
+```{r baseline_veg_barplot_AK1, fig.width=7, fig.height=6, fig.cap="Alaska", fig.pos="H"}
+```
+```{r baseline_veg_barplot_AK2, fig.width=7, fig.height=4, fig.cap="Alaska", fig.pos="H"}
+```
+
+#### Arctic
+```{r baseline_veg_barplot_LCC1a, fig.width=7, fig.height=6, fig.cap="Arctic", fig.pos="H"}
+```
+```{r baseline_veg_barplot_LCC1b, fig.width=7, fig.height=4, fig.cap="Arctic", fig.pos="H"}
+```
+
+#### North Pacific
+```{r baseline_veg_barplot_LCC2a, fig.width=7, fig.height=6, fig.cap="North Pacific", fig.pos="H"}
+```
+```{r baseline_veg_barplot_LCC2b, fig.width=7, fig.height=4, fig.cap="North Pacific", fig.pos="H"}
+```
+
+#### Northwest Interior Forest North
+```{r baseline_veg_barplot_LCC3a, fig.width=7, fig.height=6, fig.cap="Northwest Interior Forest North", fig.pos="H"}
+```
+```{r baseline_veg_barplot_LCC3b, fig.width=7, fig.height=4, fig.cap="Northwest Interior Forest North", fig.pos="H"}
+```
+
+#### Northwest Interior Forest South
+```{r baseline_veg_barplot_LCC4a, fig.width=7, fig.height=6, fig.cap="Northwest Interior Forest South", fig.pos="H"}
+```
+```{r baseline_veg_barplot_LCC4b, fig.width=7, fig.height=4, fig.cap="Northwest Interior Forest South", fig.pos="H"}
+```
+
+#### Western Alaska
+```{r baseline_veg_barplot_LCC5a, fig.width=7, fig.height=6, fig.cap="Western Alaska", fig.pos="H"}
+```
+```{r baseline_veg_barplot_LCC5b, fig.width=7, fig.height=4, fig.cap="Western Alaska", fig.pos="H"}
+```
+
+### 2100 Percent Change by Scenario
+#### Alaska
+```{r veg_change_barplot_AK1, fig.width=7, fig.height=6, fig.cap="Alaska", fig.pos="H"}
+```
+```{r veg_change_barplot_AK2, fig.width=7, fig.height=4, fig.cap="Alaska", fig.pos="H"}
+```
+
+#### Arctic
+```{r veg_change_barplot_LCC1a, fig.width=7, fig.height=6, fig.cap="Arctic", fig.pos="H"}
+```
+```{r veg_change_barplot_LCC1b, fig.width=7, fig.height=4, fig.cap="Arctic", fig.pos="H"}
+```
+
+#### North Pacific
+```{r veg_change_barplot_LCC2a, fig.width=7, fig.height=6, fig.cap="North Pacific", fig.pos="H"}
+```
+```{r veg_change_barplot_LCC2b, fig.width=7, fig.height=4, fig.cap="North Pacific", fig.pos="H"}
+```
+
+#### Northwest Interior Forest North
+```{r veg_change_barplot_LCC3a, fig.width=7, fig.height=6, fig.cap="Northwest Interior Forest North", fig.pos="H"}
+```
+```{r veg_change_barplot_LCC3b, fig.width=7, fig.height=4, fig.cap="Northwest Interior Forest North", fig.pos="H"}
+```
+
+#### Northwest Interior Forest South
+```{r veg_change_barplot_LCC4a, fig.width=7, fig.height=6, fig.cap="Northwest Interior Forest South", fig.pos="H"}
+```
+```{r veg_change_barplot_LCC4b, fig.width=7, fig.height=4, fig.cap="Northwest Interior Forest South", fig.pos="H"}
+```
+
+#### Western Alaska
+```{r veg_change_barplot_LCC5a, fig.width=7, fig.height=6, fig.cap="Western Alaska", fig.pos="H"}
+```
+```{r veg_change_barplot_LCC5b, fig.width=7, fig.height=4, fig.cap="Western Alaska", fig.pos="H"}
+```
+

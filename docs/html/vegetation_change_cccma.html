@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="author" content="Matthew Leonawicz" />
+
+
+<title>Projected Vegetation Change 2009 vs. 2100 \ Unvetted preliminary rush draft from developmental code</title>
+
+<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="libs/bootstrap-2.3.2/css/united.min.css" rel="stylesheet" />
+<link href="libs/bootstrap-2.3.2/css/bootstrap-responsive.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+<style type="text/css">
+
+/* padding for bootstrap navbar */
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+}
+@media (max-width: 979px) {
+  body {
+    padding-top: 0;
+  }
+}
+
+/* offset scroll position for anchor links (for fixed navbar)  */
+@media (min-width: 980px) {
+  .section h2 {
+    padding-top: 52px;
+    margin-top: -52px;
+  }
+  .section h3 {
+    padding-top: 52px;
+    margin-top: -52px;
+  }
+}
+
+
+/* don't use link color in navbar */
+.dropdown-menu>li>a {
+  color: black;
+}
+
+/* some padding for disqus */
+#disqus_thread {
+  margin-top: 45px;
+}
+
+</style>
+
+<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
+
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<div class="container-fluid main-container">
+
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="brand" href="index.html">Land Carbon</a>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <li class="dropdown">
+            <a href="fire" class="dropdown-toggle" data-toggle="dropdown">Fire <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li class="nav-header">Model: CCCMA</li>
+              <li><a href="baseline_fire_cccma.html">Baseline fire</a></li>
+              <li><a href="fire_change_cccma.html">Projected change</a></li>
+              <li class="divider"></li>
+              <li class="nav-header">Model: ECHAM5</li>
+              <li><a href="baseline_fire_echam.html">Baseline fire</a></li>
+              <li><a href="fire_change_echam.html">Projected change</a></li>
+            </ul>
+
+          <li class="dropdown">
+            <a href="vegetation" class="dropdown-toggle" data-toggle="dropdown">Vegetation <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li class="nav-header">Model: CCCMA</li>
+              <li><a href="vegetation_change_cccma.html">Vegetation change</a></li>
+              <li><a href="vegetation_trend_cccma.html">Vegetation trends</a></li>
+              <li class="divider"></li>
+              <li class="nav-header">Model: ECHAM5</li>
+              <li><a href="vegetation_change_echam.html">Vegetation change</a></li>
+              <li><a href="vegetation_trend_echam.html">Vegetation trends</a></li>
+            </ul>
+
+          <li class="dropdown">
+            <a href="r-code" class="dropdown-toggle" data-toggle="dropdown">R Code <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li class="nav-header">Main code</li>
+              <li><a href="baseline_fire_code.html">Baseline fire</a></li>
+              <li><a href="fire_change_code.html">Projected fire</a></li>
+              <li><a href="vegetation_change_code.html">Vegetation change</a></li>
+              <li><a href="vegetation_trend_code.html">Vegetation trends</a></li>
+            </ul>
+
+          <li class="dropdown">
+            <a href="all-projects" class="dropdown-toggle" data-toggle="dropdown">All Projects <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="index.html">About</a></li>
+              <li><a href="index.html">Other</a></li>
+            </ul>
+        </ul>
+        <ul class="nav pull-right">
+          <a class="btn btn-primary" href="https://github.com/leonawicz/LandCarbon">
+            <i class="fa fa-github fa-lg"></i>
+            Github
+          </a>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+
+<div id="header">
+<h1 class="title">Projected Vegetation Change 2009 vs. 2100 \ Unvetted preliminary rush draft from developmental code</h1>
+<h4 class="author"><em>Matthew Leonawicz</em></h4>
+</div>
+
+
+<div id="percent-change-by-vegetation-class" class="section level2">
+<h2>Percent Change by Vegetation Class</h2>
+<div id="baseline-by-scenario" class="section level3">
+<h3>2009 Baseline by Scenario</h3>
+<p>The below graph pair relates to figure 6.2 in the original document. The paired plots are of the same data; the first is like in the original document, but the alternate version may be more readable. Scenarios are not currently labeled in the original (gray bars) plot version, but they are B1 (top panel), A1B (middle panel), and A2 (bottom panel). This uses strictly ALFRESCO output.</p>
+<div id="alaska" class="section level4">
+<h4>Alaska</h4>
+<p><img src="vegetation_change_cccma_files/figure-html/baseline_veg_barplot_AK1-1.png" alt="Alaska" /> <img src="vegetation_change_cccma_files/figure-html/baseline_veg_barplot_AK2-1.png" alt="Alaska" /></p>
+<p>All five following separate LCC graph pairs relate to figure 6.5 (which is just like 6.2) in the original document. The paired plots are of the same data; the first is like in the original document, but the alternate version may be more readable. Scenarios are not currently labeled in the original (gray bars) plot version, but they are B1 (top panel), A1B (middle panel), and A2 (bottom panel). Unlike figure 6.5 (and 6.2), there is a baseline composition for each scenario. The three baseline panels are plotted separately from the three future net change panels, which are in section 1.2 below. This uses strictly ALFRESCO output.</p>
+</div>
+<div id="arctic" class="section level4">
+<h4>Arctic</h4>
+<p><img src="vegetation_change_cccma_files/figure-html/baseline_veg_barplot_LCC1a-1.png" alt="Arctic" /> <img src="vegetation_change_cccma_files/figure-html/baseline_veg_barplot_LCC1b-1.png" alt="Arctic" /></p>
+</div>
+<div id="north-pacific" class="section level4">
+<h4>North Pacific</h4>
+<p><img src="vegetation_change_cccma_files/figure-html/baseline_veg_barplot_LCC2a-1.png" alt="North Pacific" /> <img src="vegetation_change_cccma_files/figure-html/baseline_veg_barplot_LCC2b-1.png" alt="North Pacific" /></p>
+</div>
+<div id="northwest-interior-forest-north" class="section level4">
+<h4>Northwest Interior Forest North</h4>
+<p><img src="vegetation_change_cccma_files/figure-html/baseline_veg_barplot_LCC3a-1.png" alt="Northwest Interior Forest North" /> <img src="vegetation_change_cccma_files/figure-html/baseline_veg_barplot_LCC3b-1.png" alt="Northwest Interior Forest North" /></p>
+</div>
+<div id="northwest-interior-forest-south" class="section level4">
+<h4>Northwest Interior Forest South</h4>
+<p><img src="vegetation_change_cccma_files/figure-html/baseline_veg_barplot_LCC4a-1.png" alt="Northwest Interior Forest South" /> <img src="vegetation_change_cccma_files/figure-html/baseline_veg_barplot_LCC4b-1.png" alt="Northwest Interior Forest South" /></p>
+</div>
+<div id="western-alaska" class="section level4">
+<h4>Western Alaska</h4>
+<p><img src="vegetation_change_cccma_files/figure-html/baseline_veg_barplot_LCC5a-1.png" alt="Western Alaska" /> <img src="vegetation_change_cccma_files/figure-html/baseline_veg_barplot_LCC5b-1.png" alt="Western Alaska" /></p>
+</div>
+</div>
+<div id="percent-change-by-scenario" class="section level3">
+<h3>2100 Percent Change by Scenario</h3>
+<p>The below graph pair relates to figure 6.2 in the original document, in conjunction with the graph above in section 1.1.1. The paired plots are of the same data; the first is like in the original document, but the alternate version may be more readable. Scenarios are not currently labeled in the original (gray bars) plot version, but they are B1 (top panel), A1B (middle panel), and A2 (bottom panel). This uses strictly ALFRESCO output.</p>
+<div id="alaska-1" class="section level4">
+<h4>Alaska</h4>
+<p><img src="vegetation_change_cccma_files/figure-html/veg_change_barplot_AK1-1.png" alt="Alaska" /> <img src="vegetation_change_cccma_files/figure-html/veg_change_barplot_AK2-1.png" alt="Alaska" /></p>
+<p>All five following separate LCC graph pairs relate to figure 6.5 (which is just like 6.2) in the original document, in conjunction with the respective graph pairs above in sections 1.1.2 - 1.1.6. The paired plots are of the same data; the first is like in the original document, but the alternate may be more readable. Unlike figure 6.5 (and 6.2), there is a baseline composition for each scenario. This uses strictly ALFRESCO output.</p>
+</div>
+<div id="arctic-1" class="section level4">
+<h4>Arctic</h4>
+<p><img src="vegetation_change_cccma_files/figure-html/veg_change_barplot_LCC1a-1.png" alt="Arctic" /> <img src="vegetation_change_cccma_files/figure-html/veg_change_barplot_LCC1b-1.png" alt="Arctic" /></p>
+</div>
+<div id="north-pacific-1" class="section level4">
+<h4>North Pacific</h4>
+<p><img src="vegetation_change_cccma_files/figure-html/veg_change_barplot_LCC2a-1.png" alt="North Pacific" /> <img src="vegetation_change_cccma_files/figure-html/veg_change_barplot_LCC2b-1.png" alt="North Pacific" /></p>
+</div>
+<div id="northwest-interior-forest-north-1" class="section level4">
+<h4>Northwest Interior Forest North</h4>
+<p><img src="vegetation_change_cccma_files/figure-html/veg_change_barplot_LCC3a-1.png" alt="Northwest Interior Forest North" /> <img src="vegetation_change_cccma_files/figure-html/veg_change_barplot_LCC3b-1.png" alt="Northwest Interior Forest North" /></p>
+</div>
+<div id="northwest-interior-forest-south-1" class="section level4">
+<h4>Northwest Interior Forest South</h4>
+<p><img src="vegetation_change_cccma_files/figure-html/veg_change_barplot_LCC4a-1.png" alt="Northwest Interior Forest South" /> <img src="vegetation_change_cccma_files/figure-html/veg_change_barplot_LCC4b-1.png" alt="Northwest Interior Forest South" /></p>
+</div>
+<div id="western-alaska-1" class="section level4">
+<h4>Western Alaska</h4>
+<p><img src="vegetation_change_cccma_files/figure-html/veg_change_barplot_LCC5a-1.png" alt="Western Alaska" /> <img src="vegetation_change_cccma_files/figure-html/veg_change_barplot_LCC5b-1.png" alt="Western Alaska" /></p>
+</div>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+
+</body>
+</html>

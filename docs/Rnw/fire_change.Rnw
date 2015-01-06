@@ -143,12 +143,14 @@ There is one section for each region, Alaska and the five LCCs.
 \section{Percentile fire trends by scenario}
 The below graph relates to figure 8.2 in the original document.
 This uses strictly ALFRESCO output.
+
 \subsection{Alaska}
 <<fire_change_ts_AK, fig.width=7, fig.height=3, fig.cap="Alaska", fig.pos="H">>=
 @
 
 All five following separate LCC graphs relate to figure 8.3 in the original document.
 This uses strictly ALFRESCO output.
+
 \subsection{Arctic}
 <<fire_change_ts_LCC1, fig.width=7, fig.height=3, fig.cap="Arctic", fig.pos="H">>=
 @

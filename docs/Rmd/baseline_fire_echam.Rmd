@@ -1,0 +1,66 @@
+---
+title: Baseline Fire 1950 - 2009 \\ \large Unvetted preliminary rush draft from developmental code
+author: Matthew Leonawicz
+output:
+  html_document:
+    toc: false
+    theme: united
+    highlight: tango
+    keep_md: true
+---
+
+```{r knitr_setup, include=FALSE, cache=FALSE}
+library(knitr)
+opts_chunk$set(results='asis', cache=FALSE, echo=FALSE, eval=TRUE, tidy=TRUE, message=FALSE, warning=FALSE)
+read_chunk("../../code/baseline_fire.R")
+```
+
+```{r setup, cache=TRUE}
+```
+
+## Baseline Fire Tables
+The third table down combining the first two relates to table 3.1 in the original document.
+This uses strictly ALFRESCO output.
+```{r baseline_fire_setup, cache=TRUE}
+```
+
+### Fire frequency (fires/year)
+```{r baseline_fire_fc_table}
+```
+
+### Burn area (km^2/year)
+```{r baseline_fire_ba_table}
+```
+
+## Baseline Fire Graphs
+The below graph relates to figure 3.2 in the original document.
+This uses strictly ALFRESCO output.
+
+### Alaska
+```{r baseline_fire_barplot_AK, fig.width=7, fig.height=4, fig.cap="Alaska", fig.pos="H"}
+```
+
+### LCC Regions
+All five following separate LCC graphs relate to figure 3.3 in the original document.
+This uses strictly ALFRESCO output.
+
+#### Arctic
+```{r baseline_fire_barplot_LCC1, fig.width=7, fig.height=4, fig.cap="Arctic", fig.pos="H"}
+```
+
+#### North Pacific
+```{r baseline_fire_barplot_LCC2, fig.width=7, fig.height=4, fig.cap="North Pacific", fig.pos="H"}
+```
+
+#### Northwest Interior Forest North
+```{r baseline_fire_barplot_LCC3, fig.width=7, fig.height=4, fig.cap="Northwest Interior Forest North", fig.pos="H"}
+```
+
+#### Northwest Interior Forest South
+```{r baseline_fire_barplot_LCC4, fig.width=7, fig.height=4, fig.cap="Northwest Interior Forest South", fig.pos="H"}
+```
+
+#### Western Alaska
+```{r baseline_fire_barplot_LCC5, fig.width=7, fig.height=4, fig.cap="Western Alaska", fig.pos="H"}
+```
+

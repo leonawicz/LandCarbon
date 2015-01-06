@@ -1,0 +1,67 @@
+---
+title: "R code: Baseline Fire 1950 - 2009"
+author: Matthew Leonawicz
+output:
+  html_document:
+    toc: false
+    theme: united
+    highlight: zenburn
+    keep_md: true
+---
+
+```{r knitr_setup, include=FALSE, cache=FALSE}
+library(knitr)
+opts_chunk$set(results='asis', cache=FALSE, echo=TRUE, eval=FALSE, tidy=TRUE, message=FALSE, warning=FALSE)
+read_chunk("../../code/baseline_fire.R")
+```
+
+Note that the code may contain seemingly unnecessary repetition across multiple code chunks.
+Sometimes I do this when using `knitr` to knit documents.
+If I was strictly outputing graphics files I would remove apparent duplicate code.
+
+Also note in the `modnames <-` assignment that the same script is simply run twice, once for each climate model.
+The amount of hardcoding present in general is indicative of the limited time available for the task.
+
+Depending on whether the output documents are md/html or LaTeX/pdf, tables are compiled differently as well using `xtable`.
+
+```{r setup, cache=TRUE}
+```
+
+## Baseline Fire Tables
+```{r baseline_fire_setup, cache=TRUE}
+```
+
+### Fire frequency (fires/year)
+```{r baseline_fire_fc_table}
+```
+
+### Burn area (km^2/year)
+```{r baseline_fire_ba_table}
+```
+
+## Baseline Fire Graphs
+### Alaska
+```{r baseline_fire_barplot_AK, fig.width=7, fig.height=4, fig.cap="Alaska", fig.pos="H"}
+```
+
+### LCC Regions
+#### Arctic
+```{r baseline_fire_barplot_LCC1, fig.width=7, fig.height=4, fig.cap="Arctic", fig.pos="H"}
+```
+
+#### North Pacific
+```{r baseline_fire_barplot_LCC2, fig.width=7, fig.height=4, fig.cap="North Pacific", fig.pos="H"}
+```
+
+#### Northwest Interior Forest North
+```{r baseline_fire_barplot_LCC3, fig.width=7, fig.height=4, fig.cap="Northwest Interior Forest North", fig.pos="H"}
+```
+
+#### Northwest Interior Forest South
+```{r baseline_fire_barplot_LCC4, fig.width=7, fig.height=4, fig.cap="Northwest Interior Forest South", fig.pos="H"}
+```
+
+#### Western Alaska
+```{r baseline_fire_barplot_LCC5, fig.width=7, fig.height=4, fig.cap="Western Alaska", fig.pos="H"}
+```
+

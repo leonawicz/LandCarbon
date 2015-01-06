@@ -38,6 +38,7 @@ The below graph pair relates to figure 6.2 in the original document.
 The paired plots are of the same data; the first is like in the original document, but the alternate version may be more readable.
 Scenarios are not currently labeled in the original (gray bars) plot version, but they are B1 (top panel), A1B (middle panel), and A2 (bottom panel).
 This uses strictly ALFRESCO output.
+
 \subsubsection{Alaska}
 <<baseline_veg_barplot_AK1, fig.width=7, fig.height=6, fig.cap="Alaska", fig.pos="H">>=
 @
@@ -50,6 +51,7 @@ Scenarios are not currently labeled in the original (gray bars) plot version, bu
 Unlike figure 6.5 (and 6.2), there is a baseline composition for each scenario.
 The three baseline panels are plotted separately from the three future net change panels, which are in section 1.2 below.
 This uses strictly ALFRESCO output.
+
 \subsubsection{Arctic}
 <<baseline_veg_barplot_LCC1a, fig.width=7, fig.height=6, fig.cap="Arctic", fig.pos="H">>=
 @
@@ -86,6 +88,7 @@ The below graph pair relates to figure 6.2 in the original document, in conjunct
 The paired plots are of the same data; the first is like in the original document, but the alternate version may be more readable.
 Scenarios are not currently labeled in the original (gray bars) plot version, but they are B1 (top panel), A1B (middle panel), and A2 (bottom panel).
 This uses strictly ALFRESCO output.
+
 \subsubsection{Alaska}
 <<veg_change_barplot_AK1, fig.width=7, fig.height=6, fig.cap="Alaska", fig.pos="H">>=
 @
@@ -96,6 +99,7 @@ All five following separate LCC graph pairs relate to figure 6.5 (which is just 
 The paired plots are of the same data; the first is like in the original document, but the alternate may be more readable.
 Unlike figure 6.5 (and 6.2), there is a baseline composition for each scenario.
 This uses strictly ALFRESCO output.
+
 \subsubsection{Arctic}
 <<veg_change_barplot_LCC1a, fig.width=7, fig.height=6, fig.cap="Arctic", fig.pos="H">>=
 @

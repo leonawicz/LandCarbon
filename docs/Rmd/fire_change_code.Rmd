@@ -1,0 +1,136 @@
+---
+title: "R code: Projected fire change 2000 - 2099"
+author: Matthew Leonawicz
+output:
+  html_document:
+    toc: false
+    theme: united
+    highlight: zenburn
+    keep_md: true
+---
+
+```{r knitr_setup, include=FALSE, cache=FALSE}
+library(knitr)
+opts_chunk$set(results='asis', cache=FALSE, echo=TRUE, eval=FALSE, tidy=TRUE, message=FALSE, warning=FALSE)
+read_chunk("../../code/fire_change.R")
+```
+
+Note that the code may contain seemingly unnecessary repetition across multiple code chunks.
+Sometimes I do this when using `knitr` to knit documents.
+If I was strictly outputing graphics files I would remove apparent duplicate code.
+
+Also note in the `modnames <-` assignment that the same script is simply run twice, once for each climate model.
+The amount of hardcoding present in general is indicative of the limited time available for the task.
+
+Depending on whether the output documents are md/html or LaTeX/pdf, tables are compiled differently as well using `xtable`.
+
+```{r setup, cache=TRUE}
+```
+
+## Projected fire change tables
+```{r fire_change_setup, cache=TRUE}
+```
+
+### Alaska
+#### Historical fire
+```{r fire_change_table1_AK}
+```
+
+#### Projected fire
+```{r fire_change_table2_AK}
+```
+
+#### Percent change
+```{r fire_change_table_dif_AK}
+```
+
+### Arctic
+#### Historical fire
+```{r fire_change_table1_LCC1}
+```
+
+#### Projected fire
+```{r fire_change_table2_LCC1}
+```
+
+#### Percent change
+```{r fire_change_table_dif_LCC1}
+```
+
+### North Pacific
+#### Historical fire
+```{r fire_change_table1_LCC2}
+```
+
+#### Projected fire
+```{r fire_change_table2_LCC2}
+```
+
+#### Percent change
+```{r fire_change_table_dif_LCC2}
+```
+
+### Northwest Interior Forest North
+#### Historical fire
+```{r fire_change_table1_LCC3}
+```
+
+#### Projected fire
+```{r fire_change_table2_LCC3}
+```
+
+#### Percent change
+```{r fire_change_table_dif_LCC3}
+```
+
+### Northwest Interior Forest South
+#### Historical fire
+```{r fire_change_table1_LCC4}
+```
+
+#### Projected fire
+```{r fire_change_table2_LCC4}
+```
+
+#### Percent change
+```{r fire_change_table_dif_LCC4}
+```
+
+### Western Alaska
+#### Historical fire
+```{r fire_change_table1_LCC5}
+```
+
+#### Projected fire
+```{r fire_change_table2_LCC5}
+```
+
+#### Percent change
+```{r fire_change_table_dif_LCC5}
+```
+
+## Percentile fire trends by scenario
+### Alaska
+```{r fire_change_ts_AK, fig.width=7, fig.height=3, fig.cap="Alaska", fig.pos="H"}
+```
+
+### Arctic
+```{r fire_change_ts_LCC1, fig.width=7, fig.height=3, fig.cap="Arctic", fig.pos="H"}
+```
+
+### North Pacific
+```{r fire_change_ts_LCC2, fig.width=7, fig.height=3, fig.cap="North Pacific", fig.pos="H"}
+```
+
+### Northwest Interior Forest North
+```{r fire_change_ts_LCC3, fig.width=7, fig.height=3, fig.cap="Northwest Interior Forest North", fig.pos="H"}
+```
+
+### Northwest Interior Forest South
+```{r fire_change_ts_LCC4, fig.width=7, fig.height=3, fig.cap="Northwest Interior Forest South", fig.pos="H"}
+```
+
+### Western Alaska
+```{r fire_change_ts_LCC5, fig.width=7, fig.height=3, fig.cap="Western Alaska", fig.pos="H"}
+```
+

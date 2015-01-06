@@ -1,0 +1,57 @@
+---
+title: "R code: Projected Vegetation Trends 2009 - 2100"
+author: Matthew Leonawicz
+output:
+  html_document:
+    toc: false
+    theme: united
+    highlight: zenburn
+    keep_md: true
+---
+
+```{r knitr_setup, include=FALSE, cache=FALSE}
+library(knitr)
+opts_chunk$set(results='asis', cache=FALSE, echo=TRUE, eval=FALSE, tidy=TRUE, message=FALSE, warning=FALSE)
+read_chunk("../../code/vegetation_change.R")
+```
+
+Note that the code may contain seemingly unnecessary repetition across multiple code chunks.
+Sometimes I do this when using `knitr` to knit documents.
+If I was strictly outputing graphics files I would remove apparent duplicate code.
+
+Also note in the `modnames <-` assignment that the same script is simply run twice, once for each climate model.
+The amount of hardcoding present in general is indicative of the limited time available for the task.
+
+Depending on whether the output documents are md/html or LaTeX/pdf, tables are compiled differently as well using `xtable`.
+
+```{r setup, cache=T}
+```
+
+```{r veg_change_setup, cache=TRUE}
+```
+
+## Area Trends by Vegetation Class and Scenario
+### Alaska
+```{r veg_change_ts_AK, fig.width=7, fig.height=5, fig.cap="Alaska", fig.pos="H"}
+```
+
+### Arctic
+```{r veg_change_ts_LCC1, fig.width=7, fig.height=5, fig.cap="Arctic", fig.pos="H"}
+```
+
+### North Pacific
+```{r veg_change_ts_LCC2, fig.width=7, fig.height=5, fig.cap="North Pacific", fig.pos="H"}
+```
+
+### Northwest Interior Forest North
+```{r veg_change_ts_LCC3, fig.width=7, fig.height=5, fig.cap="Northwest Interior Forest North", fig.pos="H"}
+```
+
+### Northwest Interior Forest South
+```{r veg_change_ts_LCC4, fig.width=7, fig.height=5, fig.cap="Northwest Interior Forest South", fig.pos="H"}
+```
+
+### Western Alaska
+```{r veg_change_ts_LCC5, fig.width=7, fig.height=5, fig.cap="Western Alaska", fig.pos="H"}
+```
+

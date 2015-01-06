@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="author" content="Matthew Leonawicz" />
+
+
+<title>R code: Baseline Fire 1950 - 2009</title>
+
+<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="libs/bootstrap-2.3.2/css/united.min.css" rel="stylesheet" />
+<link href="libs/bootstrap-2.3.2/css/bootstrap-responsive.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+<style type="text/css">
+
+/* padding for bootstrap navbar */
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+}
+@media (max-width: 979px) {
+  body {
+    padding-top: 0;
+  }
+}
+
+/* offset scroll position for anchor links (for fixed navbar)  */
+@media (min-width: 980px) {
+  .section h2 {
+    padding-top: 52px;
+    margin-top: -52px;
+  }
+  .section h3 {
+    padding-top: 52px;
+    margin-top: -52px;
+  }
+}
+
+
+/* don't use link color in navbar */
+.dropdown-menu>li>a {
+  color: black;
+}
+
+/* some padding for disqus */
+#disqus_thread {
+  margin-top: 45px;
+}
+
+</style>
+
+<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #303030; color: #cccccc; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; }
+td.sourceCode { padding-left: 5px; }
+pre, code { color: #cccccc; background-color: #303030; }
+code > span.kw { color: #f0dfaf; }
+code > span.dt { color: #dfdfbf; }
+code > span.dv { color: #dcdccc; }
+code > span.bn { color: #dca3a3; }
+code > span.fl { color: #c0bed1; }
+code > span.ch { color: #dca3a3; }
+code > span.st { color: #cc9393; }
+code > span.co { color: #7f9f7f; }
+code > span.ot { color: #efef8f; }
+code > span.al { color: #ffcfaf; }
+code > span.fu { color: #efef8f; }
+code > span.er { color: #c3bf9f; }
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<div class="container-fluid main-container">
+
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="brand" href="index.html">Land Carbon</a>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <li class="dropdown">
+            <a href="fire" class="dropdown-toggle" data-toggle="dropdown">Fire <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li class="nav-header">Model: CCCMA</li>
+              <li><a href="baseline_fire_cccma.html">Baseline fire</a></li>
+              <li><a href="fire_change_cccma.html">Projected change</a></li>
+              <li class="divider"></li>
+              <li class="nav-header">Model: ECHAM5</li>
+              <li><a href="baseline_fire_echam.html">Baseline fire</a></li>
+              <li><a href="fire_change_echam.html">Projected change</a></li>
+            </ul>
+
+          <li class="dropdown">
+            <a href="vegetation" class="dropdown-toggle" data-toggle="dropdown">Vegetation <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li class="nav-header">Model: CCCMA</li>
+              <li><a href="vegetation_change_cccma.html">Vegetation change</a></li>
+              <li><a href="vegetation_trend_cccma.html">Vegetation trends</a></li>
+              <li class="divider"></li>
+              <li class="nav-header">Model: ECHAM5</li>
+              <li><a href="vegetation_change_echam.html">Vegetation change</a></li>
+              <li><a href="vegetation_trend_echam.html">Vegetation trends</a></li>
+            </ul>
+
+          <li class="dropdown">
+            <a href="r-code" class="dropdown-toggle" data-toggle="dropdown">R Code <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li class="nav-header">Main code</li>
+              <li><a href="baseline_fire_code.html">Baseline fire</a></li>
+              <li><a href="fire_change_code.html">Projected fire</a></li>
+              <li><a href="vegetation_change_code.html">Vegetation change</a></li>
+              <li><a href="vegetation_trend_code.html">Vegetation trends</a></li>
+            </ul>
+
+          <li class="dropdown">
+            <a href="all-projects" class="dropdown-toggle" data-toggle="dropdown">All Projects <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="index.html">About</a></li>
+              <li><a href="index.html">Other</a></li>
+            </ul>
+        </ul>
+        <ul class="nav pull-right">
+          <a class="btn btn-primary" href="https://github.com/leonawicz/LandCarbon">
+            <i class="fa fa-github fa-lg"></i>
+            Github
+          </a>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+
+<div id="header">
+<h1 class="title">R code: Baseline Fire 1950 - 2009</h1>
+<h4 class="author"><em>Matthew Leonawicz</em></h4>
+</div>
+
+
+<p>Note that the code may contain seemingly unnecessary repetition across multiple code chunks. Sometimes I do this when using <code>knitr</code> to knit documents. If I was strictly outputing graphics files I would remove apparent duplicate code.</p>
+<p>Also note in the <code>modnames &lt;-</code> assignment that the same script is simply run twice, once for each climate model. The amount of hardcoding present in general is indicative of the limited time available for the task.</p>
+<p>Depending on whether the output documents are md/html or LaTeX/pdf, tables are compiled differently as well using <code>xtable</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">wd &lt;-<span class="st"> </span><span class="kw">basename</span>(<span class="kw">getwd</span>())
+region.grp &lt;-<span class="st"> &quot;LCC Regions&quot;</span>
+<span class="co"># mainDir &lt;-</span>
+<span class="co"># &#39;/workspace/UA/mfleonawicz/Leonawicz/Projects/2014/AR4_AR5_comparisons/data/final&#39;</span>
+mainDir &lt;-<span class="st"> &quot;X:/Leonawicz/Projects/2014/AR4_AR5_comparisons/data/final&quot;</span>
+ak.statsFire.file &lt;-<span class="st"> </span><span class="kw">file.path</span>(mainDir, <span class="st">&quot;region_files_GCM/stats/Political/Alaska/stats_fire.RData&quot;</span>)
+<span class="co"># ak.samples.file &lt;- file.path(mainDir,</span>
+<span class="co"># &#39;region_files_GCM/samples/Political/Alaska/xxxxxxxxxxxx.RData&#39;)</span>
+<span class="co"># load(file.path(mainDir, &#39;meta.RData&#39;))</span>
+<span class="kw">load</span>(<span class="st">&quot;C:/github/shiny-apps/cmip3_cmip5/external/meta.RData&quot;</span>)
+statDir &lt;-<span class="st"> </span><span class="kw">file.path</span>(mainDir, <span class="st">&quot;region_files_GCM/stats&quot;</span>, region.grp)
+sampDir &lt;-<span class="st"> </span><span class="kw">file.path</span>(mainDir, <span class="st">&quot;region_files_GCM/samples&quot;</span>, region.grp)
+<span class="kw">library</span>(plyr)
+<span class="kw">library</span>(xtable)</code></pre>
+<div id="baseline-fire-tables" class="section level2">
+<h2>Baseline Fire Tables</h2>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Baseline wildland fire, Table 3.1</span>
+years &lt;-<span class="st"> </span><span class="dv">1950</span>:<span class="dv">2009</span>
+modnames &lt;-<span class="st"> &quot;MPIecham5&quot;</span>  <span class="co"># &#39;CCCMAcgcm31&#39; # </span>
+keep.cols &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>:stats.columns[<span class="dv">1</span>], (<span class="kw">tail</span>(stats.columns, <span class="dv">1</span>) +<span class="st"> </span><span class="dv">1</span>):<span class="kw">ncol</span>(alf.fireStats.df))
+files &lt;-<span class="st"> </span><span class="kw">list.files</span>(statDir, <span class="dt">pattern =</span> <span class="st">&quot;^stats_fire.RData$&quot;</span>, <span class="dt">full =</span> <span class="ot">TRUE</span>, <span class="dt">recursive =</span> <span class="ot">TRUE</span>)
+files &lt;-<span class="st"> </span><span class="kw">c</span>(files, ak.statsFire.file)
+regions &lt;-<span class="st"> </span><span class="kw">basename</span>(<span class="kw">dirname</span>(files))
+for (i in <span class="dv">1</span>:<span class="kw">length</span>(files)) {
+    <span class="kw">load</span>(files[i])
+    alf.fireStats.df$Location &lt;-<span class="st"> </span>regions[i]
+    alf.fireStats.df[, stats.columns] &lt;-<span class="st"> </span>region.dat
+    if (i ==<span class="st"> </span><span class="dv">1</span>) 
+        d &lt;-<span class="st"> </span>alf.fireStats.df else d &lt;-<span class="st"> </span><span class="kw">rbind</span>(d, alf.fireStats.df)
+}
+<span class="kw">rm</span>(region.dat)
+
+d &lt;-<span class="st"> </span><span class="kw">subset</span>(d, Model %in%<span class="st"> </span>modnames)
+d$Location &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot; S&quot;</span>, <span class="st">&quot; South&quot;</span>, <span class="kw">gsub</span>(<span class="st">&quot; N&quot;</span>, <span class="st">&quot; North&quot;</span>, <span class="kw">gsub</span>(<span class="st">&quot;W &quot;</span>, <span class="st">&quot;Western &quot;</span>, 
+    <span class="kw">gsub</span>(<span class="st">&quot;N &quot;</span>, <span class="st">&quot;North &quot;</span>, <span class="kw">gsub</span>(<span class="st">&quot;NW &quot;</span>, <span class="st">&quot;Northwest &quot;</span>, d$Location)))))  <span class="co"># Special name changes</span>
+regions &lt;-<span class="st"> </span><span class="kw">unique</span>(d$Location[d$Location !=<span class="st"> &quot;Alaska&quot;</span>])
+reg.split2 &lt;-<span class="st"> </span>reg.split &lt;-<span class="st"> </span>regions[<span class="dv">2</span>:<span class="dv">5</span>]
+reg.split2[<span class="dv">1</span>] &lt;-<span class="st"> &quot;</span><span class="ch">\\\\</span><span class="st">parbox[t]{3cm}{</span><span class="ch">\\\\</span><span class="st">centering North</span><span class="ch">\\\\\\\\</span><span class="st">Pacific}&quot;</span>
+reg.split2[<span class="dv">2</span>] &lt;-<span class="st"> &quot;</span><span class="ch">\\\\</span><span class="st">parbox[t]{3cm}{</span><span class="ch">\\\\</span><span class="st">centering Northwest Interior</span><span class="ch">\\\\\\\\</span><span class="st">Forest North}&quot;</span>
+reg.split2[<span class="dv">3</span>] &lt;-<span class="st"> &quot;</span><span class="ch">\\\\</span><span class="st">parbox[t]{3cm}{</span><span class="ch">\\\\</span><span class="st">centering Northwest Interior</span><span class="ch">\\\\\\\\</span><span class="st">Forest South}&quot;</span>
+reg.split2[<span class="dv">4</span>] &lt;-<span class="st"> &quot;</span><span class="ch">\\\\</span><span class="st">parbox[t]{3cm}{</span><span class="ch">\\\\</span><span class="st">centering Western</span><span class="ch">\\\\\\\\</span><span class="st">Alaska}&quot;</span>
+
+d &lt;-<span class="st"> </span><span class="kw">subset</span>(d, Year %in%<span class="st"> </span>years, <span class="dt">select =</span> keep.cols)
+d.agg1 &lt;-<span class="st"> </span><span class="kw">ddply</span>(d, <span class="kw">c</span>(<span class="st">&quot;Var&quot;</span>, <span class="st">&quot;Location&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Decade&quot;</span>), summarise, <span class="dt">Avg =</span> <span class="kw">mean</span>(Mean))
+d.agg2 &lt;-<span class="st"> </span><span class="kw">ddply</span>(d.agg1, <span class="kw">c</span>(<span class="st">&quot;Var&quot;</span>, <span class="st">&quot;Location&quot;</span>), summarise, <span class="dt">Mean =</span> <span class="kw">mean</span>(Avg), <span class="dt">Standard_deviation =</span> <span class="kw">sd</span>(Avg), 
+    <span class="dt">Minimum =</span> <span class="kw">min</span>(Avg), <span class="dt">Median =</span> <span class="kw">median</span>(Avg), <span class="dt">X95th_quantile =</span> <span class="kw">quantile</span>(Avg, 
+        <span class="dt">probs =</span> <span class="fl">0.95</span>), <span class="dt">Maximum =</span> <span class="kw">max</span>(Avg))
+
+ba &lt;-<span class="st"> </span><span class="kw">subset</span>(d.agg2, Var ==<span class="st"> &quot;Burn Area&quot;</span>, <span class="dv">2</span>:<span class="kw">ncol</span>(d.agg2))
+<span class="kw">rownames</span>(ba) &lt;-<span class="st"> </span>ba$Location
+ba &lt;-<span class="st"> </span><span class="kw">t</span>(ba[-<span class="dv">1</span>])
+ba &lt;-<span class="st"> </span>ba[, <span class="kw">c</span>(<span class="dv">2</span>:<span class="kw">ncol</span>(ba), <span class="dv">1</span>)]
+<span class="kw">rownames</span>(ba) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;X&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="kw">gsub</span>(<span class="st">&quot;_&quot;</span>, <span class="st">&quot; &quot;</span>, <span class="kw">rownames</span>(ba)))
+
+fc &lt;-<span class="st"> </span><span class="kw">subset</span>(d.agg2, Var ==<span class="st"> &quot;Fire Count&quot;</span>, <span class="dv">2</span>:<span class="kw">ncol</span>(d.agg2))
+<span class="kw">rownames</span>(fc) &lt;-<span class="st"> </span>fc$Location
+fc &lt;-<span class="st"> </span><span class="kw">t</span>(fc[-<span class="dv">1</span>])
+fc &lt;-<span class="st"> </span>fc[, <span class="kw">c</span>(<span class="dv">2</span>:<span class="kw">ncol</span>(fc), <span class="dv">1</span>)]
+<span class="kw">rownames</span>(fc) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;X&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="kw">gsub</span>(<span class="st">&quot;_&quot;</span>, <span class="st">&quot; &quot;</span>, <span class="kw">rownames</span>(fc)))
+
+ba.tab &lt;-<span class="st"> </span><span class="kw">xtable</span>(ba, <span class="dt">digits =</span> <span class="dv">1</span>, <span class="dt">align =</span> <span class="kw">c</span>(<span class="st">&quot;l&quot;</span>, <span class="kw">rep</span>(<span class="st">&quot;c&quot;</span>, <span class="kw">ncol</span>(ba))))  <span class="co">#, caption=&#39;[km^2, square kilometers]&#39;)</span>
+fc.tab &lt;-<span class="st"> </span><span class="kw">xtable</span>(fc, <span class="dt">digits =</span> <span class="dv">1</span>, <span class="dt">align =</span> <span class="kw">c</span>(<span class="st">&quot;l&quot;</span>, <span class="kw">rep</span>(<span class="st">&quot;c&quot;</span>, <span class="kw">ncol</span>(fc))))
+
+bf &lt;-<span class="st"> </span><span class="kw">rbind</span>(fc, ba)
+<span class="kw">rownames</span>(bf)[<span class="dv">1</span>:<span class="kw">nrow</span>(fc)] &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;ZZZ&quot;</span>, <span class="kw">rownames</span>(fc))
+bf.tab &lt;-<span class="st"> </span><span class="kw">xtable</span>(bf, <span class="dt">digits =</span> <span class="dv">1</span>, <span class="dt">align =</span> <span class="kw">c</span>(<span class="st">&quot;l&quot;</span>, <span class="kw">rep</span>(<span class="st">&quot;c&quot;</span>, <span class="kw">ncol</span>(bf))))  <span class="co">#, caption=&#39;[km^2, square kilometers]&#39;)</span></code></pre>
+<div id="fire-frequency-firesyear" class="section level3">
+<h3>Fire frequency (fires/year)</h3>
+<pre class="sourceCode r"><code class="sourceCode r">if (wd ==<span class="st"> &quot;Rmd&quot;</span>) <span class="kw">print</span>(fc.tab, <span class="dt">type =</span> <span class="st">&quot;html&quot;</span>)
+tmp &lt;-<span class="st"> </span><span class="kw">print</span>(fc.tab, <span class="dt">booktabs =</span> <span class="ot">TRUE</span>, <span class="dt">print.results =</span> <span class="ot">FALSE</span>, <span class="dt">add.to.row =</span> <span class="kw">list</span>(<span class="dt">pos =</span> <span class="kw">list</span>(-<span class="dv">1</span>, 
+    <span class="dv">0</span>), <span class="dt">command =</span> <span class="kw">c</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">headcol </span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">midrule </span><span class="ch">\n\\</span><span class="st">rowcol </span><span class="ch">\\</span><span class="st">multicolumn{7}{c}{Number of wildfires per year} </span><span class="ch">\\\\</span><span class="st"> </span><span class="ch">\n</span><span class="st">&quot;</span>)))
+tmp &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;ZZZ&quot;</span>, <span class="st">&quot;&quot;</span>, tmp)
+for (i in <span class="dv">1</span>:<span class="kw">length</span>(reg.split)) tmp &lt;-<span class="st"> </span><span class="kw">gsub</span>(reg.split[i], reg.split2[i], tmp)
+<span class="co"># tmp &lt;- gsub(&#39;\\[ht\\]&#39;, &#39;&#39;, tmp) tmp &lt;- gsub(&#39;begin\\{tabular\\}&#39;,</span>
+<span class="co"># &#39;begin\\{tabularx\\}\\{\\\\textwidth\\}&#39;, tmp) tmp &lt;-</span>
+<span class="co"># gsub(&#39;end\\{tabular\\}&#39;, &#39;end\\{tabularx\\}&#39;, tmp)</span>
+tmp &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;</span><span class="ch">\\\\</span><span class="st">begin</span><span class="ch">\\</span><span class="st">{tabular</span><span class="ch">\\</span><span class="st">}&quot;</span>, <span class="st">&quot;</span><span class="ch">\\\\</span><span class="st">hspace*</span><span class="ch">\\</span><span class="st">{-100pt</span><span class="ch">\\</span><span class="st">}</span><span class="ch">\\\\</span><span class="st">begin</span><span class="ch">\\</span><span class="st">{tabular</span><span class="ch">\\</span><span class="st">}&quot;</span>, 
+    tmp)
+tmp &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;end</span><span class="ch">\\</span><span class="st">{tabular</span><span class="ch">\\</span><span class="st">}&quot;</span>, <span class="st">&quot;end</span><span class="ch">\\</span><span class="st">{tabular</span><span class="ch">\\</span><span class="st">}</span><span class="ch">\\\\</span><span class="st">hspace</span><span class="ch">\\</span><span class="st">{-100pt</span><span class="ch">\\</span><span class="st">}&quot;</span>, tmp)</code></pre>
+</div>
+<div id="burn-area-km2year" class="section level3">
+<h3>Burn area (km^2/year)</h3>
+<pre class="sourceCode r"><code class="sourceCode r">if (wd ==<span class="st"> &quot;Rmd&quot;</span>) <span class="kw">print</span>(ba.tab, <span class="dt">type =</span> <span class="st">&quot;html&quot;</span>)
+tmp &lt;-<span class="st"> </span><span class="kw">print</span>(ba.tab, <span class="dt">booktabs =</span> <span class="ot">TRUE</span>, <span class="dt">print.results =</span> <span class="ot">FALSE</span>, <span class="dt">add.to.row =</span> <span class="kw">list</span>(<span class="dt">pos =</span> <span class="kw">list</span>(-<span class="dv">1</span>, 
+    <span class="dv">0</span>), <span class="dt">command =</span> <span class="kw">c</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">headcol </span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">midrule </span><span class="ch">\n\\</span><span class="st">rowcol </span><span class="ch">\\</span><span class="st">multicolumn{7}{c}{Area burned per year </span><span class="ch">\\</span><span class="st">{km^2</span><span class="ch">\\</span><span class="st">}} </span><span class="ch">\\\\</span><span class="st"> </span><span class="ch">\n</span><span class="st">&quot;</span>)))
+tmp &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;ZZZ&quot;</span>, <span class="st">&quot;&quot;</span>, tmp)
+for (i in <span class="dv">1</span>:<span class="kw">length</span>(reg.split)) tmp &lt;-<span class="st"> </span><span class="kw">gsub</span>(reg.split[i], reg.split2[i], tmp)
+<span class="co"># tmp &lt;- gsub(&#39;\\[ht\\]&#39;, &#39;&#39;, tmp) tmp &lt;- gsub(&#39;begin\\{tabular\\}&#39;,</span>
+<span class="co"># &#39;begin\\{tabularx\\}\\{\\\\textwidth\\}&#39;, tmp) tmp &lt;-</span>
+<span class="co"># gsub(&#39;end\\{tabular\\}&#39;, &#39;end\\{tabularx\\}&#39;, tmp)</span>
+tmp &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;</span><span class="ch">\\\\</span><span class="st">begin</span><span class="ch">\\</span><span class="st">{tabular</span><span class="ch">\\</span><span class="st">}&quot;</span>, <span class="st">&quot;</span><span class="ch">\\\\</span><span class="st">hspace*</span><span class="ch">\\</span><span class="st">{-100pt</span><span class="ch">\\</span><span class="st">}</span><span class="ch">\\\\</span><span class="st">begin</span><span class="ch">\\</span><span class="st">{tabular</span><span class="ch">\\</span><span class="st">}&quot;</span>, 
+    tmp)
+tmp &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;end</span><span class="ch">\\</span><span class="st">{tabular</span><span class="ch">\\</span><span class="st">}&quot;</span>, <span class="st">&quot;end</span><span class="ch">\\</span><span class="st">{tabular</span><span class="ch">\\</span><span class="st">}</span><span class="ch">\\\\</span><span class="st">hspace</span><span class="ch">\\</span><span class="st">{-100pt</span><span class="ch">\\</span><span class="st">}&quot;</span>, tmp)</code></pre>
+</div>
+</div>
+<div id="baseline-fire-graphs" class="section level2">
+<h2>Baseline Fire Graphs</h2>
+<div id="alaska" class="section level3">
+<h3>Alaska</h3>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Baseline wildland fire, Figures 3.2-3.3</span>
+bf_barplot &lt;-<span class="st"> </span>function(d, loc, <span class="dt">main.title =</span> <span class="st">&quot;&quot;</span>, <span class="dt">fix.scale.ba =</span> <span class="ot">FALSE</span>, <span class="dt">fix.scale.fc =</span> <span class="ot">FALSE</span>) {
+    ba &lt;-<span class="st"> </span><span class="kw">subset</span>(d, Location ==<span class="st"> </span>loc &amp;<span class="st"> </span>Var ==<span class="st"> &quot;Burn Area&quot;</span>)
+    fc &lt;-<span class="st"> </span><span class="kw">subset</span>(d, Location ==<span class="st"> </span>loc &amp;<span class="st"> </span>Var ==<span class="st"> &quot;Fire Count&quot;</span>)
+    yr.seq.lab &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>, <span class="kw">length</span>(fc$Year), <span class="dt">by =</span> <span class="dv">10</span>)
+    <span class="kw">layout</span>(<span class="kw">matrix</span>(<span class="dv">1</span>:<span class="dv">2</span>, <span class="dt">nrow =</span> <span class="dv">2</span>))
+    <span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">1</span>))
+    yaxis.brk.opts &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="kw">seq</span>(<span class="dv">10</span>, <span class="dv">90</span>, <span class="dt">by =</span> <span class="dv">10</span>), <span class="kw">seq</span>(<span class="dv">100</span>, <span class="dv">900</span>, <span class="dt">by =</span> <span class="dv">100</span>), <span class="kw">seq</span>(<span class="dv">1000</span>, 
+        <span class="dv">9000</span>, <span class="dt">by =</span> <span class="dv">1000</span>))
+    y.n &lt;-<span class="st"> </span><span class="dv">5</span>
+    if (fix.scale.ba) {
+        y.gap &lt;-<span class="st"> </span><span class="kw">max</span>(ba$Avg/y.n)
+        ind &lt;-<span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(y.gap -<span class="st"> </span>yaxis.brk.opts))
+        x &lt;-<span class="st"> </span>yaxis.brk.opts[<span class="kw">c</span>(ind, ind +<span class="st"> </span><span class="dv">1</span>)]
+        y.gap &lt;-<span class="st"> </span>if (x[<span class="dv">1</span>] &lt;<span class="st"> </span>y.gap) 
+            x[<span class="dv">2</span>] else x[<span class="dv">1</span>]
+    } else y.gap &lt;-<span class="st"> </span><span class="kw">max</span>(ba$Avg)/y.n
+    bp &lt;-<span class="st"> </span><span class="kw">barplot</span>(ba$Avg, <span class="dt">names.arg =</span> <span class="ot">NULL</span>, <span class="dt">axes =</span> <span class="ot">FALSE</span>, <span class="dt">ylab =</span> <span class="kw">expression</span>(<span class="st">&quot;Area burned &quot;</span> ~<span class="st"> </span>
+<span class="st">        </span>(km^<span class="dv">2</span>) ~<span class="st"> &quot;&quot;</span>), <span class="dt">main =</span> main.title, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, y.gap *<span class="st"> </span>y.n), <span class="dt">space =</span> <span class="fl">0.8</span>, 
+        <span class="dt">cex.axis =</span> <span class="fl">0.7</span>, <span class="dt">cex.lab =</span> <span class="fl">0.7</span>)
+    <span class="kw">axis</span>(<span class="dv">2</span>, <span class="dt">at =</span> <span class="kw">seq</span>(<span class="dv">0</span>, y.gap *<span class="st"> </span>y.n, <span class="dt">by =</span> <span class="kw">round</span>(y.gap)), <span class="dt">cex.axis =</span> <span class="fl">0.6</span>, <span class="dt">las =</span> <span class="dv">1</span>)
+    y.max &lt;-<span class="st"> </span><span class="kw">max</span>(fc$Avg)
+    y.gap &lt;-<span class="st"> </span><span class="kw">max</span>(y.max/y.n)
+    if (fix.scale.fc) {
+        if (y.max &lt;=<span class="st"> </span><span class="dv">1</span>) 
+            y.gap &lt;-<span class="st"> </span><span class="fl">0.2</span> else if (y.max &lt;=<span class="st"> </span><span class="dv">2</span>) 
+            y.gap &lt;-<span class="st"> </span><span class="fl">0.4</span> else if (y.max &lt;=<span class="st"> </span><span class="dv">5</span>) 
+            y.gap &lt;-<span class="st"> </span><span class="dv">1</span> else if (y.max &lt;=<span class="st"> </span><span class="dv">10</span>) 
+            y.gap &lt;-<span class="st"> </span><span class="dv">2</span> else if (y.max &lt;=<span class="st"> </span><span class="dv">20</span>) 
+            y.gap &lt;-<span class="st"> </span><span class="dv">4</span> else {
+            ind &lt;-<span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(y.gap -<span class="st"> </span>yaxis.brk.opts))
+            x &lt;-<span class="st"> </span>yaxis.brk.opts[<span class="kw">c</span>(ind, ind +<span class="st"> </span><span class="dv">1</span>)]
+            y.gap &lt;-<span class="st"> </span>if (x[<span class="dv">1</span>] &lt;<span class="st"> </span>y.gap) 
+                x[<span class="dv">2</span>] else x[<span class="dv">1</span>]
+        }
+    }
+    bp &lt;-<span class="st"> </span><span class="kw">barplot</span>(fc$Avg, <span class="dt">names.arg =</span> <span class="ot">NULL</span>, <span class="dt">axes =</span> <span class="ot">FALSE</span>, <span class="dt">xlab =</span> <span class="st">&quot;Year&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Number of wildfires&quot;</span>, 
+        <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, y.gap *<span class="st"> </span>y.n), <span class="dt">space =</span> <span class="fl">0.8</span>, <span class="dt">cex.axis =</span> <span class="fl">0.7</span>, <span class="dt">cex.lab =</span> <span class="fl">0.7</span>)
+    <span class="kw">axis</span>(<span class="dv">2</span>, <span class="dt">at =</span> <span class="kw">seq</span>(<span class="dv">0</span>, y.gap *<span class="st"> </span>y.n, <span class="dt">by =</span> <span class="kw">round</span>(y.gap, <span class="dv">1</span>)), <span class="dt">cex.axis =</span> <span class="fl">0.6</span>, 
+        <span class="dt">las =</span> <span class="dv">1</span>)
+    brks &lt;-<span class="st"> </span>bp[yr.seq.lab]
+    brks &lt;-<span class="st"> </span><span class="kw">c</span>(brks, <span class="kw">tail</span>(brks, <span class="dv">1</span>) +<span class="st"> </span><span class="kw">diff</span>(brks)[<span class="dv">1</span>] -<span class="st"> </span><span class="dv">1</span>)
+    labs &lt;-<span class="st"> </span>fc$Year[yr.seq.lab]
+    labs &lt;-<span class="st"> </span><span class="kw">c</span>(labs, <span class="kw">tail</span>(labs, <span class="dv">1</span>) +<span class="st"> </span><span class="kw">diff</span>(labs)[<span class="dv">1</span>] -<span class="st"> </span><span class="dv">1</span>)
+    <span class="kw">axis</span>(<span class="dv">1</span>, <span class="dt">at =</span> brks, <span class="dt">labels =</span> labs, <span class="dt">tick =</span> <span class="ot">FALSE</span>, <span class="dt">cex.axis =</span> <span class="fl">0.7</span>)
+}
+
+<span class="kw">bf_barplot</span>(<span class="dt">d =</span> d.agg1, <span class="dt">loc =</span> <span class="st">&quot;Alaska&quot;</span>, <span class="dt">fix.scale.ba =</span> T, <span class="dt">fix.scale.fc =</span> T)</code></pre>
+</div>
+<div id="lcc-regions" class="section level3">
+<h3>LCC Regions</h3>
+<div id="arctic" class="section level4">
+<h4>Arctic</h4>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bf_barplot</span>(<span class="dt">d =</span> d.agg1, <span class="dt">loc =</span> regions[<span class="dv">1</span>], <span class="dt">fix.scale.ba =</span> T)</code></pre>
+</div>
+<div id="north-pacific" class="section level4">
+<h4>North Pacific</h4>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bf_barplot</span>(<span class="dt">d =</span> d.agg1, <span class="dt">loc =</span> regions[<span class="dv">2</span>])</code></pre>
+</div>
+<div id="northwest-interior-forest-north" class="section level4">
+<h4>Northwest Interior Forest North</h4>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bf_barplot</span>(<span class="dt">d =</span> d.agg1, <span class="dt">loc =</span> regions[<span class="dv">3</span>], <span class="dt">fix.scale.ba =</span> T)</code></pre>
+</div>
+<div id="northwest-interior-forest-south" class="section level4">
+<h4>Northwest Interior Forest South</h4>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bf_barplot</span>(<span class="dt">d =</span> d.agg1, <span class="dt">loc =</span> regions[<span class="dv">4</span>], <span class="dt">fix.scale.ba =</span> T)</code></pre>
+</div>
+<div id="western-alaska" class="section level4">
+<h4>Western Alaska</h4>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bf_barplot</span>(<span class="dt">d =</span> d.agg1, <span class="dt">loc =</span> regions[<span class="dv">5</span>], <span class="dt">fix.scale.fc =</span> T)</code></pre>
+</div>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+
+</body>
+</html>

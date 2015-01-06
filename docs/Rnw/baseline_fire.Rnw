@@ -58,6 +58,7 @@ This uses strictly ALFRESCO output.
 \section{Baseline Fire Graphs}
 The below graph relates to figure 3.2 in the original document.
 This uses strictly ALFRESCO output.
+
 \subsection{Alaska}
 <<baseline_fire_barplot_AK, fig.width=7, fig.height=4, fig.cap="Alaska", fig.pos="H">>=
 @
@@ -66,18 +67,24 @@ This uses strictly ALFRESCO output.
 \subsection{LCC Regions}
 All five following separate LCC graphs relate to figure 3.3 in the original document.
 This uses strictly ALFRESCO output.
+
+\subsubsection{Arctic}
 <<baseline_fire_barplot_LCC1, fig.width=7, fig.height=4, fig.cap="Arctic", fig.pos="H">>=
 @
 
+\subsubsection{North Pacific}
 <<baseline_fire_barplot_LCC2, fig.width=7, fig.height=4, fig.cap="North Pacific", fig.pos="H">>=
 @
 
+\subsubsection{Northwest Interior Forest North}
 <<baseline_fire_barplot_LCC3, fig.width=7, fig.height=4, fig.cap="Northwest Interior Forest North", fig.pos="H">>=
 @
 
+\subsubsection{Northwest Interior Forest South}
 <<baseline_fire_barplot_LCC4, fig.width=7, fig.height=4, fig.cap="Northwest Interior Forest South", fig.pos="H">>=
 @
 
+\subsubsection{Western Alaska}
 <<baseline_fire_barplot_LCC5, fig.width=7, fig.height=4, fig.cap="Western Alaska", fig.pos="H">>=
 @
 

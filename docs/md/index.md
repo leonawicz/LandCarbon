@@ -1,0 +1,8 @@
+# Land carbon tabular and graphical outputs \\ \large Unvetted preliminary rush draft from developmental code
+Matthew Leonawicz  
+
+This project represents a rapid, rush production of various tables and graphs intended for the land carbon project.
+Figures make use of historical and projected ALFRESCO model fire and vegetation output.
+Two global climate models are used: CCCMAcgcm31 and MPIecham5.
+The spatial domains considered include Alaska and five LCC regions within Alaska.
+The material included here are highly preliminary.
