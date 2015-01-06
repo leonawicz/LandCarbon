@@ -74,8 +74,6 @@ hack_plot <- function(d, type, add.legend=FALSE){
 
 d1.agg1 <- ddply(d1, c("Scenario", "Var", "Location"), summarise, ZZZ50th=median(Pct_50), ZZZ95th=quantile(Pct_95, probs=0.95))
 d2.agg1 <- ddply(d2, c("Scenario", "Var", "Location"), summarise, ZZZ50th=median(Pct_50), ZZZ95th=quantile(Pct_95, probs=0.95))
-d1.agg1.sub <- subset(d1.agg1, Location=="Alaska")
-d2.agg1.sub <- subset(d2.agg1, Location=="Alaska")
 
 morph_df <- function(d){
 	d <- melt(d, id.vars=c("Scenario","Var","Location"))
@@ -86,36 +84,103 @@ morph_df <- function(d){
 	d
 }
 
-d1.agg1.sub <- morph_df(d1.agg1.sub)
-d2.agg1.sub <- morph_df(d2.agg1.sub)
-d.prop <- d1.agg1.sub
-d.prop["Ignitions"] <- 100*(d2.agg1.sub["Ignitions"]/d1.agg1.sub["Ignitions"] - 1)
-d.prop["Area burned"] <- 100*(d2.agg1.sub["Area burned"]/d1.agg1.sub["Area burned"] - 1)
+org_prop_df <- function(d1, d2){
+	d <- d1
+	d["Ignitions"] <- round(100*(d2["Ignitions"]/d1["Ignitions"] - 1), 2)
+	d["Area burned"] <- round(100*(d2["Area burned"]/d1["Area burned"] - 1), 2)
+	ind <- which(is.nan(d$Ignitions) | is.na(d$Ignitions))
+	if(length(ind)) { d$Ignitions[ind] <- d[["Area burned"]][ind] <- "-" }
+	d
+}
+
+print_tab <- function(d){
+	print(d, booktabs=TRUE, print.results=FALSE, include.rownames=FALSE,
+	add.to.row=list(pos=list(-1), command=c("\\headcol \n") #, "\\midrule \n\\rowcol \\multicolumn{7}{c}{Number of wildfires per year} \\\\ \n")
+	))
+}
+
+#########################################################################################################
+
+# @knitr fire_change_table1_AK
+d1.agg1.sub <- morph_df(subset(d1.agg1, Location=="Alaska"))
+d2.agg1.sub <- morph_df(subset(d2.agg1, Location=="Alaska"))
+d.prop <- org_prop_df(d1.agg1.sub, d2.agg1.sub)
 d1.tab <- xtable(d1.agg1.sub, digits=0, align=c("l", "l", rep("c", ncol(d1.agg1.sub)-1)))
 d2.tab <- xtable(d2.agg1.sub, digits=0, align=c("l", "l", rep("c", ncol(d2.agg1.sub)-1)))
 d.diff.tab <- xtable(d.prop, digits=1, align=c("l", "l", rep("c", ncol(d2.agg1.sub)-1)))
 #names(d.diff.tab)[3:4] <- paste("% change in", tolower(names(d.diff.tab)[3:4]))
+tmp <- print_tab(d1.tab)
+# @knitr fire_change_table2_AK
+tmp <- print_tab(d2.tab)
+# @knitr fire_change_table_dif_AK
+tmp <- print_tab(d.diff.tab)
 
-# @knitr fire_change_table1
-tmp <- print(d1.tab, booktabs=TRUE, print.results=FALSE, include.rownames=FALSE,
-	add.to.row=list(pos=list(-1),
-		command=c("\\headcol \n")#, "\\midrule \n\\rowcol \\multicolumn{7}{c}{Number of wildfires per year} \\\\ \n")
-	)
-)
+# @knitr fire_change_table1_LCC1
+d1.agg1.sub <- morph_df(subset(d1.agg1, Location==regions[1]))
+d2.agg1.sub <- morph_df(subset(d2.agg1, Location==regions[1]))
+d.prop <- org_prop_df(d1.agg1.sub, d2.agg1.sub)
+d1.tab <- xtable(d1.agg1.sub, digits=0, align=c("l", "l", rep("c", ncol(d1.agg1.sub)-1)))
+d2.tab <- xtable(d2.agg1.sub, digits=0, align=c("l", "l", rep("c", ncol(d2.agg1.sub)-1)))
+d.diff.tab <- xtable(d.prop, digits=1, align=c("l", "l", rep("c", ncol(d2.agg1.sub)-1)))
+tmp <- print_tab(d1.tab)
+# @knitr fire_change_table2_LCC1
+tmp <- print_tab(d2.tab)
+# @knitr fire_change_table_dif_LCC1
+tmp <- print_tab(d.diff.tab)
 
-# @knitr fire_change_table2
-tmp <- print(d2.tab, booktabs=TRUE, print.results=FALSE, include.rownames=FALSE,
-	add.to.row=list(pos=list(-1),
-		command=c("\\headcol \n")#, "\\midrule \n\\rowcol \\multicolumn{7}{c}{Number of wildfires per year} \\\\ \n")
-	)
-)
+# @knitr fire_change_table1_LCC2
+d1.agg1.sub <- morph_df(subset(d1.agg1, Location==regions[2]))
+d2.agg1.sub <- morph_df(subset(d2.agg1, Location==regions[2]))
+d.prop <- org_prop_df(d1.agg1.sub, d2.agg1.sub)
+d1.tab <- xtable(d1.agg1.sub, digits=0, align=c("l", "l", rep("c", ncol(d1.agg1.sub)-1)))
+d2.tab <- xtable(d2.agg1.sub, digits=0, align=c("l", "l", rep("c", ncol(d2.agg1.sub)-1)))
+d.diff.tab <- xtable(d.prop, digits=1, align=c("l", "l", rep("c", ncol(d2.agg1.sub)-1)))
+tmp <- print_tab(d1.tab)
+# @knitr fire_change_table2_LCC2
+tmp <- print_tab(d2.tab)
+# @knitr fire_change_table_dif_LCC2
+tmp <- print_tab(d.diff.tab)
 
-# @knitr fire_change_table_dif
-tmp <- print(d.diff.tab, booktabs=TRUE, print.results=FALSE, include.rownames=FALSE,
-	add.to.row=list(pos=list(-1),
-		command=c("\\headcol \n")#, "\\midrule \n\\rowcol \\multicolumn{7}{c}{Number of wildfires per year} \\\\ \n")
-	)
-)
+# @knitr fire_change_table1_LCC3
+d1.agg1.sub <- morph_df(subset(d1.agg1, Location==regions[3]))
+d2.agg1.sub <- morph_df(subset(d2.agg1, Location==regions[3]))
+d.prop <- org_prop_df(d1.agg1.sub, d2.agg1.sub)
+d1.tab <- xtable(d1.agg1.sub, digits=0, align=c("l", "l", rep("c", ncol(d1.agg1.sub)-1)))
+d2.tab <- xtable(d2.agg1.sub, digits=0, align=c("l", "l", rep("c", ncol(d2.agg1.sub)-1)))
+d.diff.tab <- xtable(d.prop, digits=1, align=c("l", "l", rep("c", ncol(d2.agg1.sub)-1)))
+tmp <- print_tab(d1.tab)
+# @knitr fire_change_table2_LCC3
+tmp <- print_tab(d2.tab)
+# @knitr fire_change_table_dif_LCC3
+tmp <- print_tab(d.diff.tab)
+
+# @knitr fire_change_table1_LCC4
+d1.agg1.sub <- morph_df(subset(d1.agg1, Location==regions[4]))
+d2.agg1.sub <- morph_df(subset(d2.agg1, Location==regions[4]))
+d.prop <- org_prop_df(d1.agg1.sub, d2.agg1.sub)
+d1.tab <- xtable(d1.agg1.sub, digits=0, align=c("l", "l", rep("c", ncol(d1.agg1.sub)-1)))
+d2.tab <- xtable(d2.agg1.sub, digits=0, align=c("l", "l", rep("c", ncol(d2.agg1.sub)-1)))
+d.diff.tab <- xtable(d.prop, digits=1, align=c("l", "l", rep("c", ncol(d2.agg1.sub)-1)))
+tmp <- print_tab(d1.tab)
+# @knitr fire_change_table2_LCC4
+tmp <- print_tab(d2.tab)
+# @knitr fire_change_table_dif_LCC4
+tmp <- print_tab(d.diff.tab)
+
+# @knitr fire_change_table1_LCC5
+d1.agg1.sub <- morph_df(subset(d1.agg1, Location==regions[5]))
+d2.agg1.sub <- morph_df(subset(d2.agg1, Location==regions[5]))
+d.prop <- org_prop_df(d1.agg1.sub, d2.agg1.sub)
+d1.tab <- xtable(d1.agg1.sub, digits=0, align=c("l", "l", rep("c", ncol(d1.agg1.sub)-1)))
+d2.tab <- xtable(d2.agg1.sub, digits=0, align=c("l", "l", rep("c", ncol(d2.agg1.sub)-1)))
+d.diff.tab <- xtable(d.prop, digits=1, align=c("l", "l", rep("c", ncol(d2.agg1.sub)-1)))
+tmp <- print_tab(d1.tab)
+# @knitr fire_change_table2_LCC5
+tmp <- print_tab(d2.tab)
+# @knitr fire_change_table_dif_LCC5
+tmp <- print_tab(d.diff.tab)
+
+#########################################################################################################
 
 # @knitr fire_change_ts_AK
 # Projected wildland fire change, figure 8.2
