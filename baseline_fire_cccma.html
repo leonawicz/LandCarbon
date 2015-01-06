@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="author" content="Matthew Leonawicz" />
+
+
+<title>Baseline Fire 1950 - 2009 \ Unvetted preliminary rush draft from developmental code</title>
+
+<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="libs/bootstrap-2.3.2/css/united.min.css" rel="stylesheet" />
+<link href="libs/bootstrap-2.3.2/css/bootstrap-responsive.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+<style type="text/css">
+
+/* padding for bootstrap navbar */
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+}
+@media (max-width: 979px) {
+  body {
+    padding-top: 0;
+  }
+}
+
+/* offset scroll position for anchor links (for fixed navbar)  */
+@media (min-width: 980px) {
+  .section h2 {
+    padding-top: 52px;
+    margin-top: -52px;
+  }
+  .section h3 {
+    padding-top: 52px;
+    margin-top: -52px;
+  }
+}
+
+
+/* don't use link color in navbar */
+.dropdown-menu>li>a {
+  color: black;
+}
+
+/* some padding for disqus */
+#disqus_thread {
+  margin-top: 45px;
+}
+
+</style>
+
+<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
+
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<div class="container-fluid main-container">
+
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="brand" href="index.html">Land Carbon</a>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <li class="dropdown">
+            <a href="fire" class="dropdown-toggle" data-toggle="dropdown">Fire <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li class="nav-header">Model: CCCMA</li>
+              <li><a href="baseline_fire_cccma.html">Baseline fire</a></li>
+              <li><a href="fire_change_cccma.html">Projected change</a></li>
+              <li class="divider"></li>
+              <li class="nav-header">Model: ECHAM5</li>
+              <li><a href="baseline_fire_echam.html">Baseline fire</a></li>
+              <li><a href="fire_change_echam.html">Projected change</a></li>
+            </ul>
+
+          <li class="dropdown">
+            <a href="vegetation" class="dropdown-toggle" data-toggle="dropdown">Vegetation <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li class="nav-header">Model: CCCMA</li>
+              <li><a href="vegetation_change_cccma.html">Vegetation change</a></li>
+              <li><a href="vegetation_trend_cccma.html">Vegetation trends</a></li>
+              <li class="divider"></li>
+              <li class="nav-header">Model: ECHAM5</li>
+              <li><a href="vegetation_change_echam.html">Vegetation change</a></li>
+              <li><a href="vegetation_trend_echam.html">Vegetation trends</a></li>
+            </ul>
+
+          <li class="dropdown">
+            <a href="r-code" class="dropdown-toggle" data-toggle="dropdown">R Code <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li class="nav-header">Main code</li>
+              <li><a href="baseline_fire_code.html">Baseline fire</a></li>
+              <li><a href="fire_change_code.html">Projected fire</a></li>
+              <li><a href="vegetation_change_code.html">Vegetation change</a></li>
+              <li><a href="vegetation_trend_code.html">Vegetation trends</a></li>
+            </ul>
+
+          <li class="dropdown">
+            <a href="all-projects" class="dropdown-toggle" data-toggle="dropdown">All Projects <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="index.html">About</a></li>
+              <li><a href="index.html">Other</a></li>
+            </ul>
+        </ul>
+        <ul class="nav pull-right">
+          <a class="btn btn-primary" href="https://github.com/leonawicz/LandCarbon">
+            <i class="fa fa-github fa-lg"></i>
+            Github
+          </a>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+
+<div id="header">
+<h1 class="title">Baseline Fire 1950 - 2009 \ Unvetted preliminary rush draft from developmental code</h1>
+<h4 class="author"><em>Matthew Leonawicz</em></h4>
+</div>
+
+
+<div id="baseline-fire-tables" class="section level2">
+<h2>Baseline Fire Tables</h2>
+<p>The third table down combining the first two relates to table 3.1 in the original document. This uses strictly ALFRESCO output.</p>
+<div id="fire-frequency-firesyear" class="section level3">
+<h3>Fire frequency (fires/year)</h3>
+<!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
+<!-- Tue Jan 06 13:31:55 2015 -->
+<table border="1">
+<tr>
+<th>
+</th>
+<th>
+Arctic
+</th>
+<th>
+North Pacific
+</th>
+<th>
+Northwest Interior Forest North
+</th>
+<th>
+Northwest Interior Forest South
+</th>
+<th>
+Western Alaska
+</th>
+<th>
+Alaska
+</th>
+</tr>
+<tr>
+<td>
+Mean
+</td>
+<td align="center">
+0.9
+</td>
+<td align="center">
+0.1
+</td>
+<td align="center">
+43.5
+</td>
+<td align="center">
+9.5
+</td>
+<td align="center">
+8.1
+</td>
+<td align="center">
+59.9
+</td>
+</tr>
+<tr>
+<td>
+Standard deviation
+</td>
+<td align="center">
+0.3
+</td>
+<td align="center">
+0.2
+</td>
+<td align="center">
+4.9
+</td>
+<td align="center">
+2.0
+</td>
+<td align="center">
+1.6
+</td>
+<td align="center">
+7.1
+</td>
+</tr>
+<tr>
+<td>
+Minimum
+</td>
+<td align="center">
+0.0
+</td>
+<td align="center">
+0.0
+</td>
+<td align="center">
+35.0
+</td>
+<td align="center">
+6.0
+</td>
+<td align="center">
+5.0
+</td>
+<td align="center">
+48.3
+</td>
+</tr>
+<tr>
+<td>
+Median
+</td>
+<td align="center">
+1.0
+</td>
+<td align="center">
+0.0
+</td>
+<td align="center">
+43.2
+</td>
+<td align="center">
+9.0
+</td>
+<td align="center">
+8.0
+</td>
+<td align="center">
+59.3
+</td>
+</tr>
+<tr>
+<td>
+95th quantile
+</td>
+<td align="center">
+1.0
+</td>
+<td align="center">
+0.7
+</td>
+<td align="center">
+52.4
+</td>
+<td align="center">
+13.3
+</td>
+<td align="center">
+10.7
+</td>
+<td align="center">
+72.8
+</td>
+</tr>
+<tr>
+<td>
+Maximum
+</td>
+<td align="center">
+2.0
+</td>
+<td align="center">
+1.0
+</td>
+<td align="center">
+56.7
+</td>
+<td align="center">
+14.3
+</td>
+<td align="center">
+12.3
+</td>
+<td align="center">
+77.7
+</td>
+</tr>
+</table>
+</div>
+<div id="burn-area-km2year" class="section level3">
+<h3>Burn area (km^2/year)</h3>
+<!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
+<!-- Tue Jan 06 13:31:56 2015 -->
+<table border="1">
+<tr>
+<th>
+</th>
+<th>
+Arctic
+</th>
+<th>
+North Pacific
+</th>
+<th>
+Northwest Interior Forest North
+</th>
+<th>
+Northwest Interior Forest South
+</th>
+<th>
+Western Alaska
+</th>
+<th>
+Alaska
+</th>
+</tr>
+<tr>
+<td>
+Mean
+</td>
+<td align="center">
+85.9
+</td>
+<td align="center">
+3.6
+</td>
+<td align="center">
+2802.1
+</td>
+<td align="center">
+331.4
+</td>
+<td align="center">
+762.3
+</td>
+<td align="center">
+3789.3
+</td>
+</tr>
+<tr>
+<td>
+Standard deviation
+</td>
+<td align="center">
+210.2
+</td>
+<td align="center">
+2.3
+</td>
+<td align="center">
+3089.1
+</td>
+<td align="center">
+440.9
+</td>
+<td align="center">
+1168.2
+</td>
+<td align="center">
+4342.8
+</td>
+</tr>
+<tr>
+<td>
+Minimum
+</td>
+<td align="center">
+1.7
+</td>
+<td align="center">
+0.7
+</td>
+<td align="center">
+334.7
+</td>
+<td align="center">
+31.3
+</td>
+<td align="center">
+22.7
+</td>
+<td align="center">
+433.0
+</td>
+</tr>
+<tr>
+<td>
+Median
+</td>
+<td align="center">
+9.7
+</td>
+<td align="center">
+3.2
+</td>
+<td align="center">
+1612.2
+</td>
+<td align="center">
+186.8
+</td>
+<td align="center">
+254.8
+</td>
+<td align="center">
+2028.3
+</td>
+</tr>
+<tr>
+<td>
+95th quantile
+</td>
+<td align="center">
+607.5
+</td>
+<td align="center">
+7.7
+</td>
+<td align="center">
+10992.6
+</td>
+<td align="center">
+1327.7
+</td>
+<td align="center">
+2821.4
+</td>
+<td align="center">
+14002.0
+</td>
+</tr>
+<tr>
+<td>
+Maximum
+</td>
+<td align="center">
+1129.7
+</td>
+<td align="center">
+11.0
+</td>
+<td align="center">
+13982.7
+</td>
+<td align="center">
+2059.0
+</td>
+<td align="center">
+6410.7
+</td>
+<td align="center">
+18391.0
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="baseline-fire-graphs" class="section level2">
+<h2>Baseline Fire Graphs</h2>
+<p>The below graph relates to figure 3.2 in the original document. This uses strictly ALFRESCO output.</p>
+<div id="alaska" class="section level3">
+<h3>Alaska</h3>
+<p><img src="baseline_fire_cccma_files/figure-html/baseline_fire_barplot_AK-1.png" alt="Alaska" /></p>
+</div>
+<div id="lcc-regions" class="section level3">
+<h3>LCC Regions</h3>
+<p>All five following separate LCC graphs relate to figure 3.3 in the original document. This uses strictly ALFRESCO output.</p>
+<div id="arctic" class="section level4">
+<h4>Arctic</h4>
+<p><img src="baseline_fire_cccma_files/figure-html/baseline_fire_barplot_LCC1-1.png" alt="Arctic" /></p>
+</div>
+<div id="north-pacific" class="section level4">
+<h4>North Pacific</h4>
+<p><img src="baseline_fire_cccma_files/figure-html/baseline_fire_barplot_LCC2-1.png" alt="North Pacific" /></p>
+</div>
+<div id="northwest-interior-forest-north" class="section level4">
+<h4>Northwest Interior Forest North</h4>
+<p><img src="baseline_fire_cccma_files/figure-html/baseline_fire_barplot_LCC3-1.png" alt="Northwest Interior Forest North" /></p>
+</div>
+<div id="northwest-interior-forest-south" class="section level4">
+<h4>Northwest Interior Forest South</h4>
+<p><img src="baseline_fire_cccma_files/figure-html/baseline_fire_barplot_LCC4-1.png" alt="Northwest Interior Forest South" /></p>
+</div>
+<div id="western-alaska" class="section level4">
+<h4>Western Alaska</h4>
+<p><img src="baseline_fire_cccma_files/figure-html/baseline_fire_barplot_LCC5-1.png" alt="Western Alaska" /></p>
+</div>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+
+</body>
+</html>

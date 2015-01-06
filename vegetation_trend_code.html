@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="author" content="Matthew Leonawicz" />
+
+
+<title>R code: Projected Vegetation Trends 2009 - 2100</title>
+
+<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="libs/bootstrap-2.3.2/css/united.min.css" rel="stylesheet" />
+<link href="libs/bootstrap-2.3.2/css/bootstrap-responsive.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+<style type="text/css">
+
+/* padding for bootstrap navbar */
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+}
+@media (max-width: 979px) {
+  body {
+    padding-top: 0;
+  }
+}
+
+/* offset scroll position for anchor links (for fixed navbar)  */
+@media (min-width: 980px) {
+  .section h2 {
+    padding-top: 52px;
+    margin-top: -52px;
+  }
+  .section h3 {
+    padding-top: 52px;
+    margin-top: -52px;
+  }
+}
+
+
+/* don't use link color in navbar */
+.dropdown-menu>li>a {
+  color: black;
+}
+
+/* some padding for disqus */
+#disqus_thread {
+  margin-top: 45px;
+}
+
+</style>
+
+<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #303030; color: #cccccc; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; }
+td.sourceCode { padding-left: 5px; }
+pre, code { color: #cccccc; background-color: #303030; }
+code > span.kw { color: #f0dfaf; }
+code > span.dt { color: #dfdfbf; }
+code > span.dv { color: #dcdccc; }
+code > span.bn { color: #dca3a3; }
+code > span.fl { color: #c0bed1; }
+code > span.ch { color: #dca3a3; }
+code > span.st { color: #cc9393; }
+code > span.co { color: #7f9f7f; }
+code > span.ot { color: #efef8f; }
+code > span.al { color: #ffcfaf; }
+code > span.fu { color: #efef8f; }
+code > span.er { color: #c3bf9f; }
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<div class="container-fluid main-container">
+
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="brand" href="index.html">Land Carbon</a>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <li class="dropdown">
+            <a href="fire" class="dropdown-toggle" data-toggle="dropdown">Fire <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li class="nav-header">Model: CCCMA</li>
+              <li><a href="baseline_fire_cccma.html">Baseline fire</a></li>
+              <li><a href="fire_change_cccma.html">Projected change</a></li>
+              <li class="divider"></li>
+              <li class="nav-header">Model: ECHAM5</li>
+              <li><a href="baseline_fire_echam.html">Baseline fire</a></li>
+              <li><a href="fire_change_echam.html">Projected change</a></li>
+            </ul>
+
+          <li class="dropdown">
+            <a href="vegetation" class="dropdown-toggle" data-toggle="dropdown">Vegetation <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li class="nav-header">Model: CCCMA</li>
+              <li><a href="vegetation_change_cccma.html">Vegetation change</a></li>
+              <li><a href="vegetation_trend_cccma.html">Vegetation trends</a></li>
+              <li class="divider"></li>
+              <li class="nav-header">Model: ECHAM5</li>
+              <li><a href="vegetation_change_echam.html">Vegetation change</a></li>
+              <li><a href="vegetation_trend_echam.html">Vegetation trends</a></li>
+            </ul>
+
+          <li class="dropdown">
+            <a href="r-code" class="dropdown-toggle" data-toggle="dropdown">R Code <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li class="nav-header">Main code</li>
+              <li><a href="baseline_fire_code.html">Baseline fire</a></li>
+              <li><a href="fire_change_code.html">Projected fire</a></li>
+              <li><a href="vegetation_change_code.html">Vegetation change</a></li>
+              <li><a href="vegetation_trend_code.html">Vegetation trends</a></li>
+            </ul>
+
+          <li class="dropdown">
+            <a href="all-projects" class="dropdown-toggle" data-toggle="dropdown">All Projects <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="index.html">About</a></li>
+              <li><a href="index.html">Other</a></li>
+            </ul>
+        </ul>
+        <ul class="nav pull-right">
+          <a class="btn btn-primary" href="https://github.com/leonawicz/LandCarbon">
+            <i class="fa fa-github fa-lg"></i>
+            Github
+          </a>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+
+<div id="header">
+<h1 class="title">R code: Projected Vegetation Trends 2009 - 2100</h1>
+<h4 class="author"><em>Matthew Leonawicz</em></h4>
+</div>
+
+
+<p>Note that the code may contain seemingly unnecessary repetition across multiple code chunks. Sometimes I do this when using <code>knitr</code> to knit documents. If I was strictly outputing graphics files I would remove apparent duplicate code.</p>
+<p>Also note in the <code>modnames &lt;-</code> assignment that the same script is simply run twice, once for each climate model. The amount of hardcoding present in general is indicative of the limited time available for the task.</p>
+<p>Depending on whether the output documents are md/html or LaTeX/pdf, tables are compiled differently as well using <code>xtable</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">region.grp &lt;-<span class="st"> &quot;LCC Regions&quot;</span>
+<span class="co"># mainDir &lt;-</span>
+<span class="co"># &#39;/workspace/UA/mfleonawicz/Leonawicz/Projects/2014/AR4_AR5_comparisons/data/final&#39;</span>
+mainDir &lt;-<span class="st"> &quot;X:/Leonawicz/Projects/2014/AR4_AR5_comparisons/data/final&quot;</span>
+ak.statsVeg.file &lt;-<span class="st"> </span><span class="kw">file.path</span>(mainDir, <span class="st">&quot;region_files_GCM/stats/Political/Alaska/stats_veg.RData&quot;</span>)
+<span class="co"># ak.samples.file &lt;- file.path(mainDir,</span>
+<span class="co"># &#39;region_files_GCM/samples/Political/Alaska/xxxxxxxxxxxx.RData&#39;)</span>
+<span class="co"># load(file.path(mainDir, &#39;meta.RData&#39;))</span>
+<span class="kw">load</span>(<span class="st">&quot;C:/github/shiny-apps/cmip3_cmip5/external/meta.RData&quot;</span>)
+statDir &lt;-<span class="st"> </span><span class="kw">file.path</span>(mainDir, <span class="st">&quot;region_files_GCM/stats&quot;</span>, region.grp)
+sampDir &lt;-<span class="st"> </span><span class="kw">file.path</span>(mainDir, <span class="st">&quot;region_files_GCM/samples&quot;</span>, region.grp)
+<span class="kw">library</span>(plyr)
+<span class="kw">library</span>(xtable)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Projected vegetation change, Figure 6.2</span>
+years.all &lt;-<span class="st"> </span><span class="dv">2009</span>:<span class="dv">2100</span>
+years &lt;-<span class="st"> </span><span class="kw">range</span>(years.all)
+modnames &lt;-<span class="st"> &quot;MPIecham5&quot;</span>  <span class="co"># &#39;CCCMAcgcm31&#39; # </span>
+keep.cols &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>:stats.columns[<span class="dv">1</span>], (<span class="kw">tail</span>(stats.columns, <span class="dv">1</span>) +<span class="st"> </span><span class="dv">1</span>):<span class="kw">ncol</span>(alf.vegStats.df))
+files &lt;-<span class="st"> </span><span class="kw">list.files</span>(statDir, <span class="dt">pattern =</span> <span class="st">&quot;^stats_veg.RData$&quot;</span>, <span class="dt">full =</span> <span class="ot">TRUE</span>, <span class="dt">recursive =</span> <span class="ot">TRUE</span>)
+files &lt;-<span class="st"> </span><span class="kw">c</span>(files, ak.statsVeg.file)
+regions &lt;-<span class="st"> </span><span class="kw">basename</span>(<span class="kw">dirname</span>(files))
+for (i in <span class="dv">1</span>:<span class="kw">length</span>(files)) {
+    <span class="kw">load</span>(files[i])
+    alf.vegStats.df$Location &lt;-<span class="st"> </span>regions[i]
+    alf.vegStats.df[, stats.columns] &lt;-<span class="st"> </span>region.dat
+    if (i ==<span class="st"> </span><span class="dv">1</span>) 
+        d &lt;-<span class="st"> </span>alf.vegStats.df else d &lt;-<span class="st"> </span><span class="kw">rbind</span>(d, alf.vegStats.df)
+}
+<span class="kw">rm</span>(region.dat)
+
+d &lt;-<span class="st"> </span><span class="kw">subset</span>(d, Model %in%<span class="st"> </span>modnames)
+d$Location &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot; S&quot;</span>, <span class="st">&quot; South&quot;</span>, <span class="kw">gsub</span>(<span class="st">&quot; N&quot;</span>, <span class="st">&quot; North&quot;</span>, <span class="kw">gsub</span>(<span class="st">&quot;W &quot;</span>, <span class="st">&quot;Western &quot;</span>, 
+    <span class="kw">gsub</span>(<span class="st">&quot;N &quot;</span>, <span class="st">&quot;North &quot;</span>, <span class="kw">gsub</span>(<span class="st">&quot;NW &quot;</span>, <span class="st">&quot;Northwest &quot;</span>, d$Location)))))  <span class="co"># Special name changes</span>
+regions &lt;-<span class="st"> </span><span class="kw">unique</span>(d$Location[d$Location !=<span class="st"> &quot;Alaska&quot;</span>])
+
+<span class="kw">levels</span>(d$Scenario) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;SRES B1&quot;</span>, <span class="st">&quot;SRES A1B&quot;</span>, <span class="st">&quot;SRES A2&quot;</span>)
+d2 &lt;-<span class="st"> </span><span class="kw">subset</span>(d, Year %in%<span class="st"> </span>years.all, <span class="dt">select =</span> keep.cols)
+d &lt;-<span class="st"> </span><span class="kw">subset</span>(d, Year %in%<span class="st"> </span>years, <span class="dt">select =</span> keep.cols)
+d.agg1 &lt;-<span class="st"> </span><span class="kw">ddply</span>(d, <span class="kw">c</span>(<span class="st">&quot;Scenario&quot;</span>, <span class="st">&quot;Location&quot;</span>, <span class="st">&quot;Vegetation&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Decade&quot;</span>), 
+    summarise, <span class="dt">Avg =</span> <span class="kw">mean</span>(Mean))
+d.agg2 &lt;-<span class="st"> </span><span class="kw">ddply</span>(d2, <span class="kw">c</span>(<span class="st">&quot;Scenario&quot;</span>, <span class="st">&quot;Location&quot;</span>, <span class="st">&quot;Vegetation&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Decade&quot;</span>), 
+    summarise, <span class="dt">Avg =</span> <span class="kw">mean</span>(Mean))
+
+fac &lt;-<span class="st"> </span><span class="dv">1000</span>
+d.agg1.sub &lt;-<span class="st"> </span>d.agg1  <span class="co">#subset(d.agg1, Location==&#39;Alaska&#39;)</span>
+d.agg2.sub &lt;-<span class="st"> </span>d.agg2  <span class="co">#subset(d.agg2, Location==&#39;Alaska&#39;)</span>
+d.agg1.sub$Avg &lt;-<span class="st"> </span>d.agg1.sub$Avg/fac
+d.agg2.sub$Avg &lt;-<span class="st"> </span>d.agg2.sub$Avg/fac
+
+d.agg1.b1 &lt;-<span class="st"> </span><span class="kw">subset</span>(d.agg1.sub, Year ==<span class="st"> </span>years[<span class="dv">1</span>] &amp;<span class="st"> </span>Scenario ==<span class="st"> &quot;SRES B1&quot;</span>)
+d.agg1.a1b &lt;-<span class="st"> </span><span class="kw">subset</span>(d.agg1.sub, Year ==<span class="st"> </span>years[<span class="dv">1</span>] &amp;<span class="st"> </span>Scenario ==<span class="st"> &quot;SRES A1B&quot;</span>)
+d.agg1.a2 &lt;-<span class="st"> </span><span class="kw">subset</span>(d.agg1.sub, Year ==<span class="st"> </span>years[<span class="dv">1</span>] &amp;<span class="st"> </span>Scenario ==<span class="st"> &quot;SRES A2&quot;</span>)
+d.agg1.b1<span class="fl">.2</span> &lt;-<span class="st"> </span><span class="kw">subset</span>(d.agg1.sub, Year ==<span class="st"> </span>years[<span class="dv">2</span>] &amp;<span class="st"> </span>Scenario ==<span class="st"> &quot;SRES B1&quot;</span>)
+d.agg1.a1b<span class="fl">.2</span> &lt;-<span class="st"> </span><span class="kw">subset</span>(d.agg1.sub, Year ==<span class="st"> </span>years[<span class="dv">2</span>] &amp;<span class="st"> </span>Scenario ==<span class="st"> &quot;SRES A1B&quot;</span>)
+d.agg1.a2<span class="fl">.2</span> &lt;-<span class="st"> </span><span class="kw">subset</span>(d.agg1.sub, Year ==<span class="st"> </span>years[<span class="dv">2</span>] &amp;<span class="st"> </span>Scenario ==<span class="st"> &quot;SRES A2&quot;</span>)
+
+vc_barplot &lt;-<span class="st"> </span>function(d.list, loc, <span class="dt">dodge =</span> <span class="ot">FALSE</span>, <span class="dt">y.n =</span> <span class="dv">5</span>, <span class="dt">prop =</span> <span class="ot">TRUE</span>, <span class="dt">main.title =</span> <span class="st">&quot;&quot;</span>, 
+    <span class="dt">fix.scale =</span> <span class="ot">FALSE</span>) {
+    n &lt;-<span class="st"> </span><span class="kw">length</span>(d.list)
+    for (i in <span class="dv">1</span>:n) d.list[[i]] &lt;-<span class="st"> </span><span class="kw">subset</span>(d.list[[i]], Location ==<span class="st"> </span>loc)
+    if (!dodge) 
+        <span class="kw">layout</span>(<span class="kw">matrix</span>(<span class="dv">1</span>:n, <span class="dt">nrow =</span> n, <span class="dt">byrow =</span> <span class="ot">FALSE</span>)) else <span class="kw">layout</span>(<span class="kw">matrix</span>(<span class="dv">1</span>, <span class="dv">1</span>))
+    <span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">1</span>))
+    yaxis.brk.opts &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="kw">seq</span>(<span class="dv">10</span>, <span class="dv">90</span>, <span class="dt">by =</span> <span class="dv">10</span>), <span class="kw">seq</span>(<span class="dv">100</span>, <span class="dv">900</span>, <span class="dt">by =</span> <span class="dv">100</span>), <span class="kw">seq</span>(<span class="dv">1000</span>, 
+        <span class="dv">9000</span>, <span class="dt">by =</span> <span class="dv">1000</span>), <span class="kw">seq</span>(<span class="dv">10000</span>, <span class="dv">90000</span>, <span class="dt">by =</span> <span class="dv">10000</span>), <span class="kw">seq</span>(<span class="fl">1e+05</span>, <span class="fl">9e+05</span>, <span class="dt">by =</span> <span class="fl">1e+05</span>))
+    if (prop) 
+        yaxis.brk.opts &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dt">by =</span> <span class="fl">0.01</span>)
+    if (prop) 
+        ylb &lt;-<span class="st"> &quot;Area percent change&quot;</span> else ylb &lt;-<span class="st"> </span><span class="kw">expression</span>(<span class="st">&quot;Area (1000&quot;</span> ~<span class="st"> </span>km^<span class="dv">2</span> ~<span class="st"> &quot;)&quot;</span>)
+    y.max &lt;-<span class="st"> </span><span class="kw">max</span>(<span class="kw">sapply</span>(d.list, function(x) <span class="kw">max</span>(<span class="kw">abs</span>(x$Avg), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)), 
+        <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+    if (fix.scale) {
+        y.gap &lt;-<span class="st"> </span>y.max/y.n
+        ind &lt;-<span class="st"> </span><span class="kw">which.min</span>(<span class="kw">abs</span>(y.gap -<span class="st"> </span>yaxis.brk.opts))
+        x &lt;-<span class="st"> </span>yaxis.brk.opts[<span class="kw">c</span>(ind, ind +<span class="st"> </span><span class="dv">1</span>)]
+        y.gap &lt;-<span class="st"> </span>if (x[<span class="dv">1</span>] &lt;<span class="st"> </span>y.gap) 
+            x[<span class="dv">2</span>] else x[<span class="dv">1</span>]
+    } else y.gap &lt;-<span class="st"> </span>y.max/y.n
+    ylm &lt;-<span class="st"> </span>y.gap *<span class="st"> </span>y.n *<span class="st"> </span><span class="kw">c</span>(-<span class="dv">1</span>, <span class="dv">1</span>)
+    if (!prop) 
+        ylm[<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">0</span>
+    seq.at &lt;-<span class="st"> </span><span class="kw">seq</span>(ylm[<span class="dv">1</span>], ylm[<span class="dv">2</span>], <span class="dt">by =</span> y.gap)
+    if (prop &amp;<span class="st"> </span><span class="kw">all</span>(<span class="kw">do.call</span>(rbind, d.list)$Avg &lt;=<span class="st"> </span><span class="dv">1</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) 
+        seq.lab &lt;-<span class="st"> </span>seq.at *<span class="st"> </span><span class="dv">100</span> else seq.lab &lt;-<span class="st"> </span>seq.at
+    if (dodge) {
+        d &lt;-<span class="st"> </span><span class="kw">do.call</span>(rbind, <span class="kw">lapply</span>(d.list, function(x) x$Avg))
+        clr &lt;-<span class="st"> </span><span class="kw">colorRampPalette</span>(<span class="kw">c</span>(<span class="st">&quot;deepskyblue&quot;</span>, <span class="st">&quot;dodgerblue3&quot;</span>, <span class="st">&quot;dodgerblue4&quot;</span>))(<span class="kw">nrow</span>(d))
+        bp &lt;-<span class="st"> </span><span class="kw">barplot</span>(d, <span class="dt">beside =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> clr, <span class="dt">names.arg =</span> <span class="ot">NULL</span>, <span class="dt">axes =</span> <span class="ot">FALSE</span>, 
+            <span class="dt">ylab =</span> ylb, <span class="dt">main =</span> main.title, <span class="dt">ylim =</span> ylm, <span class="dt">cex.axis =</span> <span class="fl">0.8</span>, <span class="dt">cex.lab =</span> <span class="fl">0.7</span>)
+        <span class="kw">axis</span>(<span class="dv">2</span>, <span class="dt">at =</span> seq.at, <span class="dt">labels =</span> seq.lab, <span class="dt">cex.axis =</span> <span class="fl">0.6</span>, <span class="dt">las =</span> <span class="dv">1</span>)
+        labs &lt;-<span class="st"> </span>d.list[[<span class="dv">1</span>]]$Vegetation
+        <span class="kw">axis</span>(<span class="dv">1</span>, <span class="dt">at =</span> bp[<span class="kw">ceiling</span>(<span class="kw">nrow</span>(d)/<span class="dv">2</span>), <span class="dv">1</span>:<span class="kw">length</span>(labs)], <span class="dt">labels =</span> labs, 
+            <span class="dt">tick =</span> <span class="ot">FALSE</span>, <span class="dt">cex.axis =</span> <span class="fl">0.4</span>)
+        <span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="kw">levels</span>(d.list[[<span class="dv">1</span>]]$Scenario), <span class="dt">pch =</span> <span class="dv">22</span>, <span class="dt">pt.bg =</span> clr, 
+            <span class="dt">horiz =</span> <span class="ot">TRUE</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">cex =</span> <span class="fl">0.7</span>)
+    } else {
+        for (p in <span class="dv">1</span>:n) {
+            d &lt;-<span class="st"> </span>d.list[[p]]
+            bp &lt;-<span class="st"> </span><span class="kw">barplot</span>(d$Avg, <span class="dt">names.arg =</span> <span class="ot">NULL</span>, <span class="dt">axes =</span> <span class="ot">FALSE</span>, <span class="dt">ylab =</span> ylb, 
+                <span class="dt">main =</span> main.title, <span class="dt">ylim =</span> ylm, <span class="dt">cex.axis =</span> <span class="fl">0.8</span>, <span class="dt">cex.lab =</span> <span class="fl">0.7</span>)
+            <span class="kw">axis</span>(<span class="dv">2</span>, <span class="dt">at =</span> seq.at, <span class="dt">labels =</span> seq.lab, <span class="dt">cex.axis =</span> <span class="fl">0.6</span>, <span class="dt">las =</span> <span class="dv">1</span>)
+            if (p ==<span class="st"> </span>n) {
+                labs &lt;-<span class="st"> </span>d$Vegetation
+                <span class="kw">axis</span>(<span class="dv">1</span>, <span class="dt">at =</span> bp[<span class="dv">1</span>:<span class="kw">length</span>(labs)], <span class="dt">labels =</span> labs, <span class="dt">tick =</span> <span class="ot">FALSE</span>, 
+                  <span class="dt">cex.axis =</span> <span class="fl">0.6</span>)
+            }
+        }
+    }
+}</code></pre>
+<div id="area-trends-by-vegetation-class-and-scenario" class="section level2">
+<h2>Area Trends by Vegetation Class and Scenario</h2>
+<div id="alaska" class="section level3">
+<h3>Alaska</h3>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Projected vegetation trend, Figure 6.3</span>
+vc_tsplot &lt;-<span class="st"> </span>function(d, loc, <span class="dt">alpha =</span> <span class="ot">NULL</span>) {
+    d &lt;-<span class="st"> </span><span class="kw">subset</span>(d, Location ==<span class="st"> </span>loc)
+    veg &lt;-<span class="st"> </span><span class="kw">unique</span>(d$Vegetation)
+    n &lt;-<span class="st"> </span><span class="kw">length</span>(veg)
+    nc &lt;-<span class="st"> </span><span class="dv">3</span>
+    <span class="kw">layout</span>(<span class="kw">matrix</span>(<span class="dv">1</span>:<span class="dv">9</span>, <span class="dv">3</span>, nc, <span class="dt">byrow =</span> T))
+    <span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">1</span>))
+    years &lt;-<span class="st"> </span><span class="kw">unique</span>(d$Year)
+    xlm &lt;-<span class="st"> </span><span class="kw">range</span>(years)
+    scen &lt;-<span class="st"> </span><span class="kw">levels</span>(d$Scenario)
+    clr &lt;-<span class="st"> </span><span class="kw">colorRampPalette</span>(<span class="kw">c</span>(<span class="st">&quot;lightgreen&quot;</span>, <span class="st">&quot;dodgerblue&quot;</span>, <span class="st">&quot;magenta&quot;</span>))(<span class="kw">length</span>(scen))
+    if (<span class="kw">is.integer</span>(alpha) &amp;&amp;<span class="st"> </span>alpha &lt;<span class="st"> </span><span class="dv">100</span>) 
+        clr &lt;-<span class="st"> </span><span class="kw">paste0</span>(clr, alpha)
+    for (i in <span class="dv">1</span>:n) {
+        di &lt;-<span class="st"> </span><span class="kw">subset</span>(d, Vegetation ==<span class="st"> </span>veg[i])
+        ylm &lt;-<span class="st"> </span><span class="kw">range</span>(di$Avg, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+        if (<span class="kw">any</span>(ylm ==<span class="st"> </span><span class="ot">Inf</span>)) 
+            ylm &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)
+        if (i ==<span class="st"> </span>nc +<span class="st"> </span><span class="dv">1</span>) 
+            ylb &lt;-<span class="st"> </span><span class="kw">expression</span>(<span class="st">&quot;Area (1000&quot;</span> ~<span class="st"> </span>km^<span class="dv">2</span> ~<span class="st"> &quot;)&quot;</span>) else ylb &lt;-<span class="st"> &quot;&quot;</span>
+        <span class="kw">plot</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dt">xaxt =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">xlim =</span> xlm, <span class="dt">ylim =</span> ylm, <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">ylab =</span> ylb, 
+            <span class="dt">main =</span> veg[i], <span class="dt">cex.main =</span> <span class="fl">0.7</span>, <span class="dt">cex.axis =</span> <span class="fl">0.8</span>, <span class="dt">cex.lab =</span> <span class="fl">0.8</span>, <span class="dt">las =</span> <span class="dv">1</span>)
+        <span class="kw">box</span>()
+        for (j in <span class="dv">1</span>:<span class="kw">length</span>(scen)) if (<span class="kw">any</span>(!<span class="kw">is.na</span>(di$Avg[di$Scenario ==<span class="st"> </span>scen[j]]))) 
+            <span class="kw">lines</span>(years, di$Avg[di$Scenario ==<span class="st"> </span>scen[j]], <span class="dt">col =</span> clr[j], <span class="dt">lwd =</span> <span class="dv">2</span>)
+        lab &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">paste0</span>(<span class="kw">substr</span>(<span class="kw">as.character</span>(<span class="kw">seq</span>(years[<span class="dv">1</span>], <span class="kw">tail</span>(years, 
+            <span class="dv">1</span>), <span class="dt">by =</span> <span class="dv">20</span>)), <span class="dv">1</span>, <span class="dv">3</span>), <span class="dv">0</span>))
+        if (i &gt;<span class="st"> </span>n -<span class="st"> </span>nc) 
+            <span class="kw">axis</span>(<span class="dv">1</span>, <span class="dt">at =</span> lab, <span class="dt">labels =</span> lab, <span class="dt">cex.axis =</span> <span class="fl">0.8</span>, <span class="dt">cex.lab =</span> <span class="fl">0.8</span>) else <span class="kw">axis</span>(<span class="dv">1</span>, <span class="dt">at =</span> lab, <span class="dt">labels =</span> <span class="kw">rep</span>(<span class="st">&quot;&quot;</span>, <span class="kw">length</span>(lab)), <span class="dt">cex.axis =</span> <span class="fl">0.8</span>, 
+            <span class="dt">cex.lab =</span> <span class="fl">0.8</span>)
+    }
+    if (n &lt;<span class="st"> </span>nc^<span class="dv">2</span>) {
+        <span class="kw">plot</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dt">axes =</span> F, <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>)
+        <span class="kw">legend</span>(<span class="st">&quot;center&quot;</span>, <span class="kw">rev</span>(scen), <span class="dt">lty =</span> <span class="dv">1</span>, <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="kw">rev</span>(clr), <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, 
+            <span class="dt">cex =</span> <span class="dv">1</span>)
+    }
+}
+
+<span class="kw">vc_tsplot</span>(<span class="dt">d =</span> d.agg2.sub, <span class="dt">loc =</span> <span class="st">&quot;Alaska&quot;</span>)</code></pre>
+</div>
+<div id="arctic" class="section level3">
+<h3>Arctic</h3>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Projected vegetation trend, Figure 6.3</span>
+<span class="kw">vc_tsplot</span>(<span class="dt">d =</span> d.agg2.sub, <span class="dt">loc =</span> regions[<span class="dv">1</span>])</code></pre>
+</div>
+<div id="north-pacific" class="section level3">
+<h3>North Pacific</h3>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Projected vegetation trend, Figure 6.3</span>
+<span class="kw">vc_tsplot</span>(<span class="dt">d =</span> d.agg2.sub, <span class="dt">loc =</span> regions[<span class="dv">2</span>])</code></pre>
+</div>
+<div id="northwest-interior-forest-north" class="section level3">
+<h3>Northwest Interior Forest North</h3>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Projected vegetation trend, Figure 6.3</span>
+<span class="kw">vc_tsplot</span>(<span class="dt">d =</span> d.agg2.sub, <span class="dt">loc =</span> regions[<span class="dv">3</span>])</code></pre>
+</div>
+<div id="northwest-interior-forest-south" class="section level3">
+<h3>Northwest Interior Forest South</h3>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Projected vegetation trend, Figure 6.3</span>
+<span class="kw">vc_tsplot</span>(<span class="dt">d =</span> d.agg2.sub, <span class="dt">loc =</span> regions[<span class="dv">4</span>])</code></pre>
+</div>
+<div id="western-alaska" class="section level3">
+<h3>Western Alaska</h3>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Projected vegetation trend, Figure 6.3</span>
+<span class="kw">vc_tsplot</span>(<span class="dt">d =</span> d.agg2.sub, <span class="dt">loc =</span> regions[<span class="dv">5</span>])</code></pre>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+
+</body>
+</html>
