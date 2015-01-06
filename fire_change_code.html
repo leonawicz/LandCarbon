@@ -173,7 +173,8 @@ code > span.er { color: #c3bf9f; }
 <p>Note that the code may contain seemingly unnecessary repetition across multiple code chunks. Sometimes I do this when using <code>knitr</code> to knit documents. If I was strictly outputing graphics files I would remove apparent duplicate code.</p>
 <p>Also note in the <code>modnames &lt;-</code> assignment that the same script is simply run twice, once for each climate model. The amount of hardcoding present in general is indicative of the limited time available for the task.</p>
 <p>Depending on whether the output documents are md/html or LaTeX/pdf, tables are compiled differently as well using <code>xtable</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r">region.grp &lt;-<span class="st"> &quot;LCC Regions&quot;</span>
+<pre class="sourceCode r"><code class="sourceCode r">wd &lt;-<span class="st"> </span><span class="kw">basename</span>(<span class="kw">getwd</span>())
+region.grp &lt;-<span class="st"> &quot;LCC Regions&quot;</span>
 <span class="co"># mainDir &lt;-</span>
 <span class="co"># &#39;/workspace/UA/mfleonawicz/Leonawicz/Projects/2014/AR4_AR5_comparisons/data/final&#39;</span>
 mainDir &lt;-<span class="st"> &quot;X:/Leonawicz/Projects/2014/AR4_AR5_comparisons/data/final&quot;</span>
@@ -194,7 +195,7 @@ years.all &lt;-<span class="st"> </span><span class="dv">2000</span>:<span class
 years &lt;-<span class="st"> </span><span class="kw">range</span>(years.all)
 years1 &lt;-<span class="st"> </span><span class="dv">2000</span>:<span class="dv">2009</span>
 years2 &lt;-<span class="st"> </span><span class="dv">2090</span>:<span class="dv">2099</span>
-modnames &lt;-<span class="st"> &quot;MPIecham5&quot;</span>  <span class="co"># &#39;CCCMAcgcm31&#39; # </span>
+modnames &lt;-<span class="st"> &quot;CCCMAcgcm31&quot;</span>  <span class="co"># &#39;MPIecham5&#39; # </span>
 keep.cols &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>:stats.columns[<span class="dv">1</span>], stats.columns[<span class="dv">1</span>] +<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">8</span>), (<span class="kw">tail</span>(stats.columns, 
     <span class="dv">1</span>) +<span class="st"> </span><span class="dv">1</span>):<span class="kw">ncol</span>(alf.fireStats.df))
 files &lt;-<span class="st"> </span><span class="kw">list.files</span>(statDir, <span class="dt">pattern =</span> <span class="st">&quot;^stats_fire.RData$&quot;</span>, <span class="dt">full =</span> <span class="ot">TRUE</span>, <span class="dt">recursive =</span> <span class="ot">TRUE</span>)
@@ -313,15 +314,18 @@ d.diff.tab &lt;-<span class="st"> </span><span class="kw">xtable</span>(d.prop, 
 <span class="st">    </span><span class="dv">1</span>)))
 <span class="co"># names(d.diff.tab)[3:4] &lt;- paste(&#39;% change in&#39;,</span>
 <span class="co"># tolower(names(d.diff.tab)[3:4]))</span>
+if (wd ==<span class="st"> &quot;Rmd&quot;</span>) <span class="kw">print</span>(d1.tab, <span class="dt">type =</span> <span class="st">&quot;html&quot;</span>)
 tmp &lt;-<span class="st"> </span><span class="kw">print_tab</span>(d1.tab)</code></pre>
 </div>
 <div id="projected-fire" class="section level4">
 <h4>Projected fire</h4>
-<pre class="sourceCode r"><code class="sourceCode r">tmp &lt;-<span class="st"> </span><span class="kw">print_tab</span>(d2.tab)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">if (wd ==<span class="st"> &quot;Rmd&quot;</span>) <span class="kw">print</span>(d2.tab, <span class="dt">type =</span> <span class="st">&quot;html&quot;</span>)
+tmp &lt;-<span class="st"> </span><span class="kw">print_tab</span>(d2.tab)</code></pre>
 </div>
 <div id="percent-change" class="section level4">
 <h4>Percent change</h4>
-<pre class="sourceCode r"><code class="sourceCode r">tmp &lt;-<span class="st"> </span><span class="kw">print_tab</span>(d.diff.tab)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">if (wd ==<span class="st"> &quot;Rmd&quot;</span>) <span class="kw">print</span>(d.diff.tab, <span class="dt">type =</span> <span class="st">&quot;html&quot;</span>)
+tmp &lt;-<span class="st"> </span><span class="kw">print_tab</span>(d.diff.tab)</code></pre>
 </div>
 </div>
 <div id="arctic" class="section level3">
@@ -337,15 +341,18 @@ d2.tab &lt;-<span class="st"> </span><span class="kw">xtable</span>(d2.agg1.sub,
 <span class="st">    </span><span class="dv">1</span>)))
 d.diff.tab &lt;-<span class="st"> </span><span class="kw">xtable</span>(d.prop, <span class="dt">digits =</span> <span class="dv">1</span>, <span class="dt">align =</span> <span class="kw">c</span>(<span class="st">&quot;l&quot;</span>, <span class="st">&quot;l&quot;</span>, <span class="kw">rep</span>(<span class="st">&quot;c&quot;</span>, <span class="kw">ncol</span>(d2.agg1.sub) -<span class="st"> </span>
 <span class="st">    </span><span class="dv">1</span>)))
+if (wd ==<span class="st"> &quot;Rmd&quot;</span>) <span class="kw">print</span>(d1.tab, <span class="dt">type =</span> <span class="st">&quot;html&quot;</span>)
 tmp &lt;-<span class="st"> </span><span class="kw">print_tab</span>(d1.tab)</code></pre>
 </div>
 <div id="projected-fire-1" class="section level4">
 <h4>Projected fire</h4>
-<pre class="sourceCode r"><code class="sourceCode r">tmp &lt;-<span class="st"> </span><span class="kw">print_tab</span>(d2.tab)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">if (wd ==<span class="st"> &quot;Rmd&quot;</span>) <span class="kw">print</span>(d2.tab, <span class="dt">type =</span> <span class="st">&quot;html&quot;</span>)
+tmp &lt;-<span class="st"> </span><span class="kw">print_tab</span>(d2.tab)</code></pre>
 </div>
 <div id="percent-change-1" class="section level4">
 <h4>Percent change</h4>
-<pre class="sourceCode r"><code class="sourceCode r">tmp &lt;-<span class="st"> </span><span class="kw">print_tab</span>(d.diff.tab)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">if (wd ==<span class="st"> &quot;Rmd&quot;</span>) <span class="kw">print</span>(d.diff.tab, <span class="dt">type =</span> <span class="st">&quot;html&quot;</span>)
+tmp &lt;-<span class="st"> </span><span class="kw">print_tab</span>(d.diff.tab)</code></pre>
 </div>
 </div>
 <div id="north-pacific" class="section level3">
@@ -361,15 +368,18 @@ d2.tab &lt;-<span class="st"> </span><span class="kw">xtable</span>(d2.agg1.sub,
 <span class="st">    </span><span class="dv">1</span>)))
 d.diff.tab &lt;-<span class="st"> </span><span class="kw">xtable</span>(d.prop, <span class="dt">digits =</span> <span class="dv">1</span>, <span class="dt">align =</span> <span class="kw">c</span>(<span class="st">&quot;l&quot;</span>, <span class="st">&quot;l&quot;</span>, <span class="kw">rep</span>(<span class="st">&quot;c&quot;</span>, <span class="kw">ncol</span>(d2.agg1.sub) -<span class="st"> </span>
 <span class="st">    </span><span class="dv">1</span>)))
+if (wd ==<span class="st"> &quot;Rmd&quot;</span>) <span class="kw">print</span>(d1.tab, <span class="dt">type =</span> <span class="st">&quot;html&quot;</span>)
 tmp &lt;-<span class="st"> </span><span class="kw">print_tab</span>(d1.tab)</code></pre>
 </div>
 <div id="projected-fire-2" class="section level4">
 <h4>Projected fire</h4>
-<pre class="sourceCode r"><code class="sourceCode r">tmp &lt;-<span class="st"> </span><span class="kw">print_tab</span>(d2.tab)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">if (wd ==<span class="st"> &quot;Rmd&quot;</span>) <span class="kw">print</span>(d2.tab, <span class="dt">type =</span> <span class="st">&quot;html&quot;</span>)
+tmp &lt;-<span class="st"> </span><span class="kw">print_tab</span>(d2.tab)</code></pre>
 </div>
 <div id="percent-change-2" class="section level4">
 <h4>Percent change</h4>
-<pre class="sourceCode r"><code class="sourceCode r">tmp &lt;-<span class="st"> </span><span class="kw">print_tab</span>(d.diff.tab)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">if (wd ==<span class="st"> &quot;Rmd&quot;</span>) <span class="kw">print</span>(d.diff.tab, <span class="dt">type =</span> <span class="st">&quot;html&quot;</span>)
+tmp &lt;-<span class="st"> </span><span class="kw">print_tab</span>(d.diff.tab)</code></pre>
 </div>
 </div>
 <div id="northwest-interior-forest-north" class="section level3">
@@ -385,15 +395,18 @@ d2.tab &lt;-<span class="st"> </span><span class="kw">xtable</span>(d2.agg1.sub,
 <span class="st">    </span><span class="dv">1</span>)))
 d.diff.tab &lt;-<span class="st"> </span><span class="kw">xtable</span>(d.prop, <span class="dt">digits =</span> <span class="dv">1</span>, <span class="dt">align =</span> <span class="kw">c</span>(<span class="st">&quot;l&quot;</span>, <span class="st">&quot;l&quot;</span>, <span class="kw">rep</span>(<span class="st">&quot;c&quot;</span>, <span class="kw">ncol</span>(d2.agg1.sub) -<span class="st"> </span>
 <span class="st">    </span><span class="dv">1</span>)))
+if (wd ==<span class="st"> &quot;Rmd&quot;</span>) <span class="kw">print</span>(d1.tab, <span class="dt">type =</span> <span class="st">&quot;html&quot;</span>)
 tmp &lt;-<span class="st"> </span><span class="kw">print_tab</span>(d1.tab)</code></pre>
 </div>
 <div id="projected-fire-3" class="section level4">
 <h4>Projected fire</h4>
-<pre class="sourceCode r"><code class="sourceCode r">tmp &lt;-<span class="st"> </span><span class="kw">print_tab</span>(d2.tab)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">if (wd ==<span class="st"> &quot;Rmd&quot;</span>) <span class="kw">print</span>(d2.tab, <span class="dt">type =</span> <span class="st">&quot;html&quot;</span>)
+tmp &lt;-<span class="st"> </span><span class="kw">print_tab</span>(d2.tab)</code></pre>
 </div>
 <div id="percent-change-3" class="section level4">
 <h4>Percent change</h4>
-<pre class="sourceCode r"><code class="sourceCode r">tmp &lt;-<span class="st"> </span><span class="kw">print_tab</span>(d.diff.tab)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">if (wd ==<span class="st"> &quot;Rmd&quot;</span>) <span class="kw">print</span>(d.diff.tab, <span class="dt">type =</span> <span class="st">&quot;html&quot;</span>)
+tmp &lt;-<span class="st"> </span><span class="kw">print_tab</span>(d.diff.tab)</code></pre>
 </div>
 </div>
 <div id="northwest-interior-forest-south" class="section level3">
@@ -409,15 +422,18 @@ d2.tab &lt;-<span class="st"> </span><span class="kw">xtable</span>(d2.agg1.sub,
 <span class="st">    </span><span class="dv">1</span>)))
 d.diff.tab &lt;-<span class="st"> </span><span class="kw">xtable</span>(d.prop, <span class="dt">digits =</span> <span class="dv">1</span>, <span class="dt">align =</span> <span class="kw">c</span>(<span class="st">&quot;l&quot;</span>, <span class="st">&quot;l&quot;</span>, <span class="kw">rep</span>(<span class="st">&quot;c&quot;</span>, <span class="kw">ncol</span>(d2.agg1.sub) -<span class="st"> </span>
 <span class="st">    </span><span class="dv">1</span>)))
+if (wd ==<span class="st"> &quot;Rmd&quot;</span>) <span class="kw">print</span>(d1.tab, <span class="dt">type =</span> <span class="st">&quot;html&quot;</span>)
 tmp &lt;-<span class="st"> </span><span class="kw">print_tab</span>(d1.tab)</code></pre>
 </div>
 <div id="projected-fire-4" class="section level4">
 <h4>Projected fire</h4>
-<pre class="sourceCode r"><code class="sourceCode r">tmp &lt;-<span class="st"> </span><span class="kw">print_tab</span>(d2.tab)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">if (wd ==<span class="st"> &quot;Rmd&quot;</span>) <span class="kw">print</span>(d2.tab, <span class="dt">type =</span> <span class="st">&quot;html&quot;</span>)
+tmp &lt;-<span class="st"> </span><span class="kw">print_tab</span>(d2.tab)</code></pre>
 </div>
 <div id="percent-change-4" class="section level4">
 <h4>Percent change</h4>
-<pre class="sourceCode r"><code class="sourceCode r">tmp &lt;-<span class="st"> </span><span class="kw">print_tab</span>(d.diff.tab)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">if (wd ==<span class="st"> &quot;Rmd&quot;</span>) <span class="kw">print</span>(d.diff.tab, <span class="dt">type =</span> <span class="st">&quot;html&quot;</span>)
+tmp &lt;-<span class="st"> </span><span class="kw">print_tab</span>(d.diff.tab)</code></pre>
 </div>
 </div>
 <div id="western-alaska" class="section level3">
@@ -433,15 +449,18 @@ d2.tab &lt;-<span class="st"> </span><span class="kw">xtable</span>(d2.agg1.sub,
 <span class="st">    </span><span class="dv">1</span>)))
 d.diff.tab &lt;-<span class="st"> </span><span class="kw">xtable</span>(d.prop, <span class="dt">digits =</span> <span class="dv">1</span>, <span class="dt">align =</span> <span class="kw">c</span>(<span class="st">&quot;l&quot;</span>, <span class="st">&quot;l&quot;</span>, <span class="kw">rep</span>(<span class="st">&quot;c&quot;</span>, <span class="kw">ncol</span>(d2.agg1.sub) -<span class="st"> </span>
 <span class="st">    </span><span class="dv">1</span>)))
+if (wd ==<span class="st"> &quot;Rmd&quot;</span>) <span class="kw">print</span>(d1.tab, <span class="dt">type =</span> <span class="st">&quot;html&quot;</span>)
 tmp &lt;-<span class="st"> </span><span class="kw">print_tab</span>(d1.tab)</code></pre>
 </div>
 <div id="projected-fire-5" class="section level4">
 <h4>Projected fire</h4>
-<pre class="sourceCode r"><code class="sourceCode r">tmp &lt;-<span class="st"> </span><span class="kw">print_tab</span>(d2.tab)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">if (wd ==<span class="st"> &quot;Rmd&quot;</span>) <span class="kw">print</span>(d2.tab, <span class="dt">type =</span> <span class="st">&quot;html&quot;</span>)
+tmp &lt;-<span class="st"> </span><span class="kw">print_tab</span>(d2.tab)</code></pre>
 </div>
 <div id="percent-change-5" class="section level4">
 <h4>Percent change</h4>
-<pre class="sourceCode r"><code class="sourceCode r">tmp &lt;-<span class="st"> </span><span class="kw">print_tab</span>(d.diff.tab)
+<pre class="sourceCode r"><code class="sourceCode r">if (wd ==<span class="st"> &quot;Rmd&quot;</span>) <span class="kw">print</span>(d.diff.tab, <span class="dt">type =</span> <span class="st">&quot;html&quot;</span>)
+tmp &lt;-<span class="st"> </span><span class="kw">print_tab</span>(d.diff.tab)
 
 ######################################################################################################### </code></pre>
 </div>
