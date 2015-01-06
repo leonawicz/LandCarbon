@@ -14,6 +14,7 @@ Depending on whether the output documents are md/html or LaTeX/pdf, tables are c
 
 
 ```r
+wd <- basename(getwd())
 region.grp <- "LCC Regions"
 # mainDir <-
 # '/workspace/UA/mfleonawicz/Leonawicz/Projects/2014/AR4_AR5_comparisons/data/final'
@@ -38,7 +39,7 @@ years.all <- 2000:2099
 years <- range(years.all)
 years1 <- 2000:2009
 years2 <- 2090:2099
-modnames <- "MPIecham5"  # 'CCCMAcgcm31' # 
+modnames <- "CCCMAcgcm31"  # 'MPIecham5' # 
 keep.cols <- c(2:stats.columns[1], stats.columns[1] + c(2, 5, 8), (tail(stats.columns, 
     1) + 1):ncol(alf.fireStats.df))
 files <- list.files(statDir, pattern = "^stats_fire.RData$", full = TRUE, recursive = TRUE)
@@ -159,18 +160,21 @@ d.diff.tab <- xtable(d.prop, digits = 1, align = c("l", "l", rep("c", ncol(d2.ag
     1)))
 # names(d.diff.tab)[3:4] <- paste('% change in',
 # tolower(names(d.diff.tab)[3:4]))
+if (wd == "Rmd") print(d1.tab, type = "html")
 tmp <- print_tab(d1.tab)
 ```
 
 #### Projected fire
 
 ```r
+if (wd == "Rmd") print(d2.tab, type = "html")
 tmp <- print_tab(d2.tab)
 ```
 
 #### Percent change
 
 ```r
+if (wd == "Rmd") print(d.diff.tab, type = "html")
 tmp <- print_tab(d.diff.tab)
 ```
 
@@ -187,18 +191,21 @@ d2.tab <- xtable(d2.agg1.sub, digits = 0, align = c("l", "l", rep("c", ncol(d2.a
     1)))
 d.diff.tab <- xtable(d.prop, digits = 1, align = c("l", "l", rep("c", ncol(d2.agg1.sub) - 
     1)))
+if (wd == "Rmd") print(d1.tab, type = "html")
 tmp <- print_tab(d1.tab)
 ```
 
 #### Projected fire
 
 ```r
+if (wd == "Rmd") print(d2.tab, type = "html")
 tmp <- print_tab(d2.tab)
 ```
 
 #### Percent change
 
 ```r
+if (wd == "Rmd") print(d.diff.tab, type = "html")
 tmp <- print_tab(d.diff.tab)
 ```
 
@@ -215,18 +222,21 @@ d2.tab <- xtable(d2.agg1.sub, digits = 0, align = c("l", "l", rep("c", ncol(d2.a
     1)))
 d.diff.tab <- xtable(d.prop, digits = 1, align = c("l", "l", rep("c", ncol(d2.agg1.sub) - 
     1)))
+if (wd == "Rmd") print(d1.tab, type = "html")
 tmp <- print_tab(d1.tab)
 ```
 
 #### Projected fire
 
 ```r
+if (wd == "Rmd") print(d2.tab, type = "html")
 tmp <- print_tab(d2.tab)
 ```
 
 #### Percent change
 
 ```r
+if (wd == "Rmd") print(d.diff.tab, type = "html")
 tmp <- print_tab(d.diff.tab)
 ```
 
@@ -243,18 +253,21 @@ d2.tab <- xtable(d2.agg1.sub, digits = 0, align = c("l", "l", rep("c", ncol(d2.a
     1)))
 d.diff.tab <- xtable(d.prop, digits = 1, align = c("l", "l", rep("c", ncol(d2.agg1.sub) - 
     1)))
+if (wd == "Rmd") print(d1.tab, type = "html")
 tmp <- print_tab(d1.tab)
 ```
 
 #### Projected fire
 
 ```r
+if (wd == "Rmd") print(d2.tab, type = "html")
 tmp <- print_tab(d2.tab)
 ```
 
 #### Percent change
 
 ```r
+if (wd == "Rmd") print(d.diff.tab, type = "html")
 tmp <- print_tab(d.diff.tab)
 ```
 
@@ -271,18 +284,21 @@ d2.tab <- xtable(d2.agg1.sub, digits = 0, align = c("l", "l", rep("c", ncol(d2.a
     1)))
 d.diff.tab <- xtable(d.prop, digits = 1, align = c("l", "l", rep("c", ncol(d2.agg1.sub) - 
     1)))
+if (wd == "Rmd") print(d1.tab, type = "html")
 tmp <- print_tab(d1.tab)
 ```
 
 #### Projected fire
 
 ```r
+if (wd == "Rmd") print(d2.tab, type = "html")
 tmp <- print_tab(d2.tab)
 ```
 
 #### Percent change
 
 ```r
+if (wd == "Rmd") print(d.diff.tab, type = "html")
 tmp <- print_tab(d.diff.tab)
 ```
 
@@ -299,18 +315,21 @@ d2.tab <- xtable(d2.agg1.sub, digits = 0, align = c("l", "l", rep("c", ncol(d2.a
     1)))
 d.diff.tab <- xtable(d.prop, digits = 1, align = c("l", "l", rep("c", ncol(d2.agg1.sub) - 
     1)))
+if (wd == "Rmd") print(d1.tab, type = "html")
 tmp <- print_tab(d1.tab)
 ```
 
 #### Projected fire
 
 ```r
+if (wd == "Rmd") print(d2.tab, type = "html")
 tmp <- print_tab(d2.tab)
 ```
 
 #### Percent change
 
 ```r
+if (wd == "Rmd") print(d.diff.tab, type = "html")
 tmp <- print_tab(d.diff.tab)
 
 ######################################################################################################### 
