@@ -35,7 +35,7 @@ library(xtable)
 ```r
 # Baseline wildland fire, Table 3.1
 years <- 1950:2009
-modnames <- "MPIecham5"  # 'CCCMAcgcm31' # 
+modnames <- "CCCMAcgcm31"  # 'MPIecham5' # 
 keep.cols <- c(2:stats.columns[1], (tail(stats.columns, 1) + 1):ncol(alf.fireStats.df))
 files <- list.files(statDir, pattern = "^stats_fire.RData$", full = TRUE, recursive = TRUE)
 files <- c(files, ak.statsFire.file)

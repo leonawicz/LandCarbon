@@ -25,7 +25,8 @@ chunkNames(path=file.path(proj.location, proj.name, "code"), append.new=TRUE)
 
 # @knitr website
 # Setup for generating a project website
-proj.github <- file.path("https://github.com/leonawicz", proj.name)
+user <- "leonawicz"
+proj.github <- file.path("https://github.com", user, proj.name)
 index.url <- "index.html"
 #file.copy(index.url, "index.html")
 
@@ -36,14 +37,14 @@ proj.submenu <- list(
 	c("Model: CCCMA", "Baseline fire", "Projected change", "divider", "Model: ECHAM5", "Baseline fire", "Projected change"),
 	c("Model: CCCMA", "Vegetation change", "Vegetation trends", "divider", "Model: ECHAM5", "Vegetation change", "Vegetation trends"),
 	c("Main code", "Baseline fire", "Projected fire", "Vegetation change", "Vegetation trends"),
-	c("About", "Other")
+	c("empty")
 )
 
 proj.files <- list(
 	c("header", "baseline_fire_cccma.html", "fire_change_cccma.html", "divider", "header", "baseline_fire_echam.html", "fire_change_echam.html"),
 	c("header", "vegetation_change_cccma.html", "vegetation_trend_cccma.html", "divider", "header", "vegetation_change_echam.html", "vegetation_trend_echam.html"),
 	c("header", "baseline_fire_code.html", "fire_change_code.html", "vegetation_change_code.html", "vegetation_trend_code.html"),
-	c("index.html", "index.html")
+	c("http://leonawicz.github.io")
 )
 
 # generate navigation bar html file common to all pages
@@ -65,15 +66,15 @@ rnw.path <- file.path(docs.path, "Rnw")
 setwd(rnw.path)
 #themes <- knit_theme$get()
 highlight <- "tango"
-convertDocs(path=rnw.path, emphasis="replace", overwrite=TRUE)#, highlight=highlight) # Be careful
+convertDocs(path=rnw.path, emphasis="replace", overwrite=TRUE)#, highlight=highlight) # Take care not to reverse write
 highlight <- "solarized-dark"
-#convertDocs(path=rmd.path, emphasis="replace", overwrite=TRUE, highlight=highlight) # Be careful
+#convertDocs(path=rmd.path, emphasis="replace", overwrite=TRUE, highlight=highlight) # Take care not to reverse write
 lapply(list.files(pattern=".Rnw$"), knit2pdf)
 moveDocs(path.docs=docs.path, type="pdf", remove.latex=FALSE)
 
 # Rmd files
 setwd(rmd.path)
-code.Rmd <- list.files(pattern="code.Rmd$", full=T)
+code.Rmd <- c("index.Rmd", list.files(pattern="code.Rmd$", full=T))
 cccma.Rmd <- list.files(pattern="cccma.Rmd$", full=T)
 echam.Rmd <- list.files(pattern="echam.Rmd$", full=T)
 

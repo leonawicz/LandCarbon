@@ -34,7 +34,7 @@ library(xtable)
 # Projected vegetation change, Figure 6.2
 years.all <- 2009:2100
 years <- range(years.all)
-modnames <- "MPIecham5"  # 'CCCMAcgcm31' # 
+modnames <- "CCCMAcgcm31"  # 'MPIecham5' # 
 keep.cols <- c(2:stats.columns[1], (tail(stats.columns, 1) + 1):ncol(alf.vegStats.df))
 files <- list.files(statDir, pattern = "^stats_veg.RData$", full = TRUE, recursive = TRUE)
 files <- c(files, ak.statsVeg.file)
