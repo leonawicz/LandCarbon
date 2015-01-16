@@ -199,6 +199,8 @@ for (i in <span class="dv">1</span>:<span class="kw">length</span>(files)) {
 <span class="kw">rm</span>(region.dat)
 
 d &lt;-<span class="st"> </span><span class="kw">subset</span>(d, Model %in%<span class="st"> </span>modnames)
+d &lt;-<span class="st"> </span><span class="kw">subset</span>(d, !(Vegetation %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Barren lichen-moss&quot;</span>, <span class="st">&quot;Temperate Rainforest&quot;</span>, 
+    <span class="st">&quot;Wetland Tundra&quot;</span>)))
 d$Location &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot; S&quot;</span>, <span class="st">&quot; South&quot;</span>, <span class="kw">gsub</span>(<span class="st">&quot; N&quot;</span>, <span class="st">&quot; North&quot;</span>, <span class="kw">gsub</span>(<span class="st">&quot;W &quot;</span>, <span class="st">&quot;Western &quot;</span>, 
     <span class="kw">gsub</span>(<span class="st">&quot;N &quot;</span>, <span class="st">&quot;North &quot;</span>, <span class="kw">gsub</span>(<span class="st">&quot;NW &quot;</span>, <span class="st">&quot;Northwest &quot;</span>, d$Location)))))  <span class="co"># Special name changes</span>
 regions &lt;-<span class="st"> </span><span class="kw">unique</span>(d$Location[d$Location !=<span class="st"> &quot;Alaska&quot;</span>])
