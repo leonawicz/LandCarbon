@@ -15,7 +15,7 @@ There is one section for each region, Alaska and the five LCCs.
 ### Alaska
 #### Historical fire
 <!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Wed Jan 14 10:02:41 2015 -->
+<!-- Thu Jan 15 19:03:24 2015 -->
 <table border=1>
 <tr> <th>  </th> <th> Climate-change scenario </th> <th> Percentile </th> <th> Ignitions </th> <th> Area burned </th>  </tr>
   <tr> <td> 1 </td> <td> SRES B1 </td> <td align="center"> 50th </td> <td align="center"> 60 </td> <td align="center"> 3398 </td> </tr>
@@ -28,7 +28,7 @@ There is one section for each region, Alaska and the five LCCs.
 
 #### Projected fire
 <!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Wed Jan 14 10:02:41 2015 -->
+<!-- Thu Jan 15 19:03:24 2015 -->
 <table border=1>
 <tr> <th>  </th> <th> Climate-change scenario </th> <th> Percentile </th> <th> Ignitions </th> <th> Area burned </th>  </tr>
   <tr> <td> 1 </td> <td> SRES B1 </td> <td align="center"> 50th </td> <td align="center"> 60 </td> <td align="center"> 2929 </td> </tr>
@@ -41,7 +41,7 @@ There is one section for each region, Alaska and the five LCCs.
 
 #### Percent change
 <!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Wed Jan 14 10:02:41 2015 -->
+<!-- Thu Jan 15 19:03:24 2015 -->
 <table border=1>
 <tr> <th>  </th> <th> Climate-change scenario </th> <th> Percentile </th> <th> Ignitions </th> <th> Area burned </th>  </tr>
   <tr> <td> 1 </td> <td> SRES B1 </td> <td align="center"> 50th </td> <td align="center"> 0.8 </td> <td align="center"> -13.8 </td> </tr>
@@ -55,7 +55,7 @@ There is one section for each region, Alaska and the five LCCs.
 ### Arctic
 #### Historical fire
 <!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Wed Jan 14 10:02:41 2015 -->
+<!-- Thu Jan 15 19:03:24 2015 -->
 <table border=1>
 <tr> <th>  </th> <th> Climate-change scenario </th> <th> Percentile </th> <th> Ignitions </th> <th> Area burned </th>  </tr>
   <tr> <td> 1 </td> <td> SRES B1 </td> <td align="center"> 50th </td> <td align="center"> 1 </td> <td align="center"> 22 </td> </tr>
@@ -68,7 +68,7 @@ There is one section for each region, Alaska and the five LCCs.
 
 #### Projected fire
 <!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Wed Jan 14 10:02:41 2015 -->
+<!-- Thu Jan 15 19:03:24 2015 -->
 <table border=1>
 <tr> <th>  </th> <th> Climate-change scenario </th> <th> Percentile </th> <th> Ignitions </th> <th> Area burned </th>  </tr>
   <tr> <td> 1 </td> <td> SRES B1 </td> <td align="center"> 50th </td> <td align="center"> 1 </td> <td align="center"> 24 </td> </tr>
@@ -81,7 +81,7 @@ There is one section for each region, Alaska and the five LCCs.
 
 #### Percent change
 <!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Wed Jan 14 10:02:41 2015 -->
+<!-- Thu Jan 15 19:03:24 2015 -->
 <table border=1>
 <tr> <th>  </th> <th> Climate-change scenario </th> <th> Percentile </th> <th> Ignitions </th> <th> Area burned </th>  </tr>
   <tr> <td> 1 </td> <td> SRES B1 </td> <td align="center"> 50th </td> <td align="center"> 0.0 </td> <td align="center"> 9.1 </td> </tr>
@@ -95,7 +95,7 @@ There is one section for each region, Alaska and the five LCCs.
 ### North Pacific
 #### Historical fire
 <!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Wed Jan 14 10:02:41 2015 -->
+<!-- Thu Jan 15 19:03:24 2015 -->
 <table border=1>
 <tr> <th>  </th> <th> Climate-change scenario </th> <th> Percentile </th> <th> Ignitions </th> <th> Area burned </th>  </tr>
   <tr> <td> 1 </td> <td> SRES B1 </td> <td align="center"> 50th </td> <td align="center"> 0 </td> <td align="center"> 2 </td> </tr>
@@ -108,7 +108,7 @@ There is one section for each region, Alaska and the five LCCs.
 
 #### Projected fire
 <!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Wed Jan 14 10:02:41 2015 -->
+<!-- Thu Jan 15 19:03:24 2015 -->
 <table border=1>
 <tr> <th>  </th> <th> Climate-change scenario </th> <th> Percentile </th> <th> Ignitions </th> <th> Area burned </th>  </tr>
   <tr> <td> 1 </td> <td> SRES B1 </td> <td align="center"> 50th </td> <td align="center"> 0 </td> <td align="center"> 2 </td> </tr>
@@ -121,7 +121,7 @@ There is one section for each region, Alaska and the five LCCs.
 
 #### Percent change
 <!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Wed Jan 14 10:02:41 2015 -->
+<!-- Thu Jan 15 19:03:24 2015 -->
 <table border=1>
 <tr> <th>  </th> <th> Climate-change scenario </th> <th> Percentile </th> <th> Ignitions </th> <th> Area burned </th>  </tr>
   <tr> <td> 1 </td> <td> SRES B1 </td> <td align="center"> 50th </td> <td align="center"> - </td> <td align="center"> - </td> </tr>
@@ -135,7 +135,7 @@ There is one section for each region, Alaska and the five LCCs.
 ### Northwest Interior Forest North
 #### Historical fire
 <!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Wed Jan 14 10:02:41 2015 -->
+<!-- Thu Jan 15 19:03:24 2015 -->
 <table border=1>
 <tr> <th>  </th> <th> Climate-change scenario </th> <th> Percentile </th> <th> Ignitions </th> <th> Area burned </th>  </tr>
   <tr> <td> 1 </td> <td> SRES B1 </td> <td align="center"> 50th </td> <td align="center"> 42 </td> <td align="center"> 2255 </td> </tr>
@@ -148,7 +148,7 @@ There is one section for each region, Alaska and the five LCCs.
 
 #### Projected fire
 <!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Wed Jan 14 10:02:41 2015 -->
+<!-- Thu Jan 15 19:03:24 2015 -->
 <table border=1>
 <tr> <th>  </th> <th> Climate-change scenario </th> <th> Percentile </th> <th> Ignitions </th> <th> Area burned </th>  </tr>
   <tr> <td> 1 </td> <td> SRES B1 </td> <td align="center"> 50th </td> <td align="center"> 46 </td> <td align="center"> 2223 </td> </tr>
@@ -161,7 +161,7 @@ There is one section for each region, Alaska and the five LCCs.
 
 #### Percent change
 <!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Wed Jan 14 10:02:41 2015 -->
+<!-- Thu Jan 15 19:03:24 2015 -->
 <table border=1>
 <tr> <th>  </th> <th> Climate-change scenario </th> <th> Percentile </th> <th> Ignitions </th> <th> Area burned </th>  </tr>
   <tr> <td> 1 </td> <td> SRES B1 </td> <td align="center"> 50th </td> <td align="center"> 7.1 </td> <td align="center"> -1.4 </td> </tr>
@@ -175,7 +175,7 @@ There is one section for each region, Alaska and the five LCCs.
 ### Northwest Interior Forest South
 #### Historical fire
 <!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Wed Jan 14 10:02:41 2015 -->
+<!-- Thu Jan 15 19:03:24 2015 -->
 <table border=1>
 <tr> <th>  </th> <th> Climate-change scenario </th> <th> Percentile </th> <th> Ignitions </th> <th> Area burned </th>  </tr>
   <tr> <td> 1 </td> <td> SRES B1 </td> <td align="center"> 50th </td> <td align="center"> 10 </td> <td align="center"> 268 </td> </tr>
@@ -188,7 +188,7 @@ There is one section for each region, Alaska and the five LCCs.
 
 #### Projected fire
 <!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Wed Jan 14 10:02:41 2015 -->
+<!-- Thu Jan 15 19:03:24 2015 -->
 <table border=1>
 <tr> <th>  </th> <th> Climate-change scenario </th> <th> Percentile </th> <th> Ignitions </th> <th> Area burned </th>  </tr>
   <tr> <td> 1 </td> <td> SRES B1 </td> <td align="center"> 50th </td> <td align="center"> 9 </td> <td align="center"> 164 </td> </tr>
@@ -201,7 +201,7 @@ There is one section for each region, Alaska and the five LCCs.
 
 #### Percent change
 <!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Wed Jan 14 10:02:41 2015 -->
+<!-- Thu Jan 15 19:03:24 2015 -->
 <table border=1>
 <tr> <th>  </th> <th> Climate-change scenario </th> <th> Percentile </th> <th> Ignitions </th> <th> Area burned </th>  </tr>
   <tr> <td> 1 </td> <td> SRES B1 </td> <td align="center"> 50th </td> <td align="center"> -14.3 </td> <td align="center"> -38.8 </td> </tr>
@@ -215,7 +215,7 @@ There is one section for each region, Alaska and the five LCCs.
 ### Western Alaska
 #### Historical fire
 <!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Wed Jan 14 10:02:42 2015 -->
+<!-- Thu Jan 15 19:03:24 2015 -->
 <table border=1>
 <tr> <th>  </th> <th> Climate-change scenario </th> <th> Percentile </th> <th> Ignitions </th> <th> Area burned </th>  </tr>
   <tr> <td> 1 </td> <td> SRES B1 </td> <td align="center"> 50th </td> <td align="center"> 9 </td> <td align="center"> 736 </td> </tr>
@@ -228,7 +228,7 @@ There is one section for each region, Alaska and the five LCCs.
 
 #### Projected fire
 <!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Wed Jan 14 10:02:42 2015 -->
+<!-- Thu Jan 15 19:03:24 2015 -->
 <table border=1>
 <tr> <th>  </th> <th> Climate-change scenario </th> <th> Percentile </th> <th> Ignitions </th> <th> Area burned </th>  </tr>
   <tr> <td> 1 </td> <td> SRES B1 </td> <td align="center"> 50th </td> <td align="center"> 7 </td> <td align="center"> 364 </td> </tr>
@@ -241,7 +241,7 @@ There is one section for each region, Alaska and the five LCCs.
 
 #### Percent change
 <!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Wed Jan 14 10:02:42 2015 -->
+<!-- Thu Jan 15 19:03:25 2015 -->
 <table border=1>
 <tr> <th>  </th> <th> Climate-change scenario </th> <th> Percentile </th> <th> Ignitions </th> <th> Area burned </th>  </tr>
   <tr> <td> 1 </td> <td> SRES B1 </td> <td align="center"> 50th </td> <td align="center"> -22.2 </td> <td align="center"> -50.5 </td> </tr>

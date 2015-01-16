@@ -49,6 +49,8 @@ for (i in 1:length(files)) {
 rm(region.dat)
 
 d <- subset(d, Model %in% modnames)
+d <- subset(d, !(Vegetation %in% c("Barren lichen-moss", "Temperate Rainforest", 
+    "Wetland Tundra")))
 d$Location <- gsub(" S", " South", gsub(" N", " North", gsub("W ", "Western ", 
     gsub("N ", "North ", gsub("NW ", "Northwest ", d$Location)))))  # Special name changes
 regions <- unique(d$Location[d$Location != "Alaska"])
