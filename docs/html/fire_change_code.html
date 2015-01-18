@@ -215,7 +215,7 @@ reg.split2[<span class="dv">2</span>] &lt;-<span class="st"> &quot;</span><span 
 reg.split2[<span class="dv">3</span>] &lt;-<span class="st"> &quot;</span><span class="ch">\\\\</span><span class="st">parbox[t]{3cm}{</span><span class="ch">\\\\</span><span class="st">centering Northwest Interior</span><span class="ch">\\\\\\\\</span><span class="st">Forest South}&quot;</span>
 reg.split2[<span class="dv">4</span>] &lt;-<span class="st"> &quot;</span><span class="ch">\\\\</span><span class="st">parbox[t]{3cm}{</span><span class="ch">\\\\</span><span class="st">centering Western</span><span class="ch">\\\\\\\\</span><span class="st">Alaska}&quot;</span>
 
-<span class="kw">levels</span>(d$Scenario) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;SRES B1&quot;</span>, <span class="st">&quot;SRES A1B&quot;</span>, <span class="st">&quot;SRES A2&quot;</span>)
+d$Scenario &lt;-<span class="st"> </span><span class="kw">factor</span>(d$Scenario, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;SRES B1&quot;</span>, <span class="st">&quot;SRES A1B&quot;</span>, <span class="st">&quot;SRES A2&quot;</span>))
 d.all &lt;-<span class="st"> </span><span class="kw">subset</span>(d, Year %in%<span class="st"> </span>years.all, <span class="dt">select =</span> keep.cols)
 d1 &lt;-<span class="st"> </span><span class="kw">subset</span>(d, Year %in%<span class="st"> </span>years1, <span class="dt">select =</span> keep.cols)
 d2 &lt;-<span class="st"> </span><span class="kw">subset</span>(d, Year %in%<span class="st"> </span>years2, <span class="dt">select =</span> keep.cols)
