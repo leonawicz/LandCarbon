@@ -33,7 +33,7 @@ d <- subset(d, !(Vegetation %in% c("Barren lichen-moss", "Temperate Rainforest",
 d$Location <- gsub(" S", " South", gsub(" N", " North", gsub("W ", "Western ", gsub("N ", "North ", gsub("NW ", "Northwest ", d$Location))))) # Special name changes
 regions <- unique(d$Location[d$Location!="Alaska"])
 
-levels(d$Scenario) <- c("SRES B1","SRES A1B","SRES A2")
+d$Scenario <- factor(d$Scenario, levels=c("SRES B1","SRES A1B","SRES A2"))
 d2 <- subset(d, Year %in% years.all, select=keep.cols)
 d <- subset(d, Year %in% years, select=keep.cols)
 d.agg1 <- ddply(d, c("Scenario", "Location", "Vegetation", "Year", "Decade"), summarise, Avg=mean(Mean))

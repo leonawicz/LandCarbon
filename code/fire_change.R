@@ -41,7 +41,7 @@ reg.split2[2] <- "\\\\parbox[t]{3cm}{\\\\centering Northwest Interior\\\\\\\\For
 reg.split2[3] <- "\\\\parbox[t]{3cm}{\\\\centering Northwest Interior\\\\\\\\Forest South}"
 reg.split2[4] <- "\\\\parbox[t]{3cm}{\\\\centering Western\\\\\\\\Alaska}"
 
-levels(d$Scenario) <- c("SRES B1","SRES A1B","SRES A2")
+d$Scenario <- factor(d$Scenario, levels=c("SRES B1","SRES A1B","SRES A2"))
 d.all <- subset(d, Year %in% years.all, select=keep.cols)
 d1 <- subset(d, Year %in% years1, select=keep.cols)
 d2 <- subset(d, Year %in% years2, select=keep.cols)
