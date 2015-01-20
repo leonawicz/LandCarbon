@@ -84,5 +84,6 @@ echam.Rmd <- list.files(pattern="echam.Rmd$", full=T)
 lapply(code.Rmd, render, output_format="all")
 lapply(cccma.Rmd, render, output_format="all")
 lapply(echam.Rmd, render, output_format="all")
+insert_gatc(list.files(pattern=".html$"))
 moveDocs(path.docs=docs.path)
 
