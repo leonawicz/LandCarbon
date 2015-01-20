@@ -1,0 +1,10 @@
+write.csv(dcast(rbind(d.agg1.b1, d.agg1.a1b, d.agg1.a2), Vegetation ~ Location + Scenario)[c(1,5,2:4), c(5:19, 2:4)], file="cccma_veg_pct_change_2009vs2100.csv")
+write.csv(dcast(rbind(d.agg1.b1, d.agg1.a1b, d.agg1.a2), Vegetation ~ Location + Scenario)[c(1,5,2:4), c(5:19, 2:4)], file="echam_veg_pct_change_2009vs2100.csv")
+
+
+
+
+
+
+
+
