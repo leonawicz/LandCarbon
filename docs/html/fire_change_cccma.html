@@ -14,10 +14,11 @@
 <title>Projected fire change 2000 - 2099 \ Unvetted preliminary rush draft from developmental code</title>
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link href="libs/bootstrap-2.3.2/css/united.min.css" rel="stylesheet" />
-<link href="libs/bootstrap-2.3.2/css/bootstrap-responsive.min.css" rel="stylesheet" />
-<script src="libs/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.1/css/united.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
 <style type="text/css">
 
 /* padding for bootstrap navbar */
@@ -83,28 +84,37 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
 </style>
 <div class="container-fluid main-container">
 
 <div class="navbar navbar-default navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="brand" href="index.html">Land Carbon</a>
-      <div class="nav-collapse collapse">
-        <ul class="nav">
+      <a class="navbar-brand" href="index.html">Land Carbon</a>
+      </div>
+      <div class="navbar-collapse collapse navbar-responsive-collapse">
+        <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="fire" class="dropdown-toggle" data-toggle="dropdown">Fire <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li class="nav-header">Model: CCCMA</li>
+              <li class="dropdown-header">Model: CCCMA</li>
               <li><a href="baseline_fire_cccma.html">Baseline fire</a></li>
               <li><a href="fire_change_cccma.html">Projected change</a></li>
               <li class="divider"></li>
-              <li class="nav-header">Model: ECHAM5</li>
+              <li class="dropdown-header">Model: ECHAM5</li>
               <li><a href="baseline_fire_echam.html">Baseline fire</a></li>
               <li><a href="fire_change_echam.html">Projected change</a></li>
             </ul>
@@ -112,11 +122,11 @@ body {
           <li class="dropdown">
             <a href="vegetation" class="dropdown-toggle" data-toggle="dropdown">Vegetation <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li class="nav-header">Model: CCCMA</li>
+              <li class="dropdown-header">Model: CCCMA</li>
               <li><a href="vegetation_change_cccma.html">Vegetation change</a></li>
               <li><a href="vegetation_trend_cccma.html">Vegetation trends</a></li>
               <li class="divider"></li>
-              <li class="nav-header">Model: ECHAM5</li>
+              <li class="dropdown-header">Model: ECHAM5</li>
               <li><a href="vegetation_change_echam.html">Vegetation change</a></li>
               <li><a href="vegetation_trend_echam.html">Vegetation trends</a></li>
             </ul>
@@ -124,7 +134,7 @@ body {
           <li class="dropdown">
             <a href="r-code" class="dropdown-toggle" data-toggle="dropdown">R Code <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li class="nav-header">Main code</li>
+              <li class="dropdown-header">Main code</li>
               <li><a href="baseline_fire_code.html">Baseline fire</a></li>
               <li><a href="fire_change_code.html">Projected fire</a></li>
               <li><a href="vegetation_change_code.html">Vegetation change</a></li>
@@ -133,8 +143,8 @@ body {
 
           <li><a href="http://leonawicz.github.io">All Projects</a></li>
         </ul>
-        <ul class="nav pull-right">
-          <a class="btn btn-primary" href="https://github.com/leonawicz/LandCarbon">
+        <ul class="nav navbar-nav navbar-right">
+          <a class="btn btn-link" href="https://github.com/leonawicz/LandCarbon">
             <i class="fa fa-github fa-lg"></i>
             Github
           </a>
@@ -142,7 +152,6 @@ body {
       </div><!--/.nav-collapse -->
     </div>
   </div>
-</div>
 
 <div id="header">
 <h1 class="title">Projected fire change 2000 - 2099 \ Unvetted preliminary rush draft from developmental code</h1>
@@ -157,8 +166,8 @@ body {
 <h3>Alaska</h3>
 <div id="historical-fire" class="section level4">
 <h4>Historical fire</h4>
-<!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Tue Jan 20 15:21:55 2015 -->
+<!-- html table generated in R 3.1.2 by xtable 1.7-4 package -->
+<!-- Tue Feb 10 08:19:07 2015 -->
 <table border="1">
 <tr>
 <th>
@@ -282,8 +291,8 @@ SRES A2
 </div>
 <div id="projected-fire" class="section level4">
 <h4>Projected fire</h4>
-<!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Tue Jan 20 15:21:55 2015 -->
+<!-- html table generated in R 3.1.2 by xtable 1.7-4 package -->
+<!-- Tue Feb 10 08:19:07 2015 -->
 <table border="1">
 <tr>
 <th>
@@ -407,8 +416,8 @@ SRES A2
 </div>
 <div id="percent-change" class="section level4">
 <h4>Percent change</h4>
-<!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Tue Jan 20 15:21:55 2015 -->
+<!-- html table generated in R 3.1.2 by xtable 1.7-4 package -->
+<!-- Tue Feb 10 08:19:07 2015 -->
 <table border="1">
 <tr>
 <th>
@@ -535,8 +544,8 @@ SRES A2
 <h3>Arctic</h3>
 <div id="historical-fire-1" class="section level4">
 <h4>Historical fire</h4>
-<!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Tue Jan 20 15:21:56 2015 -->
+<!-- html table generated in R 3.1.2 by xtable 1.7-4 package -->
+<!-- Tue Feb 10 08:19:08 2015 -->
 <table border="1">
 <tr>
 <th>
@@ -660,8 +669,8 @@ SRES A2
 </div>
 <div id="projected-fire-1" class="section level4">
 <h4>Projected fire</h4>
-<!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Tue Jan 20 15:21:56 2015 -->
+<!-- html table generated in R 3.1.2 by xtable 1.7-4 package -->
+<!-- Tue Feb 10 08:19:08 2015 -->
 <table border="1">
 <tr>
 <th>
@@ -785,8 +794,8 @@ SRES A2
 </div>
 <div id="percent-change-1" class="section level4">
 <h4>Percent change</h4>
-<!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Tue Jan 20 15:21:56 2015 -->
+<!-- html table generated in R 3.1.2 by xtable 1.7-4 package -->
+<!-- Tue Feb 10 08:19:08 2015 -->
 <table border="1">
 <tr>
 <th>
@@ -913,8 +922,8 @@ SRES A2
 <h3>North Pacific</h3>
 <div id="historical-fire-2" class="section level4">
 <h4>Historical fire</h4>
-<!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Tue Jan 20 15:21:56 2015 -->
+<!-- html table generated in R 3.1.2 by xtable 1.7-4 package -->
+<!-- Tue Feb 10 08:19:08 2015 -->
 <table border="1">
 <tr>
 <th>
@@ -1038,8 +1047,8 @@ SRES A2
 </div>
 <div id="projected-fire-2" class="section level4">
 <h4>Projected fire</h4>
-<!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Tue Jan 20 15:21:56 2015 -->
+<!-- html table generated in R 3.1.2 by xtable 1.7-4 package -->
+<!-- Tue Feb 10 08:19:08 2015 -->
 <table border="1">
 <tr>
 <th>
@@ -1163,8 +1172,8 @@ SRES A2
 </div>
 <div id="percent-change-2" class="section level4">
 <h4>Percent change</h4>
-<!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Tue Jan 20 15:21:56 2015 -->
+<!-- html table generated in R 3.1.2 by xtable 1.7-4 package -->
+<!-- Tue Feb 10 08:19:08 2015 -->
 <table border=1>
 <tr>
 <th>
@@ -1297,8 +1306,8 @@ SRES A2
 <h3>Northwest Interior Forest North</h3>
 <div id="historical-fire-3" class="section level4">
 <h4>Historical fire</h4>
-<!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Tue Jan 20 15:21:56 2015 -->
+<!-- html table generated in R 3.1.2 by xtable 1.7-4 package -->
+<!-- Tue Feb 10 08:19:08 2015 -->
 <table border="1">
 <tr>
 <th>
@@ -1422,8 +1431,8 @@ SRES A2
 </div>
 <div id="projected-fire-3" class="section level4">
 <h4>Projected fire</h4>
-<!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Tue Jan 20 15:21:56 2015 -->
+<!-- html table generated in R 3.1.2 by xtable 1.7-4 package -->
+<!-- Tue Feb 10 08:19:08 2015 -->
 <table border="1">
 <tr>
 <th>
@@ -1547,8 +1556,8 @@ SRES A2
 </div>
 <div id="percent-change-3" class="section level4">
 <h4>Percent change</h4>
-<!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Tue Jan 20 15:21:57 2015 -->
+<!-- html table generated in R 3.1.2 by xtable 1.7-4 package -->
+<!-- Tue Feb 10 08:19:08 2015 -->
 <table border="1">
 <tr>
 <th>
@@ -1675,8 +1684,8 @@ SRES A2
 <h3>Northwest Interior Forest South</h3>
 <div id="historical-fire-4" class="section level4">
 <h4>Historical fire</h4>
-<!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Tue Jan 20 15:21:57 2015 -->
+<!-- html table generated in R 3.1.2 by xtable 1.7-4 package -->
+<!-- Tue Feb 10 08:19:08 2015 -->
 <table border="1">
 <tr>
 <th>
@@ -1800,8 +1809,8 @@ SRES A2
 </div>
 <div id="projected-fire-4" class="section level4">
 <h4>Projected fire</h4>
-<!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Tue Jan 20 15:21:57 2015 -->
+<!-- html table generated in R 3.1.2 by xtable 1.7-4 package -->
+<!-- Tue Feb 10 08:19:08 2015 -->
 <table border="1">
 <tr>
 <th>
@@ -1925,8 +1934,8 @@ SRES A2
 </div>
 <div id="percent-change-4" class="section level4">
 <h4>Percent change</h4>
-<!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Tue Jan 20 15:21:57 2015 -->
+<!-- html table generated in R 3.1.2 by xtable 1.7-4 package -->
+<!-- Tue Feb 10 08:19:08 2015 -->
 <table border="1">
 <tr>
 <th>
@@ -2053,8 +2062,8 @@ SRES A2
 <h3>Western Alaska</h3>
 <div id="historical-fire-5" class="section level4">
 <h4>Historical fire</h4>
-<!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Tue Jan 20 15:21:57 2015 -->
+<!-- html table generated in R 3.1.2 by xtable 1.7-4 package -->
+<!-- Tue Feb 10 08:19:08 2015 -->
 <table border="1">
 <tr>
 <th>
@@ -2178,8 +2187,8 @@ SRES A2
 </div>
 <div id="projected-fire-5" class="section level4">
 <h4>Projected fire</h4>
-<!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Tue Jan 20 15:21:57 2015 -->
+<!-- html table generated in R 3.1.2 by xtable 1.7-4 package -->
+<!-- Tue Feb 10 08:19:08 2015 -->
 <table border="1">
 <tr>
 <th>
@@ -2303,8 +2312,8 @@ SRES A2
 </div>
 <div id="percent-change-5" class="section level4">
 <h4>Percent change</h4>
-<!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-<!-- Tue Jan 20 15:21:57 2015 -->
+<!-- html table generated in R 3.1.2 by xtable 1.7-4 package -->
+<!-- Tue Feb 10 08:19:08 2015 -->
 <table border="1">
 <tr>
 <th>

@@ -14,10 +14,11 @@
 <title>R code: Projected Vegetation Trends 2009 - 2100</title>
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link href="libs/bootstrap-2.3.2/css/united.min.css" rel="stylesheet" />
-<link href="libs/bootstrap-2.3.2/css/bootstrap-responsive.min.css" rel="stylesheet" />
-<script src="libs/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.1/css/united.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
 <style type="text/css">
 
 /* padding for bootstrap navbar */
@@ -110,28 +111,37 @@ code > span.er { color: #c3bf9f; }
   margin-left: auto;
   margin-right: auto;
 }
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
 </style>
 <div class="container-fluid main-container">
 
 <div class="navbar navbar-default navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="brand" href="index.html">Land Carbon</a>
-      <div class="nav-collapse collapse">
-        <ul class="nav">
+      <a class="navbar-brand" href="index.html">Land Carbon</a>
+      </div>
+      <div class="navbar-collapse collapse navbar-responsive-collapse">
+        <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="fire" class="dropdown-toggle" data-toggle="dropdown">Fire <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li class="nav-header">Model: CCCMA</li>
+              <li class="dropdown-header">Model: CCCMA</li>
               <li><a href="baseline_fire_cccma.html">Baseline fire</a></li>
               <li><a href="fire_change_cccma.html">Projected change</a></li>
               <li class="divider"></li>
-              <li class="nav-header">Model: ECHAM5</li>
+              <li class="dropdown-header">Model: ECHAM5</li>
               <li><a href="baseline_fire_echam.html">Baseline fire</a></li>
               <li><a href="fire_change_echam.html">Projected change</a></li>
             </ul>
@@ -139,11 +149,11 @@ code > span.er { color: #c3bf9f; }
           <li class="dropdown">
             <a href="vegetation" class="dropdown-toggle" data-toggle="dropdown">Vegetation <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li class="nav-header">Model: CCCMA</li>
+              <li class="dropdown-header">Model: CCCMA</li>
               <li><a href="vegetation_change_cccma.html">Vegetation change</a></li>
               <li><a href="vegetation_trend_cccma.html">Vegetation trends</a></li>
               <li class="divider"></li>
-              <li class="nav-header">Model: ECHAM5</li>
+              <li class="dropdown-header">Model: ECHAM5</li>
               <li><a href="vegetation_change_echam.html">Vegetation change</a></li>
               <li><a href="vegetation_trend_echam.html">Vegetation trends</a></li>
             </ul>
@@ -151,7 +161,7 @@ code > span.er { color: #c3bf9f; }
           <li class="dropdown">
             <a href="r-code" class="dropdown-toggle" data-toggle="dropdown">R Code <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li class="nav-header">Main code</li>
+              <li class="dropdown-header">Main code</li>
               <li><a href="baseline_fire_code.html">Baseline fire</a></li>
               <li><a href="fire_change_code.html">Projected fire</a></li>
               <li><a href="vegetation_change_code.html">Vegetation change</a></li>
@@ -160,8 +170,8 @@ code > span.er { color: #c3bf9f; }
 
           <li><a href="http://leonawicz.github.io">All Projects</a></li>
         </ul>
-        <ul class="nav pull-right">
-          <a class="btn btn-primary" href="https://github.com/leonawicz/LandCarbon">
+        <ul class="nav navbar-nav navbar-right">
+          <a class="btn btn-link" href="https://github.com/leonawicz/LandCarbon">
             <i class="fa fa-github fa-lg"></i>
             Github
           </a>
@@ -169,7 +179,6 @@ code > span.er { color: #c3bf9f; }
       </div><!--/.nav-collapse -->
     </div>
   </div>
-</div>
 
 <div id="header">
 <h1 class="title">R code: Projected Vegetation Trends 2009 - 2100</h1>
@@ -182,8 +191,8 @@ code > span.er { color: #c3bf9f; }
 <p>Depending on whether the output documents are md/html or LaTeX/pdf, tables are compiled differently as well using <code>xtable</code>.</p>
 <pre class="sourceCode r"><code class="sourceCode r">region.grp &lt;-<span class="st"> &quot;LCC Regions&quot;</span>
 <span class="co"># mainDir &lt;-</span>
-<span class="co"># &#39;/workspace/UA/mfleonawicz/Leonawicz/Projects/2014/AR4_AR5_comparisons/data/final&#39;</span>
-mainDir &lt;-<span class="st"> &quot;X:/Leonawicz/Projects/2014/AR4_AR5_comparisons/data/final&quot;</span>
+<span class="co"># &#39;/workspace/UA/mfleonawicz/leonawicz/projects/SNAPQAQC/data/final&#39;</span>
+mainDir &lt;-<span class="st"> &quot;X:/leonawicz/projects/SNAPQAQC/data/final&quot;</span>
 ak.statsVeg.file &lt;-<span class="st"> </span><span class="kw">file.path</span>(mainDir, <span class="st">&quot;region_files_GCM/stats/Political/Alaska/stats_veg.RData&quot;</span>)
 <span class="co"># ak.samples.file &lt;- file.path(mainDir,</span>
 <span class="co"># &#39;region_files_GCM/samples/Political/Alaska/xxxxxxxxxxxx.RData&#39;)</span>
@@ -224,6 +233,8 @@ d.agg1 &lt;-<span class="st"> </span><span class="kw">ddply</span>(d, <span clas
     summarise, <span class="dt">Avg =</span> <span class="kw">mean</span>(Mean))
 d.agg2 &lt;-<span class="st"> </span><span class="kw">ddply</span>(d2, <span class="kw">c</span>(<span class="st">&quot;Scenario&quot;</span>, <span class="st">&quot;Location&quot;</span>, <span class="st">&quot;Vegetation&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Decade&quot;</span>), 
     summarise, <span class="dt">Avg =</span> <span class="kw">mean</span>(Mean))
+<span class="co"># Send table to file</span>
+<span class="kw">write.csv</span>(d.agg2, <span class="dt">file =</span> <span class="kw">paste0</span>(<span class="st">&quot;../data/&quot;</span>, modnames, <span class="st">&quot;_annual_veg_2009_2100.csv&quot;</span>))
 
 fac &lt;-<span class="st"> </span><span class="dv">1000</span>
 d.agg1.sub &lt;-<span class="st"> </span>d.agg1  <span class="co">#subset(d.agg1, Location==&#39;Alaska&#39;)</span>
