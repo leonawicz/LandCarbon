@@ -38,6 +38,8 @@ d2 <- subset(d, Year %in% years.all, select=keep.cols)
 d <- subset(d, Year %in% years, select=keep.cols)
 d.agg1 <- ddply(d, c("Scenario", "Location", "Vegetation", "Year", "Decade"), summarise, Avg=mean(Mean))
 d.agg2 <- ddply(d2, c("Scenario", "Location", "Vegetation", "Year", "Decade"), summarise, Avg=mean(Mean))
+# Send table to file
+write.csv(d.agg2, file=paste0("../data/", modnames, "_annual_veg_2009_2100.csv"))
 
 fac <- 1000
 d.agg1.sub <- d.agg1 #subset(d.agg1, Location=="Alaska")
@@ -139,6 +141,9 @@ vc_barplot(d.list=list(d.agg1.b1, d.agg1.a1b, d.agg1.a2), loc=regions[5], y.n=8,
 d.agg1.b1$Avg <- d.agg1.b1.2$Avg/d.agg1.b1$Avg - 1
 d.agg1.a1b$Avg <- d.agg1.a1b.2$Avg/d.agg1.a1b$Avg - 1
 d.agg1.a2$Avg <- d.agg1.a2.2$Avg/d.agg1.a2$Avg - 1
+
+# Send table to file
+write.csv(dcast(rbind(d.agg1.b1, d.agg1.a1b, d.agg1.a2), Vegetation ~ Location + Scenario)[c(1,5,2:4), c(5:19, 2:4)], file=paste0("../data/", modnames, "_veg_pct_change_2009vs2100.csv"))
 
 vc_barplot(d.list=list(d.agg1.b1, d.agg1.a1b, d.agg1.a2), loc="Alaska", y.n=4, fix.scale=T)
 # @knitr veg_change_barplot_AK2
