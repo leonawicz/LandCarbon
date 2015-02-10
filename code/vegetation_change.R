@@ -1,7 +1,7 @@
 # @knitr setup
 region.grp <- "LCC Regions"
-#mainDir <- "/workspace/UA/mfleonawicz/Leonawicz/Projects/2014/AR4_AR5_comparisons/data/final"
-mainDir <- "X:/Leonawicz/Projects/2014/AR4_AR5_comparisons/data/final"
+#mainDir <- "/workspace/UA/mfleonawicz/leonawicz/projects/SNAPQAQC/data/final"
+mainDir <- "X:/leonawicz/projects/SNAPQAQC/data/final"
 ak.statsVeg.file <- file.path(mainDir, "region_files_GCM/stats/Political/Alaska/stats_veg.RData")
 #ak.samples.file <- file.path(mainDir, "region_files_GCM/samples/Political/Alaska/xxxxxxxxxxxx.RData")
 #load(file.path(mainDir, "meta.RData"))
