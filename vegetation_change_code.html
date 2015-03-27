@@ -20,43 +20,29 @@
 <script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
 <script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
 <style type="text/css">
-
 /* padding for bootstrap navbar */
 body {
-  padding-top: 50px;
-  padding-bottom: 40px;
+padding-top: 50px;
+padding-bottom: 40px;
 }
-@media (max-width: 979px) {
-  body {
-    padding-top: 0;
-  }
+/* offset scroll position for anchor links (for fixed navbar) */
+.section h2 {
+padding-top: 55px;
+margin-top: -55px;
 }
-
-/* offset scroll position for anchor links (for fixed navbar)  */
-@media (min-width: 980px) {
-  .section h2 {
-    padding-top: 52px;
-    margin-top: -52px;
-  }
-  .section h3 {
-    padding-top: 52px;
-    margin-top: -52px;
-  }
+.section h3 {
+padding-top: 55px;
+margin-top: -55px;
 }
-
-
 /* don't use link color in navbar */
 .dropdown-menu>li>a {
-  color: black;
+color: black;
 }
-
 /* some padding for disqus */
 #disqus_thread {
-  margin-top: 45px;
+margin-top: 45px;
 }
-
 </style>
-
 <link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
 
 
@@ -234,7 +220,7 @@ d.agg1 &lt;-<span class="st"> </span><span class="kw">ddply</span>(d, <span clas
 d.agg2 &lt;-<span class="st"> </span><span class="kw">ddply</span>(d2, <span class="kw">c</span>(<span class="st">&quot;Scenario&quot;</span>, <span class="st">&quot;Location&quot;</span>, <span class="st">&quot;Vegetation&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Decade&quot;</span>), 
     summarise, <span class="dt">Avg =</span> <span class="kw">mean</span>(Mean))
 <span class="co"># Send table to file</span>
-<span class="kw">write.csv</span>(d.agg2, <span class="dt">file =</span> <span class="kw">paste0</span>(<span class="st">&quot;../data/&quot;</span>, modnames, <span class="st">&quot;_annual_veg_2009_2100.csv&quot;</span>))
+<span class="kw">write.csv</span>(d.agg2, <span class="dt">file =</span> <span class="kw">paste0</span>(<span class="st">&quot;C:/github/LandCarbon/data/&quot;</span>, modnames, <span class="st">&quot;_annual_veg_2009_2100.csv&quot;</span>))
 
 fac &lt;-<span class="st"> </span><span class="dv">1000</span>
 d.agg1.sub &lt;-<span class="st"> </span>d.agg1  <span class="co">#subset(d.agg1, Location==&#39;Alaska&#39;)</span>
@@ -372,8 +358,8 @@ d.agg1.a2$Avg &lt;-<span class="st"> </span>d.agg1.a2<span class="fl">.2</span>$
 
 <span class="co"># Send table to file</span>
 <span class="kw">write.csv</span>(<span class="kw">dcast</span>(<span class="kw">rbind</span>(d.agg1.b1, d.agg1.a1b, d.agg1.a2), Vegetation ~<span class="st"> </span>Location +<span class="st"> </span>
-<span class="st">    </span>Scenario)[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">2</span>:<span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">5</span>:<span class="dv">19</span>, <span class="dv">2</span>:<span class="dv">4</span>)], <span class="dt">file =</span> <span class="kw">paste0</span>(<span class="st">&quot;../data/&quot;</span>, modnames, 
-    <span class="st">&quot;_veg_pct_change_2009vs2100.csv&quot;</span>))
+<span class="st">    </span>Scenario)[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">2</span>:<span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">5</span>:<span class="dv">19</span>, <span class="dv">2</span>:<span class="dv">4</span>)], <span class="dt">file =</span> <span class="kw">paste0</span>(<span class="st">&quot;C:/github/LandCarbon/data/&quot;</span>, 
+    modnames, <span class="st">&quot;_veg_pct_change_2009vs2100.csv&quot;</span>))
 
 <span class="kw">vc_barplot</span>(<span class="dt">d.list =</span> <span class="kw">list</span>(d.agg1.b1, d.agg1.a1b, d.agg1.a2), <span class="dt">loc =</span> <span class="st">&quot;Alaska&quot;</span>, 
     <span class="dt">y.n =</span> <span class="dv">4</span>, <span class="dt">fix.scale =</span> T)</code></pre>
@@ -429,6 +415,27 @@ d.agg1.a2$Avg &lt;-<span class="st"> </span>d.agg1.a2<span class="fl">.2</span>$
 </div>
 </div>
 
+<!-- some extra javascript for older browsers -->
+<script type="text/javascript" src="libs/polyfill.js"></script>
+<script>
+  // manage active state of menu based on current page
+  $(document).ready(function () {
+  
+    // active menu
+    href = window.location.pathname
+    href = href.substr(href.lastIndexOf('/') + 1)
+    $('a[href="' + href + '"]').parent().addClass('active');
+    
+    // manage active menu header
+    if (href.startsWith('authoring_'))
+      $('a[href="' + 'authoring' + '"]').parent().addClass('active');
+    else if (href.endsWith('_format.html'))
+      $('a[href="' + 'formats' + '"]').parent().addClass('active');
+    else if (href.startsWith('developer_'))
+      $('a[href="' + 'developer' + '"]').parent().addClass('active');
+	  
+  });
+</script>
 
 </div>
 
