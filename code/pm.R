@@ -55,7 +55,7 @@ genNavbar(htmlfile=file.path(proj.location, proj.name, "docs/Rmd/include/navbar.
 yaml.out <- file.path(proj.location, proj.name, "docs/Rmd/_output.yaml")
 libs <- "libs"
 common.header <- "include/in_header.html"
-genOutyaml(file=yaml.out, lib=libs, header=common.header, before_body="include/navbar.html")
+genOutyaml(file=yaml.out, lib=libs, header=common.header, before_body="include/navbar.html", , after_body="include/after_body.html")
 
 # @knitr knit_setup
 library(rmarkdown)
@@ -80,8 +80,8 @@ echam.Rmd <- list.files(pattern="echam.Rmd$", full=T)
 
 # @knitr save
 # write all yaml front-matter-specified outputs to Rmd directory for all Rmd files
-# Make sure to switch models and resave R scripts between following two lines
 lapply(code.Rmd, render, output_format="all")
+# Make sure to switch models and resave R scripts between following two lines
 lapply(cccma.Rmd, render, output_format="all")
 lapply(echam.Rmd, render, output_format="all")
 insert_gatc(list.files(pattern=".html$"))

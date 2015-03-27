@@ -63,7 +63,7 @@ d.agg1 <- ddply(d, c("Scenario", "Location", "Vegetation", "Year", "Decade"),
 d.agg2 <- ddply(d2, c("Scenario", "Location", "Vegetation", "Year", "Decade"), 
     summarise, Avg = mean(Mean))
 # Send table to file
-write.csv(d.agg2, file = paste0("../data/", modnames, "_annual_veg_2009_2100.csv"))
+write.csv(d.agg2, file = paste0("C:/github/LandCarbon/data/", modnames, "_annual_veg_2009_2100.csv"))
 
 fac <- 1000
 d.agg1.sub <- d.agg1  #subset(d.agg1, Location=='Alaska')

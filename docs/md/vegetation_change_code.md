@@ -63,7 +63,7 @@ d.agg1 <- ddply(d, c("Scenario", "Location", "Vegetation", "Year", "Decade"),
 d.agg2 <- ddply(d2, c("Scenario", "Location", "Vegetation", "Year", "Decade"), 
     summarise, Avg = mean(Mean))
 # Send table to file
-write.csv(d.agg2, file = paste0("../data/", modnames, "_annual_veg_2009_2100.csv"))
+write.csv(d.agg2, file = paste0("C:/github/LandCarbon/data/", modnames, "_annual_veg_2009_2100.csv"))
 
 fac <- 1000
 d.agg1.sub <- d.agg1  #subset(d.agg1, Location=='Alaska')
@@ -230,8 +230,8 @@ d.agg1.a2$Avg <- d.agg1.a2.2$Avg/d.agg1.a2$Avg - 1
 
 # Send table to file
 write.csv(dcast(rbind(d.agg1.b1, d.agg1.a1b, d.agg1.a2), Vegetation ~ Location + 
-    Scenario)[c(1, 5, 2:4), c(5:19, 2:4)], file = paste0("../data/", modnames, 
-    "_veg_pct_change_2009vs2100.csv"))
+    Scenario)[c(1, 5, 2:4), c(5:19, 2:4)], file = paste0("C:/github/LandCarbon/data/", 
+    modnames, "_veg_pct_change_2009vs2100.csv"))
 
 vc_barplot(d.list = list(d.agg1.b1, d.agg1.a1b, d.agg1.a2), loc = "Alaska", 
     y.n = 4, fix.scale = T)

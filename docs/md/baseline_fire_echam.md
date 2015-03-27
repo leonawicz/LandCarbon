@@ -12,7 +12,7 @@ This uses strictly ALFRESCO output.
 
 ### Fire frequency (fires/year)
 <!-- html table generated in R 3.1.2 by xtable 1.7-4 package -->
-<!-- Tue Feb 10 08:27:35 2015 -->
+<!-- Thu Mar 26 19:06:57 2015 -->
 <table border=1>
 <tr> <th>  </th> <th> Arctic </th> <th> North Pacific </th> <th> Northwest Interior Forest North </th> <th> Northwest Interior Forest South </th> <th> Western Alaska </th> <th> Alaska </th>  </tr>
   <tr> <td> Mean </td> <td align="center"> 0.9 </td> <td align="center"> 0.1 </td> <td align="center"> 43.4 </td> <td align="center"> 9.5 </td> <td align="center"> 8.1 </td> <td align="center"> 59.6 </td> </tr>
@@ -25,7 +25,7 @@ This uses strictly ALFRESCO output.
 
 ### Burn area (km^2/year)
 <!-- html table generated in R 3.1.2 by xtable 1.7-4 package -->
-<!-- Tue Feb 10 08:27:35 2015 -->
+<!-- Thu Mar 26 19:06:57 2015 -->
 <table border=1>
 <tr> <th>  </th> <th> Arctic </th> <th> North Pacific </th> <th> Northwest Interior Forest North </th> <th> Northwest Interior Forest South </th> <th> Western Alaska </th> <th> Alaska </th>  </tr>
   <tr> <td> Mean </td> <td align="center"> 86.0 </td> <td align="center"> 3.6 </td> <td align="center"> 2767.5 </td> <td align="center"> 327.8 </td> <td align="center"> 740.6 </td> <td align="center"> 3726.5 </td> </tr>

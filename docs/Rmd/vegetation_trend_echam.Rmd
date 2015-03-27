@@ -11,7 +11,7 @@ output:
 
 ```{r knitr_setup, include=FALSE, cache=FALSE}
 library(knitr)
-opts_chunk$set(results='asis', cache=FALSE, echo=FALSE, eval=TRUE, tidy=TRUE, message=FALSE, warning=FALSE)
+opts_chunk$set(results='asis', cache=FALSE, echo=FALSE, eval=TRUE, tidy=TRUE, message=FALSE, warning=FALSE, dpi=300, fig.height=7, fig.width=10.5)
 read_chunk("../../code/vegetation_change.R")
 ```
 
