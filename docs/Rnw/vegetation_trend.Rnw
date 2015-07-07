@@ -15,7 +15,7 @@
 
 <<knitr_setup, include=FALSE, cache=FALSE>>=
 library(knitr)
-opts_chunk$set(results='asis', cache=FALSE, echo=FALSE, eval=TRUE, tidy=TRUE, message=FALSE, warning=FALSE)
+opts_chunk$set(results='asis', cache=FALSE, echo=FALSE, eval=TRUE, tidy=TRUE, message=FALSE, warning=FALSE, fig.width=7, fig.height=3.5)
 read_chunk("../../code/vegetation_change.R")
 @
 
@@ -37,30 +37,30 @@ The below graph relates to figure 6.3 in the original document.
 This uses strictly ALFRESCO output.
 
 \subsection{Alaska}
-<<veg_change_ts_AK, fig.width=7, fig.height=5, fig.cap="Alaska", fig.pos="H">>=
+<<veg_change_ts_AK, fig.cap="Alaska", fig.pos="H">>=
 @
 
 All five following separate LCC graphs relate to figure 6.3 in the original document.
 This uses strictly ALFRESCO output.
 
 \subsection{Arctic}
-<<veg_change_ts_LCC1, fig.width=7, fig.height=5, fig.cap="Arctic", fig.pos="H">>=
+<<veg_change_ts_LCC1, fig.cap="Arctic", fig.pos="H">>=
 @
 
 \subsection{North Pacific}
-<<veg_change_ts_LCC2, fig.width=7, fig.height=5, fig.cap="North Pacific", fig.pos="H">>=
+<<veg_change_ts_LCC2, fig.cap="North Pacific", fig.pos="H">>=
 @
 
 \subsection{Northwest Interior Forest North}
-<<veg_change_ts_LCC3, fig.width=7, fig.height=5, fig.cap="Northwest Interior Forest North", fig.pos="H">>=
+<<veg_change_ts_LCC3, fig.cap="Northwest Interior Forest North", fig.pos="H">>=
 @
 
 \subsection{Northwest Interior Forest South}
-<<veg_change_ts_LCC4, fig.width=7, fig.height=5, fig.cap="Northwest Interior Forest South", fig.pos="H">>=
+<<veg_change_ts_LCC4, fig.cap="Northwest Interior Forest South", fig.pos="H">>=
 @
 
 \subsection{Western Alaska}
-<<veg_change_ts_LCC5, fig.width=7, fig.height=5, fig.cap="Western Alaska", fig.pos="H">>=
+<<veg_change_ts_LCC5, fig.cap="Western Alaska", fig.pos="H">>=
 @
 
 \end{document}
