@@ -42,6 +42,14 @@ color: black;
 #disqus_thread {
 margin-top: 45px;
 }
+p {
+  text-align: justify;
+}
+img.centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 </style>
 <link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
 
@@ -177,51 +185,45 @@ img {
 <p>Depending on whether the output documents are md/html or LaTeX/pdf, tables are compiled differently as well using <code>xtable</code>.</p>
 <pre class="sourceCode r"><code class="sourceCode r">wd &lt;-<span class="st"> </span><span class="kw">basename</span>(<span class="kw">getwd</span>())
 region.grp &lt;-<span class="st"> &quot;LCC Regions&quot;</span>
-<span class="co"># mainDir &lt;-</span>
-<span class="co"># &#39;/workspace/UA/mfleonawicz/leonawicz/projects/SNAPQAQC/data/final&#39;</span>
-mainDir &lt;-<span class="st"> &quot;X:/leonawicz/projects/SNAPQAQC/data/final&quot;</span>
-ak.statsFire.file &lt;-<span class="st"> </span><span class="kw">file.path</span>(mainDir, <span class="st">&quot;region_files_GCM/stats/Political/Alaska/stats_fire.RData&quot;</span>)
-<span class="co"># ak.samples.file &lt;- file.path(mainDir,</span>
-<span class="co"># &#39;region_files_GCM/samples/Political/Alaska/xxxxxxxxxxxx.RData&#39;)</span>
-<span class="co"># load(file.path(mainDir, &#39;meta.RData&#39;))</span>
-<span class="kw">load</span>(<span class="st">&quot;C:/github/shiny-apps/cmip3_cmip5/external/meta.RData&quot;</span>)
-statDir &lt;-<span class="st"> </span><span class="kw">file.path</span>(mainDir, <span class="st">&quot;region_files_GCM/stats&quot;</span>, region.grp)
-sampDir &lt;-<span class="st"> </span><span class="kw">file.path</span>(mainDir, <span class="st">&quot;region_files_GCM/samples&quot;</span>, region.grp)
+mainDir &lt;-<span class="st"> &quot;X:/leonawicz/projects/SNAPQAQC/data/final/alfresco&quot;</span>
+ak.statsFire.file &lt;-<span class="st"> </span><span class="kw">file.path</span>(mainDir, <span class="st">&quot;stats/Political/Alaska/stats_fire.RData&quot;</span>)
+statDir &lt;-<span class="st"> </span><span class="kw">file.path</span>(mainDir, <span class="st">&quot;stats&quot;</span>, region.grp)
+<span class="kw">library</span>(data.table)
 <span class="kw">library</span>(plyr)
 <span class="kw">library</span>(xtable)</code></pre>
 <div id="baseline-fire-tables" class="section level2">
 <h2>Baseline Fire Tables</h2>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Baseline wildland fire, Table 3.1</span>
 years &lt;-<span class="st"> </span><span class="dv">1950</span>:<span class="dv">2009</span>
-modnames &lt;-<span class="st"> &quot;CCCMAcgcm31&quot;</span>  <span class="co"># &#39;MPIecham5&#39; # </span>
-keep.cols &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>:stats.columns[<span class="dv">1</span>], (<span class="kw">tail</span>(stats.columns, <span class="dv">1</span>) +<span class="st"> </span><span class="dv">1</span>):<span class="kw">ncol</span>(alf.fireStats.df))
+modnames &lt;-<span class="st"> &quot;MPIecham5&quot;</span>  <span class="co"># </span>
 files &lt;-<span class="st"> </span><span class="kw">list.files</span>(statDir, <span class="dt">pattern =</span> <span class="st">&quot;^stats_fire.RData$&quot;</span>, <span class="dt">full =</span> <span class="ot">TRUE</span>, <span class="dt">recursive =</span> <span class="ot">TRUE</span>)
 files &lt;-<span class="st"> </span><span class="kw">c</span>(files, ak.statsFire.file)
 regions &lt;-<span class="st"> </span><span class="kw">basename</span>(<span class="kw">dirname</span>(files))
+d &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="st">&quot;list&quot;</span>, <span class="kw">length</span>(files))
 for (i in <span class="dv">1</span>:<span class="kw">length</span>(files)) {
     <span class="kw">load</span>(files[i])
-    alf.fireStats.df$Location &lt;-<span class="st"> </span>regions[i]
-    alf.fireStats.df[, stats.columns] &lt;-<span class="st"> </span>region.dat
-    if (i ==<span class="st"> </span><span class="dv">1</span>) 
-        d &lt;-<span class="st"> </span>alf.fireStats.df else d &lt;-<span class="st"> </span><span class="kw">rbind</span>(d, alf.fireStats.df)
+    d[[i]] &lt;-<span class="st"> </span>region.dat
 }
 <span class="kw">rm</span>(region.dat)
-
-d &lt;-<span class="st"> </span><span class="kw">subset</span>(d, Model %in%<span class="st"> </span>modnames)
+d &lt;-<span class="st"> </span><span class="kw">rbindlist</span>(d)
+d &lt;-<span class="st"> </span><span class="kw">subset</span>(d, Model %in%<span class="st"> </span>modnames &amp;<span class="st"> </span>Year %in%<span class="st"> </span>years)
 d$Location &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot; S&quot;</span>, <span class="st">&quot; South&quot;</span>, <span class="kw">gsub</span>(<span class="st">&quot; N&quot;</span>, <span class="st">&quot; North&quot;</span>, <span class="kw">gsub</span>(<span class="st">&quot;W &quot;</span>, <span class="st">&quot;Western &quot;</span>, 
     <span class="kw">gsub</span>(<span class="st">&quot;N &quot;</span>, <span class="st">&quot;North &quot;</span>, <span class="kw">gsub</span>(<span class="st">&quot;NW &quot;</span>, <span class="st">&quot;Northwest &quot;</span>, d$Location)))))  <span class="co"># Special name changes</span>
 regions &lt;-<span class="st"> </span><span class="kw">unique</span>(d$Location[d$Location !=<span class="st"> &quot;Alaska&quot;</span>])
+d[, <span class="st">`</span><span class="dt">:=</span><span class="st">`</span>(Decade, Year -<span class="st"> </span>Year%%<span class="dv">10</span>)]
+
+d$Scenario &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">as.character</span>(d$Scenario), <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;SRES B1&quot;</span>, <span class="st">&quot;SRES A1B&quot;</span>, 
+    <span class="st">&quot;SRES A2&quot;</span>))
+d.agg1 &lt;-<span class="st"> </span><span class="kw">ddply</span>(d, <span class="kw">c</span>(<span class="st">&quot;Var&quot;</span>, <span class="st">&quot;Location&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Decade&quot;</span>), summarise, <span class="dt">Avg =</span> <span class="kw">mean</span>(Mean))
+d.agg2 &lt;-<span class="st"> </span><span class="kw">ddply</span>(d.agg1, <span class="kw">c</span>(<span class="st">&quot;Var&quot;</span>, <span class="st">&quot;Location&quot;</span>), summarise, <span class="dt">Mean =</span> <span class="kw">mean</span>(Avg), <span class="dt">Standard_deviation =</span> <span class="kw">sd</span>(Avg), 
+    <span class="dt">Minimum =</span> <span class="kw">min</span>(Avg), <span class="dt">Median =</span> <span class="kw">median</span>(Avg), <span class="dt">X95th_quantile =</span> <span class="kw">quantile</span>(Avg, 
+        <span class="dt">probs =</span> <span class="fl">0.95</span>), <span class="dt">Maximum =</span> <span class="kw">max</span>(Avg))
+
 reg.split2 &lt;-<span class="st"> </span>reg.split &lt;-<span class="st"> </span>regions[<span class="dv">2</span>:<span class="dv">5</span>]
 reg.split2[<span class="dv">1</span>] &lt;-<span class="st"> &quot;</span><span class="ch">\\\\</span><span class="st">parbox[t]{3cm}{</span><span class="ch">\\\\</span><span class="st">centering North</span><span class="ch">\\\\\\\\</span><span class="st">Pacific}&quot;</span>
 reg.split2[<span class="dv">2</span>] &lt;-<span class="st"> &quot;</span><span class="ch">\\\\</span><span class="st">parbox[t]{3cm}{</span><span class="ch">\\\\</span><span class="st">centering Northwest Interior</span><span class="ch">\\\\\\\\</span><span class="st">Forest North}&quot;</span>
 reg.split2[<span class="dv">3</span>] &lt;-<span class="st"> &quot;</span><span class="ch">\\\\</span><span class="st">parbox[t]{3cm}{</span><span class="ch">\\\\</span><span class="st">centering Northwest Interior</span><span class="ch">\\\\\\\\</span><span class="st">Forest South}&quot;</span>
 reg.split2[<span class="dv">4</span>] &lt;-<span class="st"> &quot;</span><span class="ch">\\\\</span><span class="st">parbox[t]{3cm}{</span><span class="ch">\\\\</span><span class="st">centering Western</span><span class="ch">\\\\\\\\</span><span class="st">Alaska}&quot;</span>
-
-d &lt;-<span class="st"> </span><span class="kw">subset</span>(d, Year %in%<span class="st"> </span>years, <span class="dt">select =</span> keep.cols)
-d.agg1 &lt;-<span class="st"> </span><span class="kw">ddply</span>(d, <span class="kw">c</span>(<span class="st">&quot;Var&quot;</span>, <span class="st">&quot;Location&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Decade&quot;</span>), summarise, <span class="dt">Avg =</span> <span class="kw">mean</span>(Mean))
-d.agg2 &lt;-<span class="st"> </span><span class="kw">ddply</span>(d.agg1, <span class="kw">c</span>(<span class="st">&quot;Var&quot;</span>, <span class="st">&quot;Location&quot;</span>), summarise, <span class="dt">Mean =</span> <span class="kw">mean</span>(Avg), <span class="dt">Standard_deviation =</span> <span class="kw">sd</span>(Avg), 
-    <span class="dt">Minimum =</span> <span class="kw">min</span>(Avg), <span class="dt">Median =</span> <span class="kw">median</span>(Avg), <span class="dt">X95th_quantile =</span> <span class="kw">quantile</span>(Avg, 
-        <span class="dt">probs =</span> <span class="fl">0.95</span>), <span class="dt">Maximum =</span> <span class="kw">max</span>(Avg))
 
 ba &lt;-<span class="st"> </span><span class="kw">subset</span>(d.agg2, Var ==<span class="st"> &quot;Burn Area&quot;</span>, <span class="dv">2</span>:<span class="kw">ncol</span>(d.agg2))
 <span class="kw">rownames</span>(ba) &lt;-<span class="st"> </span>ba$Location

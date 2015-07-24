@@ -42,6 +42,14 @@ color: black;
 #disqus_thread {
 margin-top: 45px;
 }
+p {
+  text-align: justify;
+}
+img.centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 </style>
 <link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
 
@@ -176,45 +184,38 @@ img {
 <p>Also note in the <code>modnames &lt;-</code> assignment that the same script is simply run twice, once for each climate model. The amount of hardcoding present in general is indicative of the limited time available for the task.</p>
 <p>Depending on whether the output documents are md/html or LaTeX/pdf, tables are compiled differently as well using <code>xtable</code>.</p>
 <pre class="sourceCode r"><code class="sourceCode r">region.grp &lt;-<span class="st"> &quot;LCC Regions&quot;</span>
-<span class="co"># mainDir &lt;-</span>
-<span class="co"># &#39;/workspace/UA/mfleonawicz/leonawicz/projects/SNAPQAQC/data/final&#39;</span>
-mainDir &lt;-<span class="st"> &quot;X:/leonawicz/projects/SNAPQAQC/data/final&quot;</span>
-ak.statsVeg.file &lt;-<span class="st"> </span><span class="kw">file.path</span>(mainDir, <span class="st">&quot;region_files_GCM/stats/Political/Alaska/stats_veg.RData&quot;</span>)
-<span class="co"># ak.samples.file &lt;- file.path(mainDir,</span>
-<span class="co"># &#39;region_files_GCM/samples/Political/Alaska/xxxxxxxxxxxx.RData&#39;)</span>
-<span class="co"># load(file.path(mainDir, &#39;meta.RData&#39;))</span>
-<span class="kw">load</span>(<span class="st">&quot;C:/github/shiny-apps/cmip3_cmip5/external/meta.RData&quot;</span>)
-statDir &lt;-<span class="st"> </span><span class="kw">file.path</span>(mainDir, <span class="st">&quot;region_files_GCM/stats&quot;</span>, region.grp)
-sampDir &lt;-<span class="st"> </span><span class="kw">file.path</span>(mainDir, <span class="st">&quot;region_files_GCM/samples&quot;</span>, region.grp)
+mainDir &lt;-<span class="st"> &quot;X:/leonawicz/projects/SNAPQAQC/data/final/alfresco&quot;</span>
+ak.statsVeg.file &lt;-<span class="st"> </span><span class="kw">file.path</span>(mainDir, <span class="st">&quot;stats/Political/Alaska/stats_veg.RData&quot;</span>)
+statDir &lt;-<span class="st"> </span><span class="kw">file.path</span>(mainDir, <span class="st">&quot;stats&quot;</span>, region.grp)
+<span class="kw">library</span>(data.table)
+<span class="kw">library</span>(reshape2)
 <span class="kw">library</span>(plyr)
 <span class="kw">library</span>(xtable)</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Projected vegetation change, Figure 6.2</span>
 years.all &lt;-<span class="st"> </span><span class="dv">2009</span>:<span class="dv">2100</span>
 years &lt;-<span class="st"> </span><span class="kw">range</span>(years.all)
-modnames &lt;-<span class="st"> &quot;CCCMAcgcm31&quot;</span>  <span class="co"># &#39;MPIecham5&#39; # </span>
-keep.cols &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>:stats.columns[<span class="dv">1</span>], (<span class="kw">tail</span>(stats.columns, <span class="dv">1</span>) +<span class="st"> </span><span class="dv">1</span>):<span class="kw">ncol</span>(alf.vegStats.df))
+modnames &lt;-<span class="st"> &quot;MPIecham5&quot;</span>  <span class="co"># </span>
 files &lt;-<span class="st"> </span><span class="kw">list.files</span>(statDir, <span class="dt">pattern =</span> <span class="st">&quot;^stats_veg.RData$&quot;</span>, <span class="dt">full =</span> <span class="ot">TRUE</span>, <span class="dt">recursive =</span> <span class="ot">TRUE</span>)
 files &lt;-<span class="st"> </span><span class="kw">c</span>(files, ak.statsVeg.file)
 regions &lt;-<span class="st"> </span><span class="kw">basename</span>(<span class="kw">dirname</span>(files))
+d &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="st">&quot;list&quot;</span>, <span class="kw">length</span>(files))
 for (i in <span class="dv">1</span>:<span class="kw">length</span>(files)) {
     <span class="kw">load</span>(files[i])
-    alf.vegStats.df$Location &lt;-<span class="st"> </span>regions[i]
-    alf.vegStats.df[, stats.columns] &lt;-<span class="st"> </span>region.dat
-    if (i ==<span class="st"> </span><span class="dv">1</span>) 
-        d &lt;-<span class="st"> </span>alf.vegStats.df else d &lt;-<span class="st"> </span><span class="kw">rbind</span>(d, alf.vegStats.df)
+    d[[i]] &lt;-<span class="st"> </span>region.dat
 }
 <span class="kw">rm</span>(region.dat)
-
-d &lt;-<span class="st"> </span><span class="kw">subset</span>(d, Model %in%<span class="st"> </span>modnames)
-d &lt;-<span class="st"> </span><span class="kw">subset</span>(d, !(Vegetation %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Barren lichen-moss&quot;</span>, <span class="st">&quot;Temperate Rainforest&quot;</span>, 
-    <span class="st">&quot;Wetland Tundra&quot;</span>)))
+d &lt;-<span class="st"> </span><span class="kw">rbindlist</span>(d)
+d &lt;-<span class="st"> </span><span class="kw">subset</span>(d, Model %in%<span class="st"> </span>modnames &amp;<span class="st"> </span>!(Vegetation %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Barren lichen-moss&quot;</span>, 
+    <span class="st">&quot;Temperate Rainforest&quot;</span>, <span class="st">&quot;Wetland Tundra&quot;</span>)))
 d$Location &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot; S&quot;</span>, <span class="st">&quot; South&quot;</span>, <span class="kw">gsub</span>(<span class="st">&quot; N&quot;</span>, <span class="st">&quot; North&quot;</span>, <span class="kw">gsub</span>(<span class="st">&quot;W &quot;</span>, <span class="st">&quot;Western &quot;</span>, 
     <span class="kw">gsub</span>(<span class="st">&quot;N &quot;</span>, <span class="st">&quot;North &quot;</span>, <span class="kw">gsub</span>(<span class="st">&quot;NW &quot;</span>, <span class="st">&quot;Northwest &quot;</span>, d$Location)))))  <span class="co"># Special name changes</span>
 regions &lt;-<span class="st"> </span><span class="kw">unique</span>(d$Location[d$Location !=<span class="st"> &quot;Alaska&quot;</span>])
+d[, <span class="st">`</span><span class="dt">:=</span><span class="st">`</span>(Decade, Year -<span class="st"> </span>Year%%<span class="dv">10</span>)]
 
-d$Scenario &lt;-<span class="st"> </span><span class="kw">factor</span>(d$Scenario, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;SRES B1&quot;</span>, <span class="st">&quot;SRES A1B&quot;</span>, <span class="st">&quot;SRES A2&quot;</span>))
-d2 &lt;-<span class="st"> </span><span class="kw">subset</span>(d, Year %in%<span class="st"> </span>years.all, <span class="dt">select =</span> keep.cols)
-d &lt;-<span class="st"> </span><span class="kw">subset</span>(d, Year %in%<span class="st"> </span>years, <span class="dt">select =</span> keep.cols)
+d$Scenario &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">as.character</span>(d$Scenario), <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;SRES B1&quot;</span>, <span class="st">&quot;SRES A1B&quot;</span>, 
+    <span class="st">&quot;SRES A2&quot;</span>))
+d2 &lt;-<span class="st"> </span><span class="kw">subset</span>(d, Year %in%<span class="st"> </span>years.all)
+d &lt;-<span class="st"> </span><span class="kw">subset</span>(d, Year %in%<span class="st"> </span>years)
 d.agg1 &lt;-<span class="st"> </span><span class="kw">ddply</span>(d, <span class="kw">c</span>(<span class="st">&quot;Scenario&quot;</span>, <span class="st">&quot;Location&quot;</span>, <span class="st">&quot;Vegetation&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Decade&quot;</span>), 
     summarise, <span class="dt">Avg =</span> <span class="kw">mean</span>(Mean))
 d.agg2 &lt;-<span class="st"> </span><span class="kw">ddply</span>(d2, <span class="kw">c</span>(<span class="st">&quot;Scenario&quot;</span>, <span class="st">&quot;Location&quot;</span>, <span class="st">&quot;Vegetation&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Decade&quot;</span>), 
@@ -298,7 +299,7 @@ vc_tsplot &lt;-<span class="st"> </span>function(d, loc, <span class="dt">alpha 
     veg &lt;-<span class="st"> </span><span class="kw">unique</span>(d$Vegetation)
     n &lt;-<span class="st"> </span><span class="kw">length</span>(veg)
     nc &lt;-<span class="st"> </span><span class="dv">3</span>
-    <span class="kw">layout</span>(<span class="kw">matrix</span>(<span class="dv">1</span>:<span class="dv">9</span>, <span class="dv">3</span>, nc, <span class="dt">byrow =</span> T))
+    <span class="kw">layout</span>(<span class="kw">matrix</span>(<span class="dv">1</span>:<span class="dv">6</span>, <span class="dv">2</span>, nc, <span class="dt">byrow =</span> T))
     <span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">1</span>))
     years &lt;-<span class="st"> </span><span class="kw">unique</span>(d$Year)
     xlm &lt;-<span class="st"> </span><span class="kw">range</span>(years)
