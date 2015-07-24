@@ -35,7 +35,8 @@ In each subsection below, the third table down with percentages relates to table
 This uses strictly ALFRESCO output.
 The tables use years 2000 - 2009 and 2090 - 2099.
 There is one section for each region, Alaska and the five LCCs.
-<<fire_change_setup, cache=TRUE>>=
+
+<<fire_change_setup, results="hide">>=
 @
 
 \subsection{Alaska}
@@ -55,6 +56,7 @@ There is one section for each region, Alaska and the five LCCs.
 \Sexpr{tmp}
 
 \newpage
+\pagebreak
 \subsection{Arctic}
 \subsubsection{Historical fire}
 <<fire_change_table1_LCC1>>=
@@ -72,6 +74,7 @@ There is one section for each region, Alaska and the five LCCs.
 \Sexpr{tmp}
 
 \newpage
+\pagebreak
 \subsection{North Pacific}
 \subsubsection{Historical fire}
 <<fire_change_table1_LCC2>>=
@@ -89,6 +92,7 @@ There is one section for each region, Alaska and the five LCCs.
 \Sexpr{tmp}
 
 \newpage
+\pagebreak
 \subsection{Northwest Interior Forest North}
 \subsubsection{Historical fire}
 <<fire_change_table1_LCC3>>=
@@ -106,6 +110,7 @@ There is one section for each region, Alaska and the five LCCs.
 \Sexpr{tmp}
 
 \newpage
+\pagebreak
 \subsection{Northwest Interior Forest South}
 \subsubsection{Historical fire}
 <<fire_change_table1_LCC4>>=
@@ -123,6 +128,7 @@ There is one section for each region, Alaska and the five LCCs.
 \Sexpr{tmp}
 
 \newpage
+\pagebreak
 \subsection{Western Alaska}
 \subsubsection{Historical fire}
 <<fire_change_table1_LCC5>>=
@@ -140,6 +146,7 @@ There is one section for each region, Alaska and the five LCCs.
 \Sexpr{tmp}
 
 \newpage
+\pagebreak
 \section{Percentile fire trends by scenario}
 The below graph relates to figure 8.2 in the original document.
 This uses strictly ALFRESCO output.

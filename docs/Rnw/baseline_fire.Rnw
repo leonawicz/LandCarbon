@@ -33,7 +33,8 @@ read_chunk("../../code/baseline_fire.R")
 \section{Baseline Fire Tables}
 The third table down combining the first two relates to table 3.1 in the original document.
 This uses strictly ALFRESCO output.
-<<baseline_fire_setup, cache=TRUE>>=
+
+<<baseline_fire_setup, results="hide">>=
 @
 
 \subsection{Fire frequency}

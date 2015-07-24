@@ -29,7 +29,7 @@ read_chunk("../../code/vegetation_change.R")
 <<setup, cache=TRUE>>=
 @
 
-<<veg_change_setup, cache=TRUE>>=
+<<veg_change_setup, results="hide">>=
 @
 
 \section{Percent Change by Vegetation Class}
