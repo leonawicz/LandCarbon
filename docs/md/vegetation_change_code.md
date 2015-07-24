@@ -15,16 +15,11 @@ Depending on whether the output documents are md/html or LaTeX/pdf, tables are c
 
 ```r
 region.grp <- "LCC Regions"
-# mainDir <-
-# '/workspace/UA/mfleonawicz/leonawicz/projects/SNAPQAQC/data/final'
-mainDir <- "X:/leonawicz/projects/SNAPQAQC/data/final"
-ak.statsVeg.file <- file.path(mainDir, "region_files_GCM/stats/Political/Alaska/stats_veg.RData")
-# ak.samples.file <- file.path(mainDir,
-# 'region_files_GCM/samples/Political/Alaska/xxxxxxxxxxxx.RData')
-# load(file.path(mainDir, 'meta.RData'))
-load("C:/github/shiny-apps/cmip3_cmip5/external/meta.RData")
-statDir <- file.path(mainDir, "region_files_GCM/stats", region.grp)
-sampDir <- file.path(mainDir, "region_files_GCM/samples", region.grp)
+mainDir <- "X:/leonawicz/projects/SNAPQAQC/data/final/alfresco"
+ak.statsVeg.file <- file.path(mainDir, "stats/Political/Alaska/stats_veg.RData")
+statDir <- file.path(mainDir, "stats", region.grp)
+library(data.table)
+library(reshape2)
 library(plyr)
 library(xtable)
 ```
@@ -34,30 +29,28 @@ library(xtable)
 # Projected vegetation change, Figure 6.2
 years.all <- 2009:2100
 years <- range(years.all)
-modnames <- "CCCMAcgcm31"  # 'MPIecham5' # 
-keep.cols <- c(2:stats.columns[1], (tail(stats.columns, 1) + 1):ncol(alf.vegStats.df))
+modnames <- "MPIecham5"  # 
 files <- list.files(statDir, pattern = "^stats_veg.RData$", full = TRUE, recursive = TRUE)
 files <- c(files, ak.statsVeg.file)
 regions <- basename(dirname(files))
+d <- vector("list", length(files))
 for (i in 1:length(files)) {
     load(files[i])
-    alf.vegStats.df$Location <- regions[i]
-    alf.vegStats.df[, stats.columns] <- region.dat
-    if (i == 1) 
-        d <- alf.vegStats.df else d <- rbind(d, alf.vegStats.df)
+    d[[i]] <- region.dat
 }
 rm(region.dat)
-
-d <- subset(d, Model %in% modnames)
-d <- subset(d, !(Vegetation %in% c("Barren lichen-moss", "Temperate Rainforest", 
-    "Wetland Tundra")))
+d <- rbindlist(d)
+d <- subset(d, Model %in% modnames & !(Vegetation %in% c("Barren lichen-moss", 
+    "Temperate Rainforest", "Wetland Tundra")))
 d$Location <- gsub(" S", " South", gsub(" N", " North", gsub("W ", "Western ", 
     gsub("N ", "North ", gsub("NW ", "Northwest ", d$Location)))))  # Special name changes
 regions <- unique(d$Location[d$Location != "Alaska"])
+d[, `:=`(Decade, Year - Year%%10)]
 
-d$Scenario <- factor(d$Scenario, levels = c("SRES B1", "SRES A1B", "SRES A2"))
-d2 <- subset(d, Year %in% years.all, select = keep.cols)
-d <- subset(d, Year %in% years, select = keep.cols)
+d$Scenario <- factor(as.character(d$Scenario), levels = c("SRES B1", "SRES A1B", 
+    "SRES A2"))
+d2 <- subset(d, Year %in% years.all)
+d <- subset(d, Year %in% years)
 d.agg1 <- ddply(d, c("Scenario", "Location", "Vegetation", "Year", "Decade"), 
     summarise, Avg = mean(Mean))
 d.agg2 <- ddply(d2, c("Scenario", "Location", "Vegetation", "Year", "Decade"), 

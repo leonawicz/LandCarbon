@@ -16,16 +16,10 @@ Depending on whether the output documents are md/html or LaTeX/pdf, tables are c
 ```r
 wd <- basename(getwd())
 region.grp <- "LCC Regions"
-# mainDir <-
-# '/workspace/UA/mfleonawicz/leonawicz/projects/SNAPQAQC/data/final'
-mainDir <- "X:/leonawicz/projects/SNAPQAQC/data/final"
-ak.statsFire.file <- file.path(mainDir, "region_files_GCM/stats/Political/Alaska/stats_fire.RData")
-# ak.samples.file <- file.path(mainDir,
-# 'region_files_GCM/samples/Political/Alaska/xxxxxxxxxxxx.RData')
-# load(file.path(mainDir, 'meta.RData'))
-load("C:/github/shiny-apps/cmip3_cmip5/external/meta.RData")
-statDir <- file.path(mainDir, "region_files_GCM/stats", region.grp)
-sampDir <- file.path(mainDir, "region_files_GCM/samples", region.grp)
+mainDir <- "X:/leonawicz/projects/SNAPQAQC/data/final/alfresco"
+ak.statsFire.file <- file.path(mainDir, "stats/Political/Alaska/stats_fire.RData")
+statDir <- file.path(mainDir, "stats", region.grp)
+library(data.table)
 library(plyr)
 library(xtable)
 ```
@@ -35,35 +29,35 @@ library(xtable)
 ```r
 # Baseline wildland fire, Table 3.1
 years <- 1950:2009
-modnames <- "CCCMAcgcm31"  # 'MPIecham5' # 
-keep.cols <- c(2:stats.columns[1], (tail(stats.columns, 1) + 1):ncol(alf.fireStats.df))
+modnames <- "MPIecham5"  # 
 files <- list.files(statDir, pattern = "^stats_fire.RData$", full = TRUE, recursive = TRUE)
 files <- c(files, ak.statsFire.file)
 regions <- basename(dirname(files))
+d <- vector("list", length(files))
 for (i in 1:length(files)) {
     load(files[i])
-    alf.fireStats.df$Location <- regions[i]
-    alf.fireStats.df[, stats.columns] <- region.dat
-    if (i == 1) 
-        d <- alf.fireStats.df else d <- rbind(d, alf.fireStats.df)
+    d[[i]] <- region.dat
 }
 rm(region.dat)
-
-d <- subset(d, Model %in% modnames)
+d <- rbindlist(d)
+d <- subset(d, Model %in% modnames & Year %in% years)
 d$Location <- gsub(" S", " South", gsub(" N", " North", gsub("W ", "Western ", 
     gsub("N ", "North ", gsub("NW ", "Northwest ", d$Location)))))  # Special name changes
 regions <- unique(d$Location[d$Location != "Alaska"])
+d[, `:=`(Decade, Year - Year%%10)]
+
+d$Scenario <- factor(as.character(d$Scenario), levels = c("SRES B1", "SRES A1B", 
+    "SRES A2"))
+d.agg1 <- ddply(d, c("Var", "Location", "Year", "Decade"), summarise, Avg = mean(Mean))
+d.agg2 <- ddply(d.agg1, c("Var", "Location"), summarise, Mean = mean(Avg), Standard_deviation = sd(Avg), 
+    Minimum = min(Avg), Median = median(Avg), X95th_quantile = quantile(Avg, 
+        probs = 0.95), Maximum = max(Avg))
+
 reg.split2 <- reg.split <- regions[2:5]
 reg.split2[1] <- "\\\\parbox[t]{3cm}{\\\\centering North\\\\\\\\Pacific}"
 reg.split2[2] <- "\\\\parbox[t]{3cm}{\\\\centering Northwest Interior\\\\\\\\Forest North}"
 reg.split2[3] <- "\\\\parbox[t]{3cm}{\\\\centering Northwest Interior\\\\\\\\Forest South}"
 reg.split2[4] <- "\\\\parbox[t]{3cm}{\\\\centering Western\\\\\\\\Alaska}"
-
-d <- subset(d, Year %in% years, select = keep.cols)
-d.agg1 <- ddply(d, c("Var", "Location", "Year", "Decade"), summarise, Avg = mean(Mean))
-d.agg2 <- ddply(d.agg1, c("Var", "Location"), summarise, Mean = mean(Avg), Standard_deviation = sd(Avg), 
-    Minimum = min(Avg), Median = median(Avg), X95th_quantile = quantile(Avg, 
-        probs = 0.95), Maximum = max(Avg))
 
 ba <- subset(d.agg2, Var == "Burn Area", 2:ncol(d.agg2))
 rownames(ba) <- ba$Location

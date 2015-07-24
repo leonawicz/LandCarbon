@@ -10,30 +10,31 @@ The third table down combining the first two relates to table 3.1 in the origina
 This uses strictly ALFRESCO output.
 
 
+
 ### Fire frequency (fires/year)
-<!-- html table generated in R 3.1.2 by xtable 1.7-4 package -->
-<!-- Thu Mar 26 19:03:42 2015 -->
+<!-- html table generated in R 3.2.0 by xtable 1.7-4 package -->
+<!-- Fri Jul 24 13:47:45 2015 -->
 <table border=1>
 <tr> <th>  </th> <th> Arctic </th> <th> North Pacific </th> <th> Northwest Interior Forest North </th> <th> Northwest Interior Forest South </th> <th> Western Alaska </th> <th> Alaska </th>  </tr>
-  <tr> <td> Mean </td> <td align="center"> 0.9 </td> <td align="center"> 0.1 </td> <td align="center"> 43.5 </td> <td align="center"> 9.5 </td> <td align="center"> 8.1 </td> <td align="center"> 59.9 </td> </tr>
-  <tr> <td> Standard deviation </td> <td align="center"> 0.4 </td> <td align="center"> 0.3 </td> <td align="center"> 5.0 </td> <td align="center"> 1.9 </td> <td align="center"> 1.6 </td> <td align="center"> 7.1 </td> </tr>
+  <tr> <td> Mean </td> <td align="center"> 0.8 </td> <td align="center"> 0.0 </td> <td align="center"> 43.5 </td> <td align="center"> 9.6 </td> <td align="center"> 8.1 </td> <td align="center"> 59.9 </td> </tr>
+  <tr> <td> Standard deviation </td> <td align="center"> 0.4 </td> <td align="center"> 0.1 </td> <td align="center"> 5.0 </td> <td align="center"> 2.0 </td> <td align="center"> 1.6 </td> <td align="center"> 7.2 </td> </tr>
   <tr> <td> Minimum </td> <td align="center"> 0.0 </td> <td align="center"> 0.0 </td> <td align="center"> 35.0 </td> <td align="center"> 6.0 </td> <td align="center"> 5.0 </td> <td align="center"> 48.0 </td> </tr>
-  <tr> <td> Median </td> <td align="center"> 1.0 </td> <td align="center"> 0.0 </td> <td align="center"> 43.0 </td> <td align="center"> 9.0 </td> <td align="center"> 8.0 </td> <td align="center"> 59.2 </td> </tr>
-  <tr> <td> 95th quantile </td> <td align="center"> 1.0 </td> <td align="center"> 1.0 </td> <td align="center"> 52.8 </td> <td align="center"> 13.0 </td> <td align="center"> 11.0 </td> <td align="center"> 73.1 </td> </tr>
-  <tr> <td> Maximum </td> <td align="center"> 2.0 </td> <td align="center"> 1.0 </td> <td align="center"> 57.0 </td> <td align="center"> 14.3 </td> <td align="center"> 12.0 </td> <td align="center"> 78.0 </td> </tr>
+  <tr> <td> Median </td> <td align="center"> 1.0 </td> <td align="center"> 0.0 </td> <td align="center"> 43.0 </td> <td align="center"> 9.0 </td> <td align="center"> 8.0 </td> <td align="center"> 59.0 </td> </tr>
+  <tr> <td> 95th quantile </td> <td align="center"> 1.0 </td> <td align="center"> 0.0 </td> <td align="center"> 53.1 </td> <td align="center"> 13.0 </td> <td align="center"> 11.0 </td> <td align="center"> 73.1 </td> </tr>
+  <tr> <td> Maximum </td> <td align="center"> 2.0 </td> <td align="center"> 1.0 </td> <td align="center"> 57.0 </td> <td align="center"> 14.0 </td> <td align="center"> 12.0 </td> <td align="center"> 78.0 </td> </tr>
    </table>
 
 ### Burn area (km^2/year)
-<!-- html table generated in R 3.1.2 by xtable 1.7-4 package -->
-<!-- Thu Mar 26 19:03:43 2015 -->
+<!-- html table generated in R 3.2.0 by xtable 1.7-4 package -->
+<!-- Fri Jul 24 13:47:45 2015 -->
 <table border=1>
 <tr> <th>  </th> <th> Arctic </th> <th> North Pacific </th> <th> Northwest Interior Forest North </th> <th> Northwest Interior Forest South </th> <th> Western Alaska </th> <th> Alaska </th>  </tr>
-  <tr> <td> Mean </td> <td align="center"> 85.2 </td> <td align="center"> 3.6 </td> <td align="center"> 2790.0 </td> <td align="center"> 330.2 </td> <td align="center"> 760.2 </td> <td align="center"> 3776.1 </td> </tr>
-  <tr> <td> Standard deviation </td> <td align="center"> 213.9 </td> <td align="center"> 2.4 </td> <td align="center"> 3080.9 </td> <td align="center"> 437.7 </td> <td align="center"> 1168.3 </td> <td align="center"> 4332.3 </td> </tr>
-  <tr> <td> Minimum </td> <td align="center"> 1.0 </td> <td align="center"> 1.0 </td> <td align="center"> 337.3 </td> <td align="center"> 31.7 </td> <td align="center"> 22.7 </td> <td align="center"> 426.3 </td> </tr>
-  <tr> <td> Median </td> <td align="center"> 10.0 </td> <td align="center"> 3.0 </td> <td align="center"> 1624.3 </td> <td align="center"> 182.7 </td> <td align="center"> 267.5 </td> <td align="center"> 2054.3 </td> </tr>
-  <tr> <td> 95th quantile </td> <td align="center"> 626.7 </td> <td align="center"> 7.4 </td> <td align="center"> 10953.9 </td> <td align="center"> 1307.2 </td> <td align="center"> 2763.3 </td> <td align="center"> 13925.8 </td> </tr>
-  <tr> <td> Maximum </td> <td align="center"> 1209.7 </td> <td align="center"> 11.3 </td> <td align="center"> 13775.3 </td> <td align="center"> 2034.7 </td> <td align="center"> 6464.3 </td> <td align="center"> 18304.7 </td> </tr>
+  <tr> <td> Mean </td> <td align="center"> 72.0 </td> <td align="center"> 2.0 </td> <td align="center"> 2769.4 </td> <td align="center"> 300.4 </td> <td align="center"> 624.3 </td> <td align="center"> 3743.5 </td> </tr>
+  <tr> <td> Standard deviation </td> <td align="center"> 172.0 </td> <td align="center"> 1.6 </td> <td align="center"> 3069.4 </td> <td align="center"> 411.3 </td> <td align="center"> 990.2 </td> <td align="center"> 4301.2 </td> </tr>
+  <tr> <td> Minimum </td> <td align="center"> 1.0 </td> <td align="center"> 0.0 </td> <td align="center"> 332.3 </td> <td align="center"> 30.0 </td> <td align="center"> 19.3 </td> <td align="center"> 424.7 </td> </tr>
+  <tr> <td> Median </td> <td align="center"> 9.0 </td> <td align="center"> 1.8 </td> <td align="center"> 1599.2 </td> <td align="center"> 160.2 </td> <td align="center"> 200.0 </td> <td align="center"> 2037.5 </td> </tr>
+  <tr> <td> 95th quantile </td> <td align="center"> 507.2 </td> <td align="center"> 5.0 </td> <td align="center"> 10905.9 </td> <td align="center"> 1204.5 </td> <td align="center"> 2206.2 </td> <td align="center"> 13949.7 </td> </tr>
+  <tr> <td> Maximum </td> <td align="center"> 957.7 </td> <td align="center"> 7.0 </td> <td align="center"> 13805.0 </td> <td align="center"> 1987.7 </td> <td align="center"> 5728.0 </td> <td align="center"> 18139.0 </td> </tr>
    </table>
 
 ## Baseline Fire Graphs
