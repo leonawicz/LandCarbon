@@ -18,7 +18,7 @@ read_chunk("../../code/vegetation_change.R")
 ```{r setup, cache=T}
 ```
 
-```{r veg_change_setup, cache=TRUE}
+```{r veg_change_setup, cache=TRUE, results="hide"}
 ```
 
 ## Area Trends by Vegetation Class and Scenario

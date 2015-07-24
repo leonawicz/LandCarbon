@@ -21,7 +21,8 @@ read_chunk("../../code/baseline_fire.R")
 ## Baseline Fire Tables
 The third table down combining the first two relates to table 3.1 in the original document.
 This uses strictly ALFRESCO output.
-```{r baseline_fire_setup, cache=TRUE}
+
+```{r baseline_fire_setup, cache=TRUE, results="hide"}
 ```
 
 ### Fire frequency (fires/year)
