@@ -1,6 +1,6 @@
 # @knitr setup
 region.grp <- "LCC Regions"
-mainDir <- "X:/leonawicz/projects/SNAPQAQC/data/final/alfresco"
+mainDir <- "X:/projects/SNAPQAQC/data/final/alfresco"
 ak.statsVeg.file <- file.path(mainDir, "stats/Political/Alaska/stats_veg.RData")
 statDir <- file.path(mainDir, "stats", region.grp)
 library(data.table)

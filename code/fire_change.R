@@ -1,7 +1,7 @@
 # @knitr setup
 wd <- basename(getwd())
 region.grp <- "LCC Regions"
-mainDir <- "X:/leonawicz/projects/SNAPQAQC/data/final/alfresco"
+mainDir <- "X:/projects/SNAPQAQC/data/final/alfresco"
 ak.statsFire.file <- file.path(mainDir, "stats/Political/Alaska/stats_fire.RData")
 statDir <- file.path(mainDir, "stats", region.grp)
 library(data.table)
