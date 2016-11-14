@@ -1,11 +1,11 @@
 # @knitr setup
 region.grp <- "LCC Regions"
 mainDir <- "X:/projects/SNAPQAQC/data/final/alfresco"
-ak.statsVeg.file <- file.path(mainDir, "stats/Political/Alaska/stats_veg.RData")
+ak.statsVeg.file <- file.path(mainDir, "stats/Political Boundaries/Alaska/vegarea.RData")
 statDir <- file.path(mainDir, "stats", region.grp)
 library(data.table)
 library(reshape2)
-library(plyr)
+library(dplyr)
 library(xtable)
 
 # @knitr veg_change_setup
@@ -13,41 +13,43 @@ library(xtable)
 years.all <- 2009:2100
 years <- range(years.all)
 modnames <- "CCCMAcgcm31" # "MPIecham5" # 
-files <- list.files(statDir, pattern="^stats_veg.RData$", full=TRUE, recursive=TRUE)
+files <- list.files(statDir, pattern="^vegarea.RData$", full=TRUE, recursive=TRUE)
 files <- c(files, ak.statsVeg.file)
 regions <- basename(dirname(files))
 d <- vector("list", length(files))
 for(i in 1:length(files)){
 	load(files[i])
-	d[[i]] <- region.dat
+	d[[i]] <- stats.alf.vegarea
 }
-rm(region.dat)
+rm(stats.alf.vegarea)
 d <- rbindlist(d)
-d <- subset(d, Model %in% modnames & !(Vegetation %in% c("Barren lichen-moss", "Temperate Rainforest", "Wetland Tundra")))
+d <- filter(d, Model %in% modnames & !(Vegetation %in% c("Barren lichen-moss", "Temperate Rainforest", "Wetland Tundra"))) %>%
+  mutate(Vegetation=factor(Vegetation, levels=sort(unique(Vegetation))))
 d$Location <- gsub(" S", " South", gsub(" N", " North", gsub("W ", "Western ", gsub("N ", "North ", gsub("NW ", "Northwest ", d$Location))))) # Special name changes
 regions <- unique(d$Location[d$Location!="Alaska"])
 d[, Decade:=Year-Year %% 10]
-
 d$Scenario <- factor(as.character(d$Scenario), levels=c("SRES B1","SRES A1B","SRES A2"))
-d2 <- subset(d, Year %in% years.all)
-d <- subset(d, Year %in% years)
-d.agg1 <- ddply(d, c("Scenario", "Location", "Vegetation", "Year", "Decade"), summarise, Avg=mean(Mean))
-d.agg2 <- ddply(d2, c("Scenario", "Location", "Vegetation", "Year", "Decade"), summarise, Avg=mean(Mean))
+d <- group_by(d, Scenario, Location, Vegetation, Year, Decade)
+
+d2 <- filter(d, Year %in% years.all)
+d <- filter(d, Year %in% years)
+d.agg1 <- d %>% summarise(Avg=mean(Mean))
+d.agg2 <- d2 %>% summarise(Avg=mean(Mean))
 # Send table to file
 write.csv(d.agg2, file=paste0("C:/github/LandCarbon/data/", modnames, "_annual_veg_2009_2100.csv"))
 
 fac <- 1000
-d.agg1.sub <- d.agg1 #subset(d.agg1, Location=="Alaska")
-d.agg2.sub <- d.agg2 #subset(d.agg2, Location=="Alaska")
+d.agg1.sub <- d.agg1 %>% complete(Scenario, Location, Vegetation, Year)
+d.agg2.sub <- d.agg2 %>% complete(Scenario, Location, Vegetation, Year)
 d.agg1.sub$Avg <- d.agg1.sub$Avg/fac
 d.agg2.sub$Avg <- d.agg2.sub$Avg/fac
 
-d.agg1.b1 <- subset(d.agg1.sub, Year==years[1] & Scenario=="SRES B1")
-d.agg1.a1b <- subset(d.agg1.sub, Year==years[1] & Scenario=="SRES A1B")
-d.agg1.a2 <- subset(d.agg1.sub, Year==years[1] & Scenario=="SRES A2")
-d.agg1.b1.2 <- subset(d.agg1.sub, Year==years[2] & Scenario=="SRES B1")
-d.agg1.a1b.2 <- subset(d.agg1.sub, Year==years[2] & Scenario=="SRES A1B")
-d.agg1.a2.2 <- subset(d.agg1.sub, Year==years[2] & Scenario=="SRES A2")
+d.agg1.b1 <- filter(d.agg1.sub, Year==years[1] & Scenario=="SRES B1")
+d.agg1.a1b <- filter(d.agg1.sub, Year==years[1] & Scenario=="SRES A1B")
+d.agg1.a2 <- filter(d.agg1.sub, Year==years[1] & Scenario=="SRES A2")
+d.agg1.b1.2 <- filter(d.agg1.sub, Year==years[2] & Scenario=="SRES B1")
+d.agg1.a1b.2 <- filter(d.agg1.sub, Year==years[2] & Scenario=="SRES A1B")
+d.agg1.a2.2 <- filter(d.agg1.sub, Year==years[2] & Scenario=="SRES A2")
 
 vc_barplot <- function(d.list, loc, dodge=FALSE, y.n=5, prop=TRUE, main.title="", fix.scale=FALSE){
 	n <- length(d.list)
