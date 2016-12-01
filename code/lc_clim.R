@@ -18,7 +18,8 @@ get_clim <- function(dir, years, seasons=FALSE, prev.december=TRUE, decimals=0){
     mo.vec <- substr(files, nchar(files)-10, nchar(files)-9)
     f <- function(x, idx, yrs, seas, pre){
       y <- as.numeric(substr(x, nchar(x)-7, nchar(x)-4))
-      x[y %in% ifelse(seas && pre && idx==12, yrs-1, yrs)]
+      if(seas && pre && idx==12) yrs <- yrs - 1
+      x[y %in% yrs]
     }
     files <- split(files, mo.vec) %>% map2(1:12, ~f(.x, .y, years, seasons, prev.december))
     files <- map(p, ~unlist(files[.x]))
