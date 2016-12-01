@@ -33,6 +33,7 @@ d.pr <- brick_to_dt(cccma.delta$pr, "CCCMA") %>% bind_rows(brick_to_dt(echam.del
 
 library(purrr)
 seasons <- c("Winter", "Spring", "Summer", "Fall")
+seasons <- factor(seasons, levels=seasons)
 tas <-bind_rows(
   as.data.frame(map(b.t, ~cellStats(.x, median))) %>% mutate(Var="Median", Season=seasons),
   as.data.frame(map(b.t, ~cellStats(.x, mean))) %>% mutate(Var="Mean", Season=seasons),
@@ -40,9 +41,9 @@ tas <-bind_rows(
 )
 tas <- melt(tas, id.vars=c("Var", "Season"), variable.name="Model", value.name="Precipitation")
 tas <- dcast(tas, Season + Model ~ Var, value.var="Precipitation")
-tas <- mutate(tas, Median=round(Median,1), Mean=round(Mean,1), SD=round(SD,1))
+tas <- mutate(tas, Median=round(Median,1), Mean=round(Mean,1), SD=round(SD,1)) %>%
+  arrange(Model, Season)
 
-seasons <- c("Winter", "Spring", "Summer", "Fall")
 pr <-bind_rows(
   as.data.frame(map(b.p, ~cellStats(.x, median))) %>% mutate(Var="Median", Season=seasons),
   as.data.frame(map(b.p, ~cellStats(.x, mean))) %>% mutate(Var="Mean", Season=seasons),
@@ -50,8 +51,9 @@ pr <-bind_rows(
 )
 pr <- melt(pr, id.vars=c("Var", "Season"), variable.name="Model", value.name="Precipitation")
 pr <- dcast(pr, Season + Model ~ Var, value.var="Precipitation")
-pr <- mutate(pr, Median=round(Median), Mean=round(Mean), SD=round(SD))
-save(tas, pr, file="C:/leonawicz/tas_pr_table.RData")
+pr <- mutate(pr, Median=round(Median), Mean=round(Mean), SD=round(SD)) %>%
+  arrange(Model, Season)
+save(tas, pr, file="C:/github/LandCarbon/workspaces/tas_pr_table.RData")
 
 # Prep ggplot theme settings
 e <- element_blank()
@@ -61,16 +63,17 @@ tp_theme <- theme(axis.title.x=e, axis.title.y=e, axis.text.x=e, axis.text.y=e, 
 # Store ggplot objects
 make_plot <- function(d, variable, file, pal="Blues"){
   stopifnot(variable %in% c("Temperature", "Precipitation"))
-  et <- expression(atop("Seasonal temperature deltas"~(degree~C), "2090-2099 model mean - 1950-2013 CRU 3.2 mean"))
-  ep <- expression(atop("Seasonal precipitation deltas"~(mm), "2090-2099 model mean / 1950-2013 CRU 3.2 mean"))
+  et <- expression(atop("\nSeasonal temperature deltas"~(degree~C), "2090-2099 model mean - 1950-2013 CRU 3.2 mean"))
+  ep <- expression(atop("\nSeasonal precipitation deltas"~(mm), "2090-2099 model mean / 1950-2013 CRU 3.2 mean"))
   if(variable=="Temperature") e <- et else e <- ep
   rng.all <- range(d$Val)
 
   g1a <- ggplot(d, aes(x, y)) + geom_raster(aes(fill=Val)) +
       geom_polygon(data=shp, aes(long, lat, group=group), color="gray40", fill="transparent") +
-      theme(panel.margin=unit(0, "cm"), plot.margin=unit(c(0,0,0,0), "mm"),
-          legend.position="bottom", legend.box="horizontal", legend.title=element_blank(), legend.key.width=unit(2, "cm"),
-          strip.text.x=element_text(size=12), strip.text.y=element_text(size=12, angle=180)) +
+      theme(panel.spacing=unit(0, "cm"), plot.margin=unit(c(0,0,0,0), "mm"),
+            plot.title=element_text(margin=margin(t=20), hjust=0.5),
+            legend.position="bottom", legend.box="horizontal", legend.title=element_blank(), legend.key.width=unit(2, "cm"),
+            strip.text.x=element_text(size=12), strip.text.y=element_text(size=12, angle=180)) +
       facet_grid(Season~Model, switch="both") + tp_theme +
       scale_fill_distiller(palette=pal, breaks=seq(rng.all[1], rng.all[2], length=5)) +
       labs(title=e)
@@ -97,8 +100,8 @@ make_plot <- function(d, variable, file, pal="Blues"){
   gt <- ggplotGrob(g1a)
   dev.off()
   panel <- gtable_filter(gt, "panel")
-  stripleft <- gtable_filter(gt, "strip-left")
-  stripbottom <- gtable_filter(gt, "strip-bottom")
+  stripleft <- gtable_filter(gt, "strip-l")
+  stripbottom <- gtable_filter(gt, "strip-b")
   guidebox <- gtable_filter(gt, "guide-box")
   top <- gtable_filter(gt, "title")
 
